@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN COMMAND CENTER - Quản Trị Viên Tài Xỉu</title>
+  <meta name="description" content="Trung tâm điều khiển và giám sát thời gian thực hệ thống Tài Xỉu dành cho Quản trị viên.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <a href="/admin.html" class="brand-logo">
+      <div class="logo-icon">👑</div>
+      <div class="logo-text">ADMIN <span>COMMAND CENTER</span></div>
+    </a>
+
+    <div class="nav-user-info">
+      <a href="/game.html" class="btn-secondary" style="font-size: 0.85rem; padding: 6px 14px;">
+        🎮 Sang Bàn Chơi
+      </a>
+
+      <div class="user-badge">
+        <div class="user-avatar" style="background: #ff3358; color: #fff;">A</div>
+        <span class="user-name" id="admin-name">Admin</span>
+        <span class="role-tag admin">CHỦ PHÒNG</span>
+      </div>
+
+      <button class="btn-secondary" id="btn-admin-logout" style="padding: 6px 12px; font-size: 0.8rem;">
+        Đăng Xuất
+      </button>
+    </div>
+  </nav>
+
+  <!-- Admin Main Container -->
+  <main class="admin-container">
+
+    <!-- Header Banner -->
+    <div class="admin-header">
+      <div class="admin-title-wrap">
+        <h1>BẢNG ĐIỀU HÀNH THỜI GIAN THỰC</h1>
+        <div class="admin-badge-live">LIVE MONITOR</div>
+      </div>
+      <div style="font-size: 0.9rem; color: var(--text-muted);">
+        Kết nối: <strong id="stat-online-players" style="color: var(--green-success);">1 thiết bị</strong>
+      </div>
+    </div>
+
+    <!-- Live Stats Metrics Grid -->
+    <section class="admin-stats-grid">
+      <div class="stat-card card-gold">
+        <div class="sc-label">Phiên Hiện Tại</div>
+        <div class="sc-value" id="stat-round-id">#1000</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="sc-label">Thời Gian & Trạng Thái</div>
+        <div class="sc-value" id="stat-time-left" style="color: #67e8f9;">25s (CƯỢC)</div>
+      </div>
+
+      <div class="stat-card card-tai">
+        <div class="sc-label">Tổng Cược TÀI</div>
+        <div class="sc-value" id="stat-total-tai">0 Xu</div>
+      </div>
+
+      <div class="stat-card card-xiu">
+        <div class="sc-label">Tổng Cược XỈU</div>
+        <div class="sc-value" id="stat-total-xiu">0 Xu</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="sc-label">Tình Trạng Cân Cửa</div>
+        <div class="sc-value" id="stat-house-profit" style="font-size: 1.3rem; color: var(--gold-light);">Cân Bằng</div>
+      </div>
+    </section>
+
+    <!-- HỆ THỐNG BOT CƯỢC ẢO (TỰ ĐỘNG GIẢ LẬP NHIỀU NGƯỜI CHƠI) -->
+    <section style="background: rgba(14, 18, 30, 0.9); border: 1px solid rgba(0, 210, 255, 0.35); border-radius: 18px; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 2.2rem;">🤖</span>
+        <div>
+          <h2 style="font-family: var(--font-accent); font-size: 1.15rem; font-weight: 800; color: #fff;">
+            HỆ THỐNG BOT NGƯỜI CHƠI TỰ ĐỘNG
+          </h2>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">
+            Tự động đưa hàng chục người chơi ảo vào cược ngẫu nhiên khắp các giây, tạo không khí sòng bài cực kỳ đông đúc.
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <!-- Bot Status Badge -->
+        <span class="outcome-status-badge auto" id="bot-status-badge">🤖 BOT: ĐANG BẬT</span>
+
+        <!-- Bot Toggle Button -->
+        <button class="btn-secondary" id="btn-toggle-bot" style="font-size: 0.85rem; padding: 8px 16px; border-color: var(--blue-xiu); color: #67e8f9;">
+          Bật / Tắt Bot
+        </button>
+
+        <!-- Density Selection -->
+        <div style="display: flex; gap: 6px; background: rgba(0,0,0,0.4); padding: 4px; border-radius: 10px;">
+          <button class="btn-table-action" id="btn-crowd-low" onclick="setBotCrowd('low')" title="5 - 10 Bots/phiên">Ít (5-10)</button>
+          <button class="btn-table-action" id="btn-crowd-medium" onclick="setBotCrowd('medium')" title="12 - 25 Bots/phiên" style="background: var(--gold-primary); color: #000;">Vừa (15-25)</button>
+          <button class="btn-table-action" id="btn-crowd-high" onclick="setBotCrowd('high')" title="25 - 45 Bots/phiên">Đông (25-45)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN RIÊNG: Điều Chỉnh Tỉ Lệ Thắng (Win Rate & House Edge Controller) -->
+    <section class="winrate-control-card">
+      <div class="winrate-header">
+        <div class="winrate-title-wrap">
+          <div class="icon-wrap">⚖️</div>
+          <div>
+            <h2>CẤU HÌNH TỈ LỆ THẮNG THUA (HOUSE EDGE)</h2>
+            <p class="winrate-desc">Hệ thống sẽ tự động điều phối xúc xắc theo đúng tỉ lệ phần trăm bạn cài đặt khi người chơi đặt cược.</p>
+          </div>
+        </div>
+        <div class="current-rate-box">
+          <div class="cr-label">TỈ LỆ HIỆN TẠI</div>
+          <div class="cr-value" id="display-active-winrate">50% THẮNG</div>
+        </div>
+      </div>
+
+      <!-- Thanh Trực Quan Tỉ Lệ Ăn / Thua -->
+      <div class="winrate-meter-wrap">
+        <div class="winrate-meter-labels">
+          <span style="color: var(--red-tai); font-weight: 800;">🩸 Nhà Cái Ăn: <strong id="lbl-house-rate">50%</strong></span>
+          <span style="color: var(--green-success); font-weight: 800;">🏆 Người Chơi Thắng: <strong id="lbl-player-rate">50%</strong></span>
+        </div>
+        <div class="winrate-bar-bg">
+          <div class="winrate-bar-fill" id="winrate-bar-fill" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Slider & Các Mức Nhanh -->
+      <div class="winrate-interactive-row">
+        <div class="slider-box">
+          <label for="slider-winrate">Kéo thanh trượt để chỉnh tỉ lệ người chơi thắng:</label>
+          <div class="slider-input-group">
+            <input type="range" id="slider-winrate" min="0" max="100" value="50" step="5">
+            <span class="slider-num-badge" id="slider-num-val">50%</span>
+          </div>
+        </div>
+
+        <div class="presets-box">
+          <label>Cài đặt nhanh:</label>
+          <div class="presets-buttons">
+            <button type="button" class="btn-preset preset-drain" onclick="setWinRatePreset(15)">
+              🩸 Hút Máu (15%)
+            </button>
+            <button type="button" class="btn-preset preset-drain" onclick="setWinRatePreset(30)">
+              ⚠️ Khó Ăn (30%)
+            </button>
+            <button type="button" class="btn-preset preset-fair" onclick="setWinRatePreset(50)">
+              ⚖️ Cân Bằng (50%)
+            </button>
+            <button type="button" class="btn-preset preset-gift" onclick="setWinRatePreset(75)">
+              🎁 Nhả Tiền (75%)
+            </button>
+            <button type="button" class="btn-preset preset-win" onclick="setWinRatePreset(100)">
+              👑 Thắng 100%
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-gold btn-save-winrate" id="btn-save-winrate">
+          💾 LƯU TỈ LỆ THẮNG
+        </button>
+      </div>
+    </section>
+
+    <!-- God Mode Controller: Can Thiệp Trực Tiếp Phiên Tiếp Theo -->
+    <section class="controller-card">
+      <div class="controller-header">
+        <div class="controller-title">
+          <span>⚡ ÉP KẾT QUẢ TỨC THÌ (GOD MODE 1 PHIÊN)</span>
+        </div>
+        <div>
+          Trạng thái hiện tại: 
+          <span class="outcome-status-badge auto" id="outcome-status-badge">🎲 Tự Động (Fair RNG)</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="control-buttons-row">
+        <button class="btn-ctrl btn-ctrl-auto" id="btn-force-auto">
+          🎲 Tự Động (Theo Tỉ Lệ)
+        </button>
+        <button class="btn-ctrl btn-ctrl-tai" id="btn-force-tai">
+          🔴 ÉP TÀI (11 - 17)
+        </button>
+        <button class="btn-ctrl btn-ctrl-xiu" id="btn-force-xiu">
+          🔵 ÉP XỈU (4 - 10)
+        </button>
+        <button class="btn-ctrl btn-ctrl-bao" id="btn-force-bao">
+          👑 ÉP BÃO (3 Số Giống Nhau)
+        </button>
+      </div>
+
+      <!-- Custom 3 Dice Input -->
+      <div class="custom-dice-form">
+        <span style="font-size: 0.85rem; font-weight: 700; color: var(--gold-light);">
+          🎯 Hoặc Chọn Chính Xác 3 Viên Xúc Xắc:
+        </span>
+        <select class="dice-select" id="select-d1">
+          <option value="1">Xúc xắc 1: 1</option>
+          <option value="2">Xúc xắc 1: 2</option>
+          <option value="3">Xúc xắc 1: 3</option>
+          <option value="4">Xúc xắc 1: 4</option>
+          <option value="5">Xúc xắc 1: 5</option>
+          <option value="6" selected>Xúc xắc 1: 6</option>
+        </select>
+        <select class="dice-select" id="select-d2">
+          <option value="1">Xúc xắc 2: 1</option>
+          <option value="2">Xúc xắc 2: 2</option>
+          <option value="3">Xúc xắc 2: 3</option>
+          <option value="4">Xúc xắc 2: 4</option>
+          <option value="5" selected>Xúc xắc 2: 5</option>
+          <option value="6">Xúc xắc 2: 6</option>
+        </select>
+        <select class="dice-select" id="select-d3">
+          <option value="1">Xúc xắc 3: 1</option>
+          <option value="2">Xúc xắc 3: 2</option>
+          <option value="3">Xúc xắc 3: 3</option>
+          <option value="4" selected>Xúc xắc 3: 4</option>
+          <option value="5">Xúc xắc 3: 5</option>
+          <option value="6">Xúc xắc 3: 6</option>
+        </select>
+        <button class="btn-gold" id="btn-apply-custom-dice" style="padding: 8px 18px; font-size: 0.85rem;">
+          Áp Dụng
+        </button>
+      </div>
+    </section>
+
+    <!-- Two Columns: Live Bets Feed & User Accounts Management -->
+    <section class="admin-tables-grid">
+
+      <!-- Column 1: Live Bets in Current Round -->
+      <div class="table-card">
+        <div class="table-header">
+          <div>
+            <h3><span>👁️</span> THEO DÕI VÉ CƯỢC PHIÊN NÀY</h3>
+            <div style="font-size: 0.75rem; color: var(--gold-light); margin-top: 4px;" id="bet-pool-summary-text">
+              Đang có: 0 người cược
+            </div>
+            <!-- Filter buttons -->
+            <div style="display: flex; gap: 6px; margin-top: 8px;">
+              <button class="btn-chip-action" id="filter-bet-all" style="padding: 4px 10px; font-size: 0.75rem; background: var(--gold-primary); color: #000;" onclick="setBetFilter('all')">Tất Cả</button>
+              <button class="btn-chip-action" id="filter-bet-real" style="padding: 4px 10px; font-size: 0.75rem;" onclick="setBetFilter('real')">👤 Người Thật</button>
+              <button class="btn-chip-action" id="filter-bet-bot" style="padding: 4px 10px; font-size: 0.75rem;" onclick="setBetFilter('bot')">🤖 Bot Ảo</button>
+            </div>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--green-success); font-weight: 700;">🟢 CẬP NHẬT THEO GIÂY</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Người Chơi</th>
+                <th>Loại</th>
+                <th>Cửa Cược Lần Này</th>
+                <th>Số Tiền Cược</th>
+                <th>Số Dư Ví</th>
+                <th>Thời Gian</th>
+              </tr>
+            </thead>
+            <tbody id="live-bets-tbody">
+              <tr>
+                <td colspan="5" style="text-align: center; color: #8e9bb0; padding: 24px;">
+                  Chưa có vé cược nào trong phiên này
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Column 2: User Accounts & Balance Management -->
+      <div class="table-card">
+        <div class="table-header">
+          <h3><span>👥</span> Quản Lý Danh Sách Người Dùng</h3>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Cộng / Trừ tiền ảo</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tài Khoản</th>
+                <th>Vai Trò</th>
+                <th>Số Dư</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

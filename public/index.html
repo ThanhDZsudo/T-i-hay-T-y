@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÀI XỈU VIP 3D - Cổng Game Giải Trí Thượng Lưu</title>
+  <meta name="description" content="Trang web game Tài Xỉu giải trí trực tuyến thời gian thực với đồ họa Casino 3D sang trọng, soi cầu chi tiết và hệ thống nạp tiền chơi thả ga.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-section {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      text-shadow: 0 0 30px rgba(245, 183, 33, 0.5);
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 36px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      padding: 32px;
+      background: rgba(16, 22, 36, 0.9);
+      border: 1px solid rgba(245, 183, 33, 0.35);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 183, 33, 0.15);
+    }
+
+    .tab-switcher {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: var(--transition-fast);
+    }
+
+    .tab-btn.active {
+      background: var(--gold-gradient);
+      color: #000;
+    }
+
+    .quick-logins {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quick-login-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .btn-quick {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition-fast);
+    }
+
+    .btn-quick:hover {
+      background: rgba(245, 183, 33, 0.15);
+      border-color: var(--gold-primary);
+    }
+
+    .btn-quick.admin-quick:hover {
+      background: rgba(255, 51, 88, 0.2);
+      border-color: var(--red-tai);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="/" class="brand-logo">
+      <div class="logo-icon">🎲</div>
+      <div class="logo-text">TÀI XỈU <span>VIP CASINO</span></div>
+    </a>
+    <div class="nav-actions">
+      <span style="font-size: 0.85rem; color: var(--gold-light); font-weight: 700;">⭐ Trải Nghiệm Thượng Lưu</span>
+    </div>
+  </nav>
+
+  <!-- Hero & Login Section -->
+  <section class="hero-section">
+    <h1 class="hero-title">TÀI XỈU <span class="text-gold">HOÀNG GIA</span></h1>
+    <p class="hero-subtitle">Sòng bài đẳng cấp thế giới với công nghệ lắc xúc xắc 3D chân thực, soi cầu chuẩn xác và tỷ lệ trả thưởng 1 ăn 0.7 siêu tốc.</p>
+
+    <!-- Auth Card -->
+    <div class="auth-card">
+      <div class="tab-switcher">
+        <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Đăng Nhập</button>
+        <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Đăng Ký Mới</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="form-login" onsubmit="handleAuth(event, 'login')">
+        <div class="form-group">
+          <label for="login-username">Tên Tài Khoản</label>
+          <input type="text" id="login-username" class="form-control" placeholder="Nhập tên đăng nhập..." required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Mật Khẩu</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">
+          VÀO PHÒNG CHƠI 🎲
+        </button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" style="display: none;" onsubmit="handleAuth(event, 'register')">
+        <div class="form-group">
+          <label for="reg-username">Tên Tài Khoản Mới</label>
+          <input type="text" id="reg-username" class="form-control" placeholder="Từ 3-20 ký tự..." required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Mật Khẩu</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="Tối thiểu 5 ký tự..." required autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">
+          ĐĂNG KÝ (TẶNG 10,000,000 XU) 🎁
+        </button>
+      </form>
+
+      <!-- Quick 1-Click Login for Demo Testing -->
+      <div class="quick-logins">
+        <div class="quick-login-label">Chơi Thử Nhanh 1 Click:</div>
+        <button class="btn-quick" onclick="quickLogin('player1', '123456')">
+          <span>🎮 Người Chơi 1</span>
+          <span style="color: var(--gold-light);">50,000,000 Xu</span>
+        </button>
+        <button class="btn-quick" onclick="quickLogin('player2', '123456')">
+          <span>🎮 Người Chơi 2</span>
+          <span style="color: var(--gold-light);">30,000,000 Xu</span>
+        </button>
+        <button class="btn-quick" onclick="quickLogin('player3', '123456')">
+          <span>🎮 Người Chơi 3</span>
+          <span style="color: var(--gold-light);">25,000,000 Xu</span>
+        </button>
+        <button class="btn-quick" onclick="quickLogin('player4', '123456')">
+          <span>🎮 Người Chơi 4</span>
+          <span style="color: var(--gold-light);">20,000,000 Xu</span>
+        </button>
+        <button class="btn-quick admin-quick" onclick="quickLogin('admin', 'admin888')">
+          <span>👑 Quản Trị Viên (Admin)</span>
+          <span style="color: var(--red-tai);">Toàn Quyền Giám Sát</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container"></div>
+
+  <script>
+    // Tab Switcher
+    function switchTab(type) {
+      const isLogin = type === 'login';
+      document.getElementById('tab-login').classList.toggle('active', isLogin);
+      document.getElementById('tab-register').classList.toggle('active', !isLogin);
+      document.getElementById('form-login').style.display = isLogin ? 'block' : 'none';
+      document.getElementById('form-register').style.display = isLogin ? 'none' : 'block';
+    }
+
+    // Quick Login
+    function quickLogin(username, password) {
+      if (document.getElementById('tab-login').classList.contains('active')) {
+        document.getElementById('login-username').value = username;
+        document.getElementById('login-password').value = password;
+      } else {
+        switchTab('login');
+        document.getElementById('login-username').value = username;
+        document.getElementById('login-password').value = password;
+      }
+      document.getElementById('form-login').requestSubmit();
+    }
+
+    // Handle Authentication (Login / Register)
+    async function handleAuth(event, type) {
+      event.preventDefault();
+      const endpoint = type === 'login' ? '/api/auth/login' : '/api/auth/register';
+      const usernameInput = type === 'login' ? 'login-username' : 'reg-username';
+      const passwordInput = type === 'login' ? 'login-password' : 'reg-password';
+
+      const username = document.getElementById(usernameInput).value.trim();
+      const password = document.getElementById(passwordInput).value;
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          localStorage.setItem('taixiu_token', data.token);
+          localStorage.setItem('taixiu_user', JSON.stringify(data.user));
+          showToast(data.message, 'success');
+
+          // Redirect based on role
+          setTimeout(() => {
+            if (data.user.role === 'admin') {
+              window.location.href = '/admin.html';
+            } else {
+              window.location.href = '/game.html';
+            }
+          }, 800);
+        } else {
+          showToast(data.message, 'error');
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối máy chủ, vui lòng thử lại!', 'error');
+      }
+    }
+
+    // Toast function
+    function showToast(message, type = 'info') {
+      let container = document.getElementById('toast-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+      }
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // Auto redirect if already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('taixiu_token');
+      const userStr = localStorage.getItem('taixiu_user');
+      if (token && userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          if (user.role === 'admin') {
+            window.location.href = '/admin.html';
+          } else {
+            window.location.href = '/game.html';
+          }
+        } catch (e) {}
+      }
+    });
+  </script>
+</body>
+</html>

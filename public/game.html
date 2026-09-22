@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÀI XỈU HOÀNG GIA - Cổng Game Đẳng Cấp</title>
+  <meta name="description" content="Trải nghiệm bàn cược Tài Xỉu 3D trực tuyến đẳng cấp VIP, lắc xí ngầu chân thực, nặn bát 360 độ và bảng soi cầu 3 xí ngầu chuẩn xác.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body class="casino-theme">
+
+  <!-- Top Casino Header Navigation -->
+  <nav class="navbar">
+    <a href="/" class="brand-logo">
+      <div class="logo-icon">🎲</div>
+      <div class="logo-text">TÀI XỈU <span>HOÀNG GIA VIP</span></div>
+    </a>
+
+    <div class="nav-user-info">
+      <!-- Sound toggle -->
+      <button class="audio-btn" id="btn-toggle-audio" title="Bật/Tắt âm thanh">🔊</button>
+
+      <!-- User Balance Pill -->
+      <div class="balance-pill">
+        <span class="coin-icon">💰</span>
+        <span class="balance-value" id="user-balance">0 Xu</span>
+      </div>
+
+      <!-- Deposit Button -->
+      <button class="btn-gold" id="btn-open-deposit" style="padding: 6px 14px; font-size: 0.85rem;">
+        ➕ NẠP XU
+      </button>
+
+      <!-- User Profile Badge -->
+      <div class="user-badge">
+        <div class="user-avatar" id="user-avatar">U</div>
+        <span class="user-name" id="user-name">Người Chơi</span>
+        <span class="role-tag user">VIP</span>
+      </div>
+
+      <!-- Logout Button -->
+      <button class="btn-secondary" id="btn-logout" style="padding: 6px 12px; font-size: 0.8rem;">
+        Đăng Xuất
+      </button>
+    </div>
+  </nav>
+
+  <!-- Live Marquee Bet Notification Bar -->
+  <div class="live-bet-ticker-bar" id="live-bet-ticker-bar">
+    <div class="ticker-badge">
+      <span class="live-indicator-dot"></span>
+      <span>TRỰC TIẾP</span>
+    </div>
+    <div class="ticker-content" id="live-ticker-content">
+      <span class="ticker-default-msg">🎲 Chào mừng đến với Bàn Cược Hoàng Gia! Tỷ lệ đặt 1 ăn 0.7 cực khủng...</span>
+    </div>
+    <div class="ticker-online-stat">
+      <span class="online-dot"></span>
+      <span id="online-players-count">3,096 người đang online</span>
+    </div>
+  </div>
+
+  <!-- Main Game Stage -->
+  <main class="game-container">
+
+    <!-- ==================== AUTHENTIC CASINO TÀI XỈU TABLE WIDGET ==================== -->
+    <div class="tx-casino-stage">
+
+      <!-- 3D Header Crown: Coins & Red Dices & 3D Title -->
+      <div class="tx-table-crown">
+        <div class="crown-dice-left">
+          <div class="crown-die"></div>
+          <div class="crown-die"></div>
+        </div>
+        <div class="crown-title-wrap">
+          <h1 class="crown-title">TÀI XỈU</h1>
+          <div class="crown-coins"></div>
+        </div>
+        <div class="crown-coins-right">
+          <span class="coin-pile">🪙🪙🪙</span>
+        </div>
+      </div>
+
+      <!-- Main Oblong Metallic Stadium Table -->
+      <div class="tx-stadium-table" id="tx-stadium-table">
+
+        <!-- Top Table Control Bar -->
+        <div class="tx-top-bar">
+          <!-- Left Action Icons -->
+          <div class="tx-action-group left">
+            <button class="tx-circle-btn" id="btn-open-guide" title="Hướng dẫn chơi">?</button>
+            <button class="tx-circle-btn" id="btn-open-rules" title="Luật chơi & Tỷ lệ 1 ăn 0.7">i</button>
+            <button class="tx-circle-btn gold-glow" id="btn-open-soicau" title="Bảng Soi Cầu 3 Xí Ngầu">📈</button>
+          </div>
+
+          <!-- Center Round ID & Timer Badge -->
+          <div class="tx-center-badge">
+            <div class="tx-round-tag" id="round-id">#322340</div>
+            <div class="tx-phase-pill" id="phase-status">Đang Đặt Cược</div>
+          </div>
+
+          <!-- Right Action Icons -->
+          <div class="tx-action-group right">
+            <button class="tx-circle-btn" id="btn-open-leaderboard" title="Bảng Vinh Danh Top Thắng">🏆</button>
+            <button class="tx-circle-btn" id="btn-toggle-chat" title="Trò chuyện bàn cược">💬</button>
+            <button class="tx-circle-btn close-btn" id="btn-table-close" title="Rời bàn cược">✕</button>
+          </div>
+        </div>
+
+        <!-- Middle Arena: Cửa TÀI - Đĩa Xúc Xắc - Cửa XỈU -->
+        <div class="tx-arena-body">
+
+          <!-- Left Door: TÀI (11-17) -->
+          <div class="tx-door-box tai" id="box-tai">
+            <!-- Player Count Header -->
+            <div class="door-header">
+              <span class="door-count-icon">👥</span>
+              <span class="door-count" id="count-tai">3096</span>
+            </div>
+
+            <!-- Big Glowing TÀI Text -->
+            <div class="door-hero-title tai-text">TÀI</div>
+            <div class="door-range">[ 11 - 17 ]</div>
+
+            <!-- Ruby Pool Ribbon Bar -->
+            <div class="door-ruby-pool">
+              <span class="pool-amount" id="pool-tai">1,650,352,142</span>
+            </div>
+
+            <!-- Glossy Golden ĐẶT CƯỢC Button -->
+            <button class="tx-btn-bet-door" id="btn-door-tai">
+              ĐẶT CƯỢC
+            </button>
+
+            <!-- User's Personal Bet Status -->
+            <div class="door-my-bet">
+              <span class="my-bet-label">Đã cược:</span>
+              <span class="my-bet-val" id="my-bet-tai">0 Xu</span>
+            </div>
+          </div>
+
+          <!-- Center Disc: Countdown Timer & 3D Red Dice Plate & Bowl -->
+          <div class="tx-center-disc-container">
+
+            <!-- Center Countdown Timer or Score Badge -->
+            <div class="tx-disc-score-badge" id="disc-score-badge">
+              <span id="center-timer-text">60</span>
+            </div>
+
+            <!-- Nặn Bát Hint Badge -->
+            <div class="nan-bat-hint" id="nan-bat-hint" style="display: none;">
+              <span>🖐️ KÉO BÁT ĐỂ NẶN</span>
+            </div>
+
+            <!-- Circular Black Stage with Golden Rim -->
+            <div class="dish-plate-container">
+              <!-- Golden Outer Dish -->
+              <div class="dish-plate">
+                <!-- Inner Deep Black Felt Ring -->
+                <div class="plate-inner-ring">
+                  <!-- 3 Authentic Crimson Red Dice with White Dots -->
+                  <div class="dice-trio" id="dice-trio">
+                    <div class="die"></div>
+                    <div class="die"></div>
+                    <div class="die"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metallic Gold Bowl (Bát Úp Nặn 360 Độ) -->
+              <div class="dish-bowl" id="dish-bowl" title="Nhấp giữ và kéo bát để nặn kết quả 🎲">
+                <div class="bowl-handle"></div>
+                <div class="bowl-emblem">TÀI XỈU</div>
+              </div>
+            </div>
+
+            <!-- Fast Open Bowl Button -->
+            <button class="btn-open-bowl" id="btn-open-bowl" style="display: none;">
+              MỞ BÁT NGAY 🎲
+            </button>
+
+            <!-- Result Tag under Plate -->
+            <div class="result-display-badge" id="result-badge" style="display: none;">
+              <span>13 Điểm</span> • <strong>TÀI</strong>
+            </div>
+
+          </div>
+
+          <!-- Right Door: XỈU (4-10) -->
+          <div class="tx-door-box xiu" id="box-xiu">
+            <!-- Player Count Header -->
+            <div class="door-header">
+              <span class="door-count-icon">👥</span>
+              <span class="door-count" id="count-xiu">3054</span>
+            </div>
+
+            <!-- Big Glowing XỈU Text -->
+            <div class="door-hero-title xiu-text">XỈU</div>
+            <div class="door-range">[ 4 - 10 ]</div>
+
+            <!-- Ruby Pool Ribbon Bar -->
+            <div class="door-ruby-pool">
+              <span class="pool-amount" id="pool-xiu">1,596,911,433</span>
+            </div>
+
+            <!-- Glossy Golden ĐẶT CƯỢC Button -->
+            <button class="tx-btn-bet-door" id="btn-door-xiu">
+              ĐẶT CƯỢC
+            </button>
+
+            <!-- User's Personal Bet Status -->
+            <div class="door-my-bet">
+              <span class="my-bet-label">Đã cược:</span>
+              <span class="my-bet-val" id="my-bet-xiu">0 Xu</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Table Ribbon: History Note + Pearl Bead Road + Nan Bat Hand -->
+        <div class="tx-bottom-bar">
+          <!-- Left Icon: Personal History Note -->
+          <button class="tx-circle-btn bottom-btn" id="btn-open-history" title="Lịch sử cược cá nhân">
+            📋
+          </button>
+
+          <!-- Middle: Bead History String (Dãy hạt trắng Tài - hạt đen Xỉu) -->
+          <div class="tx-bottom-bead-road" id="bottom-bead-road">
+            <!-- Dynamically populated beads -->
+          </div>
+
+          <!-- Right Icon: Nặn Bát Hand Toggle Button -->
+          <button class="tx-circle-btn bottom-btn active" id="btn-toggle-nan" title="Bật/Tắt chế độ kéo Nặn Bát (Hiện: BẬT)">
+            🖐️
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ==================== CHIP SELECTION & BET CONTROLS ==================== -->
+    <section class="chip-control-panel">
+      <!-- Chips Tray -->
+      <div class="chips-tray">
+        <div class="poker-chip chip-1k" data-value="1000">1K</div>
+        <div class="poker-chip chip-10k" data-value="10000">10K</div>
+        <div class="poker-chip chip-50k" data-value="50000">50K</div>
+        <div class="poker-chip chip-100k selected" data-value="100000">100K</div>
+        <div class="poker-chip chip-500k" data-value="500000">500K</div>
+        <div class="poker-chip chip-1m" data-value="1000000">1M</div>
+        <div class="poker-chip chip-5m" data-value="5000000">5M</div>
+        <div class="poker-chip chip-10m" data-value="10000000">10M</div>
+      </div>
+
+      <!-- Quick Bet Action Buttons -->
+      <div class="quick-bet-actions">
+        <div class="selected-door-indicator" id="selected-door-indicator">
+          Cửa chọn: <strong id="selected-door-text" style="color: var(--gold-primary);">Chưa chọn</strong>
+        </div>
+        <button class="btn-chip-action" id="btn-action-clear">❌ Bỏ Chọn Cửa</button>
+        <button class="btn-chip-action" id="btn-action-double">✖️2 Cược</button>
+        <button class="btn-chip-action" id="btn-action-allin">🔥 Tất Tay (All-In)</button>
+        <button class="btn-confirm-bet" id="btn-confirm-bet">👉 XÁC NHẬN ĐẶT CƯỢC</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODAL: BẢNG SOI CẦU 3 XÍ NGẦU (Ảnh 1) ==================== -->
+  <div class="modal-overlay" id="modal-soicau">
+    <div class="modal-content soicau-modal-box">
+      <!-- Modal Header matching Image 1 -->
+      <div class="soicau-header">
+        <div class="soicau-title-badge">SOI CẦU TÀI XỈU</div>
+        <button class="soicau-close-btn" id="btn-close-soicau">✕</button>
+      </div>
+
+      <!-- Latest Round Sub-header -->
+      <div class="soicau-sub-header">
+        PHIÊN GẦN NHẤT (<span id="sc-latest-round">#322340</span>) • <span id="sc-latest-desc">Tài (6-6-1)</span>
+      </div>
+
+      <!-- Soi Cầu HTML5 Canvas Coordinate Grid Graph -->
+      <div class="soicau-chart-container">
+        <canvas id="soicau-canvas" width="760" height="380"></canvas>
+      </div>
+
+      <!-- 3 Dice Filter Buttons matching Image 1 -->
+      <div class="soicau-filters">
+        <button class="btn-sc-filter xn1 active" id="filter-xn1">
+          <span class="sc-dot dot-xn1"></span> XÍ NGẦU 1
+        </button>
+        <button class="btn-sc-filter xn2 active" id="filter-xn2">
+          <span class="sc-dot dot-xn2"></span> XÍ NGẦU 2
+        </button>
+        <button class="btn-sc-filter xn3 active" id="filter-xn3">
+          <span class="sc-dot dot-xn3"></span> XÍ NGẦU 3
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: LUẬT CHƠI & TỶ LỆ ==================== -->
+  <div class="modal-overlay" id="modal-rules">
+    <div class="modal-content rule-modal-box">
+      <button class="modal-close" id="btn-close-rules">✕</button>
+      <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
+        📜 LUẬT CHƠI TÀI XỈU HOÀNG GIA
+      </h2>
+      <div class="rule-body" style="font-size: 0.9rem; line-height: 1.6; color: #e2e8f0;">
+        <p>• <strong>Cửa XỈU:</strong> Tổng điểm 3 xúc xắc từ <strong>4 đến 10</strong>.</p>
+        <p>• <strong>Cửa TÀI:</strong> Tổng điểm 3 xúc xắc từ <strong>11 đến 17</strong>.</p>
+        <p>• <strong>BÃO (Bộ Ba):</strong> 3 xúc xắc cùng 1 giá trị (1-1-1, 6-6-6...) -> Nhà cái ăn cả hai cửa.</p>
+        <p>• <strong>Tỷ Lệ Trả Thưởng:</strong> <span style="color: var(--gold-primary); font-weight: 800;">1 Ăn 0.7</span> (Đặt 100,000 Xu thắng nhận về 170,000 Xu gồm gốc 100k + lãi 70k).</p>
+        <p>• <strong>Thời gian đặt cược:</strong> 60 giây.</p>
+        <p>• <strong>Thời gian lắc xúc xắc:</strong> 5 giây.</p>
+        <p>• <strong>Thời gian nặn / mở bát:</strong> 15 giây (kéo bát tự do để mở kết quả).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: HƯỚNG DẪN ==================== -->
+  <div class="modal-overlay" id="modal-guide">
+    <div class="modal-content rule-modal-box">
+      <button class="modal-close" id="btn-close-guide">✕</button>
+      <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
+        💡 HƯỚNG DẪN CHƠI TÀI XỈU
+      </h2>
+      <div class="rule-body" style="font-size: 0.9rem; line-height: 1.6; color: #e2e8f0;">
+        <p>1. Chọn phỉnh cược mong muốn từ khay phỉnh bên dưới (1K đến 10M).</p>
+        <p>2. Bấm vào nút <strong>ĐẶT CƯỢC</strong> tại cửa <strong>TÀI</strong> hoặc <strong>XỈU</strong>.</p>
+        <p>3. Bấm <strong>XÁC NHẬN ĐẶT CƯỢC</strong> trước khi hết thời gian đếm ngược 60 giây.</p>
+        <p>4. Khi hết giờ, xúc xắc lắc 5 giây. Sau đó bạn có <strong>15 giây kéo bát để NẶN KẾT QUẢ</strong> hoặc bấm <strong>MỞ BÁT NGAY</strong>.</p>
+        <p>5. Bấm nút biểu tượng đồ thị <strong>📈</strong> để xem bảng Soi Cầu 3 Xí Ngầu chuyên sâu!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: BẢNG XẾP HẠNG TOP THẮNG ==================== -->
+  <div class="modal-overlay" id="modal-leaderboard">
+    <div class="modal-content rule-modal-box">
+      <button class="modal-close" id="btn-close-leaderboard">✕</button>
+      <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
+        🏆 BẢNG VINH DANH CAO THỦ
+      </h2>
+      <div id="leaderboard-list" style="font-size: 0.9rem; max-height: 300px; overflow-y: auto;">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: LỊCH SỬ CƯỢC CÁ NHÂN ==================== -->
+  <div class="modal-overlay" id="modal-history">
+    <div class="modal-content rule-modal-box" style="max-width: 600px;">
+      <button class="modal-close" id="btn-close-history">✕</button>
+      <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
+        📋 LỊCH SỬ CƯỢC CỦA BẠN
+      </h2>
+      <div id="user-bet-history-list" style="max-height: 320px; overflow-y: auto; font-size: 0.85rem;">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Win Fanfare Celebration Overlay -->
+  <div class="win-fanfare-overlay" id="win-fanfare">
+    <div class="win-banner">
+      <h2>🎉 CHIẾN THẮNG RỰC RỠ 🎉</h2>
+      <div class="win-amount" id="win-amount-text">+0 Xu</div>
+      <p style="color: var(--gold-light); margin-top: 8px; font-weight: 700;">Tỷ lệ cược 1 ăn 0.7 đã cộng vào ví của bạn!</p>
+    </div>
+  </div>
+
+  <!-- Modal: Nạp Tiền Nhanh (Demo Recharge) -->
+  <div class="modal-overlay" id="modal-deposit">
+    <div class="modal-content">
+      <button class="modal-close" id="btn-close-deposit">✕</button>
+      <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 8px;">
+        NẠP XU <span class="text-gold">CHƠI THẢ GA</span>
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px;">
+        Chọn mệnh giá xu bạn muốn nạp vào ví (Hệ thống demo miễn phí 100%):
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <button class="btn-secondary deposit-quick-btn" data-amount="1000000" style="padding: 14px; justify-content: center; font-weight: 800; font-size: 1rem;">
+          +1,000,000 Xu
+        </button>
+        <button class="btn-secondary deposit-quick-btn" data-amount="5000000" style="padding: 14px; justify-content: center; font-weight: 800; font-size: 1rem;">
+          +5,000,000 Xu
+        </button>
+        <button class="btn-secondary deposit-quick-btn" data-amount="10000000" style="padding: 14px; justify-content: center; font-weight: 800; font-size: 1rem; border-color: var(--gold-primary); color: var(--gold-light);">
+          +10,000,000 Xu
+        </button>
+        <button class="btn-secondary deposit-quick-btn" data-amount="50000000" style="padding: 14px; justify-content: center; font-weight: 800; font-size: 1rem; border-color: var(--gold-primary); color: var(--gold-light);">
+          +50,000,000 Xu
+        </button>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+        ✨ Bấm chọn mệnh giá, số dư sẽ được cộng ngay lập tức!
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/dice.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
