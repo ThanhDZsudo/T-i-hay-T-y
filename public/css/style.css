@@ -29,6 +29,15 @@
   --font-body: 'Montserrat', sans-serif;
   --font-accent: 'Outfit', sans-serif;
 
+  /* SUNWIN LUXURY METALLIC DESIGN SYSTEM */
+  --sunwin-gold-rim: linear-gradient(180deg, #ffe894 0%, #d4af37 28%, #855c10 52%, #f5c43d 78%, #4a3205 100%);
+  --sunwin-gold-light: #fff3b0;
+  --sunwin-gold-dark: #6e4e02;
+  --sunwin-table-body: radial-gradient(ellipse at 50% 50%, #2f1c12 0%, #1b0e08 65%, #0c0503 100%);
+  --sunwin-lobby-bg: radial-gradient(ellipse at 50% 20%, #2d180f 0%, #160a05 50%, #060201 100%);
+  --sunwin-red-ribbon: linear-gradient(180deg, #a8001d 0%, #54000b 100%);
+  --sunwin-btn-gold: linear-gradient(180deg, #fff7c2 0%, #f5c842 35%, #cca014 75%, #6e4e02 100%);
+
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }

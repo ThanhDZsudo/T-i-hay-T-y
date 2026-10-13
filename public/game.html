@@ -3,360 +3,518 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TÀI XỈU HOÀNG GIA - Cổng Game Đẳng Cấp</title>
+  <title>SUN.WIN - Cổng Game Quốc Tế - Tài Xỉu Hoàng Gia</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/game.css">
 </head>
-<body class="casino-theme">
+<body class="sunwin-lobby-body">
 
   <!-- Ambient Gold Dust Canvas -->
   <canvas id="ambient-dust-canvas"></canvas>
 
-  <!-- Top Casino Header Navigation -->
-  <nav class="navbar">
-    <a href="/" class="brand-logo">
-      <div class="logo-icon">🎲</div>
-      <div class="logo-text">TÀI XỈU <span>HOÀNG GIA VIP</span></div>
-    </a>
+  <!-- ==================== SUNWIN CASINO LOBBY LAYER (Ảnh 3) ==================== -->
+  <div class="sunwin-lobby-container" id="sunwin-lobby-container">
 
-    <div class="nav-user-info">
-      <!-- Sound toggle -->
-      <button class="audio-btn" id="btn-toggle-audio" title="Bật/Tắt âm thanh">🔊</button>
+    <!-- 1. Top Header Bar -->
+    <header class="sunwin-top-bar">
+      <!-- Left: Logo & Player Avatar -->
+      <div class="top-bar-left">
+        <a href="/" class="sunwin-logo-pill">
+          <div class="sunwin-mini-sun">
+            <span class="sun-cards">♠️♥️♦️</span>
+            <span class="sun-title">SUN</span>
+            <span class="sun-sub">.win</span>
+          </div>
+        </a>
 
-      <!-- User Balance Pill -->
-      <div class="balance-pill">
-        <span class="coin-icon">💰</span>
-        <span class="balance-value" id="user-balance">0 Xu</span>
-      </div>
-
-      <!-- Deposit Button -->
-      <button class="btn-gold" id="btn-open-deposit" style="padding: 6px 14px; font-size: 0.85rem;">
-        ➕ NẠP XU
-      </button>
-
-      <!-- User Profile Badge -->
-      <div class="user-badge">
-        <div class="user-avatar" id="user-avatar">U</div>
-        <span class="user-name" id="user-name">Người Chơi</span>
-        <span class="role-tag user">VIP</span>
-      </div>
-
-      <!-- Logout Button -->
-      <button class="btn-secondary" id="btn-logout" style="padding: 6px 12px; font-size: 0.8rem;">
-        Đăng Xuất
-      </button>
-    </div>
-  </nav>
-
-  <!-- Live Marquee Bet Notification Bar -->
-  <div class="live-bet-ticker-bar" id="live-bet-ticker-bar">
-    <div class="ticker-badge">
-      <span class="live-indicator-dot"></span>
-      <span>TRỰC TIẾP</span>
-    </div>
-    <div class="ticker-content" id="live-ticker-content">
-      <span class="ticker-default-msg">🎲 Chào mừng đến với Bàn Cược Hoàng Gia! Tỷ lệ đặt 1 ăn 0.7 cực khủng...</span>
-    </div>
-    <div class="ticker-online-stat">
-      <span class="online-dot"></span>
-      <span id="online-players-count">3,096 người đang online</span>
-    </div>
-  </div>
-
-  <!-- Mega Jackpot Hũ Vàng Thần Tài Banner -->
-  <div class="tx-jackpot-banner">
-    <span class="jackpot-label">👑 HŨ VÀNG TÀI XỈU:</span>
-    <span class="jackpot-number" id="jackpot-counter">2,854,912,400 Xu</span>
-    <span>✨</span>
-  </div>
-
-  <!-- Main Game Stage -->
-  <main class="game-container">
-
-    <!-- ==================== AUTHENTIC CASINO TÀI XỈU TABLE WIDGET ==================== -->
-    <div class="tx-casino-stage">
-
-      <!-- 3D Header Crown: Coins & Red Dices & 3D Title -->
-      <div class="tx-table-crown">
-        <div class="crown-dice-left">
-          <div class="crown-die"></div>
-          <div class="crown-die"></div>
-        </div>
-        <div class="crown-title-wrap">
-          <h1 class="crown-title">TÀI XỈU</h1>
-          <div class="crown-coins"></div>
-        </div>
-        <div class="crown-coins-right">
-          <span class="coin-pile">🪙🪙🪙</span>
+        <!-- Player Profile Badge -->
+        <div class="sunwin-player-pill">
+          <div class="player-avatar-wrap">
+            <div class="avatar-cap-guy" id="user-avatar">😎</div>
+          </div>
+          <div class="player-name-capsule">
+            <span class="player-name-text" id="user-name">thanhhihehe</span>
+          </div>
         </div>
       </div>
 
-      <!-- Main Oblong Metallic Stadium Table -->
-      <div class="tx-stadium-table" id="tx-stadium-table">
-
-        <!-- Top Table Control Bar -->
-        <div class="tx-top-bar">
-          <!-- Left Action Icons -->
-          <div class="tx-action-group left">
-            <button class="tx-circle-btn" id="btn-open-guide" title="Hướng dẫn chơi">?</button>
-            <button class="tx-circle-btn" id="btn-open-rules" title="Luật chơi & Tỷ lệ 1 ăn 0.7">i</button>
-            <button class="tx-circle-btn gold-glow" id="btn-open-soicau" title="Bảng Soi Cầu 3 Xí Ngầu">📈</button>
+      <!-- Center: Balance Capsule ($ [ 0 ] +) -->
+      <div class="top-bar-center">
+        <div class="sunwin-balance-capsule">
+          <span class="gold-dollar-badge">$</span>
+          <div class="balance-screen">
+            <span class="balance-digits" id="user-balance">0 Xu</span>
           </div>
-
-          <!-- Center Round ID & Timer Badge -->
-          <div class="tx-center-badge">
-            <div class="tx-round-tag" id="round-id">#322340</div>
-            <div class="tx-phase-pill" id="phase-status">Đang Đặt Cược</div>
-          </div>
-
-          <!-- Right Action Icons -->
-          <div class="tx-action-group right">
-            <button class="tx-circle-btn" id="btn-open-leaderboard" title="Bảng Vinh Danh Top Thắng">🏆</button>
-            <button class="tx-circle-btn" id="btn-toggle-chat" title="Trò chuyện bàn cược" style="position: relative;">
-              💬
-              <span class="chat-unread-dot" id="chat-unread-dot" style="display: none;"></span>
-            </button>
-            <button class="tx-circle-btn close-btn" id="btn-table-close" title="Rời bàn cược">✕</button>
-          </div>
+          <button class="gold-plus-btn" id="btn-open-deposit" title="Nạp thêm xu vào ví">+</button>
         </div>
-
-        <!-- Middle Arena: Cửa TÀI - Đĩa Xúc Xắc - Cửa XỈU -->
-        <div class="tx-arena-body">
-
-          <!-- Left Door: TÀI (11-17) -->
-          <div class="tx-door-box tai" id="box-tai">
-            <!-- Player Count Header -->
-            <div class="door-header">
-              <span class="door-count-icon">👥</span>
-              <span class="door-count" id="count-tai">3096</span>
-            </div>
-
-            <!-- Big Glowing TÀI Text -->
-            <div class="door-hero-title tai-text">TÀI</div>
-            <div class="door-range">[ 11 - 17 ]</div>
-
-            <!-- Ruby Pool Ribbon Bar -->
-            <div class="door-ruby-pool">
-              <span class="pool-amount" id="pool-tai">1,650,352,142</span>
-            </div>
-
-            <!-- Glossy Golden ĐẶT CƯỢC Button -->
-            <button class="tx-btn-bet-door" id="btn-door-tai">
-              ĐẶT CƯỢC
-            </button>
-
-            <!-- User's Personal Bet Status -->
-            <div class="door-my-bet">
-              <span class="my-bet-label">Đã cược:</span>
-              <span class="my-bet-val" id="my-bet-tai">0 Xu</span>
-            </div>
-          </div>
-
-          <!-- Center Disc: Countdown Timer & 3D Red Dice Plate & Bowl -->
-          <div class="tx-center-disc-container">
-
-            <!-- Center Countdown Timer or Score Badge -->
-            <div class="tx-disc-score-badge" id="disc-score-badge">
-              <span id="center-timer-text">60</span>
-            </div>
-
-            <!-- Nặn Bát Hint Badge -->
-            <div class="nan-bat-hint" id="nan-bat-hint" style="display: none;">
-              <span>🖐️ KÉO BÁT ĐỂ NẶN</span>
-            </div>
-
-            <!-- Circular Black Stage with Golden Rim -->
-            <div class="dish-plate-container">
-              <!-- Golden Outer Dish -->
-              <div class="dish-plate">
-                <!-- Inner Deep Black Felt Ring -->
-                <div class="plate-inner-ring">
-                  <!-- 3 Authentic Crimson Red Dice with White Dots -->
-                  <div class="dice-trio" id="dice-trio">
-                    <div class="die"></div>
-                    <div class="die"></div>
-                    <div class="die"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Metallic Gold Bowl (Bát Úp Nặn 360 Độ) -->
-              <div class="dish-bowl" id="dish-bowl" title="Nhấp giữ và kéo bát để nặn kết quả 🎲">
-                <div class="bowl-handle"></div>
-                <div class="bowl-emblem">TÀI XỈU</div>
-              </div>
-            </div>
-
-            <!-- Fast Open Bowl Button -->
-            <button class="btn-open-bowl" id="btn-open-bowl" style="display: none;">
-              MỞ BÁT NGAY 🎲
-            </button>
-
-            <!-- Result Tag under Plate -->
-            <div class="result-display-badge" id="result-badge" style="display: none;">
-              <span>13 Điểm</span> • <strong>TÀI</strong>
-            </div>
-
-          </div>
-
-          <!-- Right Door: XỈU (4-10) -->
-          <div class="tx-door-box xiu" id="box-xiu">
-            <!-- Player Count Header -->
-            <div class="door-header">
-              <span class="door-count-icon">👥</span>
-              <span class="door-count" id="count-xiu">3054</span>
-            </div>
-
-            <!-- Big Glowing XỈU Text -->
-            <div class="door-hero-title xiu-text">XỈU</div>
-            <div class="door-range">[ 4 - 10 ]</div>
-
-            <!-- Ruby Pool Ribbon Bar -->
-            <div class="door-ruby-pool">
-              <span class="pool-amount" id="pool-xiu">1,596,911,433</span>
-            </div>
-
-            <!-- Glossy Golden ĐẶT CƯỢC Button -->
-            <button class="tx-btn-bet-door" id="btn-door-xiu">
-              ĐẶT CƯỢC
-            </button>
-
-            <!-- User's Personal Bet Status -->
-            <div class="door-my-bet">
-              <span class="my-bet-label">Đã cược:</span>
-              <span class="my-bet-val" id="my-bet-xiu">0 Xu</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Bottom Table Ribbon: History Note + Pearl Bead Road + Nan Bat Hand -->
-        <div class="tx-bottom-bar">
-          <!-- Left Icon: Personal History Note -->
-          <button class="tx-circle-btn bottom-btn" id="btn-open-history" title="Lịch sử cược cá nhân">
-            📋
-          </button>
-
-          <!-- Middle: Bead History String (Dãy hạt trắng Tài - hạt đen Xỉu) -->
-          <div class="tx-bottom-bead-road" id="bottom-bead-road">
-            <!-- Dynamically populated beads -->
-          </div>
-
-          <!-- Right Icon: Nặn Bát Hand Toggle Button -->
-          <button class="tx-circle-btn bottom-btn active" id="btn-toggle-nan" title="Bật/Tắt chế độ kéo Nặn Bát (Hiện: BẬT)">
-            🖐️
-          </button>
-        </div>
-
       </div>
 
+      <!-- Right: Action Icons (Tin tức, Cài đặt, Âm thanh, Đăng xuất) -->
+      <div class="top-bar-right">
+        <button class="sunwin-head-btn" id="btn-open-rules" title="Tin tức & Sự kiện">
+          <span class="head-btn-icon">🔔</span>
+          <span class="head-btn-label">Tin Tức</span>
+        </button>
+
+        <button class="sunwin-head-btn" id="btn-open-guide" title="Cài đặt trò chơi">
+          <span class="head-btn-icon">⚙️</span>
+          <span class="head-btn-label">Cài Đặt</span>
+        </button>
+
+        <button class="sunwin-head-btn" id="btn-toggle-audio" title="Bật/Tắt âm thanh">
+          <span class="head-btn-icon">🔊</span>
+          <span class="head-btn-label">Âm Thanh</span>
+        </button>
+
+        <button class="sunwin-head-btn logout" id="btn-logout" title="Đăng xuất tài khoản">
+          <span class="head-btn-icon">🚪</span>
+          <span class="head-btn-label">Thoát</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. Sub Announcement Marquee -->
+    <div class="sunwin-marquee-bar">
+      <div class="marquee-text-flow">
+        <span>✨ Nạp nhanh, rút mạnh, bảo mật tối đa tại <strong>SUNWIN.REVIEW</strong> • Tải 1.1.1.1 để truy cập vào link chính hãng SUN.WIN • Cảnh báo các trang web giả mạo lừa đảo ✨</span>
+      </div>
     </div>
 
-    <!-- ==================== CHIP SELECTION & BET CONTROLS ==================== -->
-    <section class="chip-control-panel">
-      <!-- Chips Tray -->
-      <div class="chips-tray">
-        <div class="poker-chip chip-1k" data-value="1000">1K</div>
-        <div class="poker-chip chip-10k" data-value="10000">10K</div>
-        <div class="poker-chip chip-50k" data-value="50000">50K</div>
-        <div class="poker-chip chip-100k selected" data-value="100000">100K</div>
-        <div class="poker-chip chip-500k" data-value="500000">500K</div>
-        <div class="poker-chip chip-1m" data-value="1000000">1M</div>
-        <div class="poker-chip chip-5m" data-value="5000000">5M</div>
-        <div class="poker-chip chip-10m" data-value="10000000">10M</div>
+    <!-- Live Bet Notification Stream Ticker (Preserving Functional IDs) -->
+    <div class="live-bet-ticker-bar" id="live-bet-ticker-bar">
+      <div class="ticker-badge">
+        <span class="live-indicator-dot"></span>
+        <span>TRỰC TIẾP</span>
       </div>
-
-      <!-- Quick Multipliers Tray -->
-      <div class="quick-multipliers-tray">
-        <span style="font-size: 0.78rem; color: #a0aec0; font-weight: 700;">Cộng nhanh:</span>
-        <button class="quick-mult-btn" data-add="100000">+100K</button>
-        <button class="quick-mult-btn" data-add="500000">+500K</button>
-        <button class="quick-mult-btn" data-add="1000000">+1M</button>
-        <button class="quick-mult-btn" data-add="5000000">+5M</button>
-        <button class="quick-mult-btn" data-add="10000000">+10M</button>
+      <div class="ticker-content" id="live-ticker-content">
+        <span class="ticker-default-msg">🎲 Chào mừng đến với Sun.win! Tỷ lệ đặt 1 ăn 0.7 xanh chín 100%...</span>
       </div>
+      <div class="ticker-online-stat">
+        <span class="online-dot"></span>
+        <span id="online-players-count">3,096 người đang online</span>
+      </div>
+    </div>
 
-      <!-- Quick Bet Action Buttons -->
-      <div class="quick-bet-actions">
-        <div class="selected-door-indicator" id="selected-door-indicator">
-          Cửa chọn: <strong id="selected-door-text" style="color: var(--gold-primary);">Chưa chọn</strong>
+    <!-- 3. Category Navigation Slider Bar -->
+    <nav class="sunwin-categories-bar">
+      <button class="cat-nav-arrow left" title="Trước">❮</button>
+      <div class="cat-pill-list">
+        <button class="cat-pill active">ALL</button>
+        <button class="cat-pill">MINIGAMES</button>
+        <button class="cat-pill">SLOTS</button>
+        <button class="cat-pill">GAME BÀI</button>
+        <button class="cat-pill">LIVESTREAM</button>
+      </div>
+      <button class="cat-nav-arrow right" title="Sau">❯</button>
+    </nav>
+
+    <!-- 4. Casino Game Cards Grid (Ảnh 3) -->
+    <section class="sunwin-games-grid">
+      <!-- Card 1: Domain chính thức -->
+      <div class="sunwin-card card-domain">
+        <div class="card-inner">
+          <div class="domain-headline">DOMAIN<br>CHÍNH THỨC</div>
+          <div class="domain-cards-fan">🃏🂠🂡</div>
+          <div class="domain-url-badge">SUNWIN.REVIEW</div>
+          <div class="domain-deco-coins">🪙</div>
         </div>
-        <button class="btn-chip-action" id="btn-action-clear">❌ Bỏ Chọn Cửa</button>
-        <button class="btn-chip-action" id="btn-action-double">✖️2 Cược</button>
-        <button class="btn-chip-action" id="btn-action-allin">🔥 Tất Tay (All-In)</button>
-        <button class="btn-confirm-bet" id="btn-confirm-bet">👉 XÁC NHẬN ĐẶT CƯỢC</button>
+      </div>
+
+      <!-- Card 2: Xóc Đĩa Tứ Linh -->
+      <div class="sunwin-card card-xocdia-tulinh">
+        <div class="card-live-tag">🔴 LIVE</div>
+        <div class="card-art-wrap">
+          <div class="card-character tulinh-dealer"></div>
+          <div class="card-glow-halo"></div>
+        </div>
+        <div class="card-info-footer">
+          <div class="card-title">XÓC ĐĨA TỨ LINH</div>
+          <div class="card-pool-val">$ 8,161,026,356</div>
+        </div>
+      </div>
+
+      <!-- Card 3: TÀI XỈU (CLICK TO FOCUS WIDGET) -->
+      <div class="sunwin-card card-taixiu-hero active-game-card" id="btn-lobby-open-taixiu" title="Bấm để mở bàn cược Tài Xỉu">
+        <div class="card-live-tag">🔴 LIVE</div>
+        <div class="card-art-wrap">
+          <div class="card-character taixiu-dealer"></div>
+          <div class="card-dice-plate-3d">🎲🎲🎲</div>
+        </div>
+        <div class="card-info-footer">
+          <div class="card-title glow-gold">TÀI XỈU</div>
+          <div class="card-pool-val" id="jackpot-counter">$ 329,123,380</div>
+        </div>
+        <div class="card-click-hint">BẤM VÀO BÀN CƯỢC</div>
+      </div>
+
+      <!-- Card 4: Xóc Đĩa Live -->
+      <div class="sunwin-card card-xocdia">
+        <div class="card-live-tag">🔴 LIVE</div>
+        <div class="card-art-wrap">
+          <div class="card-character xocdia-girl"></div>
+          <div class="card-glow-halo"></div>
+        </div>
+        <div class="card-info-footer">
+          <div class="card-title">XÓC ĐĨA</div>
+          <div class="card-pool-val">$ 8,376,096,292</div>
+        </div>
+      </div>
+
+      <!-- Card 5: Đá Gà Live -->
+      <div class="sunwin-card card-daga">
+        <div class="card-live-tag">🔴 LIVE</div>
+        <div class="card-art-wrap">
+          <div class="card-character roosters-fight">🐓⚔️🐓</div>
+          <div class="card-glow-halo"></div>
+        </div>
+        <div class="card-info-footer">
+          <div class="card-title red-gold">ĐÁ GÀ</div>
+          <div class="card-pool-val">Đang diễn ra</div>
+        </div>
+      </div>
+
+      <!-- Card 6: Bầu Cua Lộc Thú -->
+      <div class="sunwin-card card-baucua">
+        <div class="card-art-wrap">
+          <div class="card-character baucua-dice">🦀🦐🐓</div>
+          <div class="card-glow-halo"></div>
+        </div>
+        <div class="card-info-footer">
+          <div class="card-title gold-green">BẦU CUA LỘC THÚ</div>
+          <div class="card-pool-val">$ 14,728,420</div>
+        </div>
       </div>
     </section>
 
-  </main>
-
-  <!-- ==================== INTERACTIVE LIVE CHAT DRAWER ==================== -->
-  <aside class="tx-chat-drawer" id="tx-chat-drawer">
-    <div class="chat-drawer-header">
-      <div class="chat-drawer-title">
-        <span>💬</span>
-        <span>KÊNH CHAT TRỰC TIẾP (VIP)</span>
+    <!-- 5. Sunwin Bottom Bar (Ảnh 3) -->
+    <footer class="sunwin-bottom-bar">
+      <div class="bottom-left-group">
+        <div class="sunwin-jackpot-pill">
+          <span class="jackpot-chip-icon">🎰</span>
+          <span class="jackpot-label">Jackpots</span>
+        </div>
+        <button class="sunwin-bot-icon-btn">
+          <span class="bot-icon">₿</span>
+          <span class="bot-name">Crypto</span>
+        </button>
+        <button class="sunwin-bot-icon-btn">
+          <span class="bot-icon">🤍</span>
+          <span class="bot-name">Idol</span>
+        </button>
       </div>
-      <button class="chat-close-btn" id="btn-close-chat" title="Đóng chat">✕</button>
-    </div>
-    <div class="chat-messages-container" id="chat-messages-container">
-      <!-- Populated dynamically with live messages -->
-    </div>
-    <div class="chat-quick-pills">
-      <span class="quick-chat-chip" data-msg="Tài chắc rồi ae ơi! 🔥">🔥 Bắt Tài</span>
-      <span class="quick-chat-chip" data-msg="Cầu đẹp quá, Xỉu thôi! 🧊">🧊 Bắt Xỉu</span>
-      <span class="quick-chat-chip" data-msg="All in phiên này lấy hên 🚀">🚀 Tất Tay</span>
-      <span class="quick-chat-chip" data-msg="Lụm lúa ae ơi! 💰">💰 Húp Lúa</span>
-      <span class="quick-chat-chip" data-msg="Bẻ cầu đi không hối hận 🎲">🎲 Bẻ Cầu</span>
-    </div>
-    <div class="chat-emoji-bar">
-      <button class="chat-emoji-btn" data-emoji="🔥" title="Bắn lửa">🔥</button>
-      <button class="chat-emoji-btn" data-emoji="💰" title="Bắn tiền">💰</button>
-      <button class="chat-emoji-btn" data-emoji="💎" title="Bắn kim cương">💎</button>
-      <button class="chat-emoji-btn" data-emoji="🎲" title="Bắn xúc xắc">🎲</button>
-      <button class="chat-emoji-btn" data-emoji="👑" title="Vương miện">👑</button>
-      <button class="chat-emoji-btn" data-emoji="🎉" title="Ăn mừng">🎉</button>
-    </div>
-    <form class="chat-input-row" id="chat-form">
-      <input type="text" class="chat-input" id="chat-input" placeholder="Gõ tin nhắn trò chuyện..." maxlength="100" autocomplete="off">
-      <button type="submit" class="chat-send-btn">Gửi</button>
-    </form>
-  </aside>
 
-  <!-- ==================== MODAL: BẢNG SOI CẦU 3 XÍ NGẦU (Ảnh 1) ==================== -->
+      <!-- Center: Massive 3D Embossed Gold RÚT TIỀN Button -->
+      <div class="bottom-center-action">
+        <button class="btn-rut-tien-sunwin" id="btn-rut-tien" title="Nạp / Rút tiền tiện lợi">
+          <span class="rut-tien-emboss">RÚT TIỀN</span>
+          <span class="rut-tien-shine"></span>
+        </button>
+      </div>
+
+      <div class="bottom-right-group">
+        <button class="sunwin-bot-icon-btn warning-live">
+          <span class="bot-live-tag">LIVE</span>
+          <span class="bot-icon">⚠️</span>
+          <span class="bot-name">Cảnh báo</span>
+        </button>
+        <button class="sunwin-bot-icon-btn" id="btn-live-support">
+          <span class="bot-icon">💬</span>
+          <span class="bot-name">Live Chat</span>
+        </button>
+      </div>
+    </footer>
+
+    <!-- Floating Mini Game Toggle Button (Bottom Right) -->
+    <button class="sunwin-minigame-float-btn" id="minigame-float-btn" title="Thu nhỏ / Mở bàn Tài Xỉu">
+      <div class="minigame-badge" id="minigame-float-timer">45</div>
+      <div class="minigame-icon-disc">🎲</div>
+      <div class="minigame-label">MINI<br>GAME</div>
+    </button>
+
+  </div>
+
+
+  <!-- ==================== ACTIVE TÀI XỈU ARENA & CHAT STAGE (Ảnh 2) ==================== -->
+  <div class="sunwin-arena-stage" id="sunwin-arena-stage">
+
+    <div class="sunwin-arena-row">
+
+      <!-- ==================== AUTHENTIC CASINO TÀI XỈU TABLE WIDGET ==================== -->
+      <div class="tx-casino-stage">
+
+        <!-- 3D Header Crown: Coins & Red Dices & 3D Title -->
+        <div class="tx-table-crown">
+          <div class="crown-dice-left">
+            <div class="crown-die"></div>
+            <div class="crown-die"></div>
+          </div>
+          <div class="crown-title-wrap">
+            <h1 class="crown-title">TÀI XỈU</h1>
+            <div class="crown-coins"></div>
+          </div>
+          <div class="crown-coins-right">
+            <span class="coin-pile">🪙🪙🪙</span>
+          </div>
+        </div>
+
+        <!-- Main Oblong Metallic Stadium Table -->
+        <div class="tx-stadium-table" id="tx-stadium-table">
+
+          <!-- Top Table Control Bar -->
+          <div class="tx-top-bar">
+            <!-- Left Action Icons -->
+            <div class="tx-action-group left">
+              <button class="tx-circle-btn gold-glow" id="btn-open-soicau" title="Bảng Soi Cầu 3 Xí Ngầu">📈</button>
+              <button class="tx-circle-btn" id="btn-open-guide-inner" title="Hướng dẫn chơi">?</button>
+              <button class="tx-circle-btn" id="btn-open-rules-inner" title="Luật chơi & Tỷ lệ 1 ăn 0.7">i</button>
+            </div>
+
+            <!-- Center Round ID Badge -->
+            <div class="tx-center-badge">
+              <div class="tx-round-tag" id="round-id">#3286349</div>
+              <div class="tx-phase-pill" id="phase-status" style="display: none;">Đang Đặt Cược</div>
+            </div>
+
+            <!-- Right Action Icons -->
+            <div class="tx-action-group right">
+              <button class="tx-circle-btn" id="btn-open-leaderboard" title="Bảng Vinh Danh Top Thắng">🏆</button>
+              <button class="tx-circle-btn" id="btn-toggle-chat" title="Bật/Tắt khung chat bàn cược" style="position: relative;">
+                💬
+                <span class="chat-unread-dot" id="chat-unread-dot" style="display: none;"></span>
+              </button>
+              <button class="tx-circle-btn close-btn" id="btn-table-close" title="Thu nhỏ về Lobby">✕</button>
+            </div>
+          </div>
+
+          <!-- Middle Arena: Cửa TÀI - Đĩa Xúc Xắc / Countdown - Cửa XỈU -->
+          <div class="tx-arena-body">
+
+            <!-- Left Door: TÀI (11-17) -->
+            <div class="tx-door-box tai" id="box-tai">
+              <!-- Player Count Header -->
+              <div class="door-header">
+                <span class="door-count-icon">👥</span>
+                <span class="door-count" id="count-tai">165</span>
+              </div>
+
+              <!-- Big Glowing TÀI Text -->
+              <div class="door-hero-title tai-text">TÀI</div>
+              <div class="door-range">[ 11 - 17 ]</div>
+
+              <!-- Ruby Pool Ribbon Bar -->
+              <div class="door-ruby-pool">
+                <span class="pool-amount" id="pool-tai">69,134,489</span>
+              </div>
+
+              <!-- Glossy Golden ĐẶT CƯỢC Button -->
+              <button class="tx-btn-bet-door" id="btn-door-tai">
+                ĐẶT CƯỢC
+              </button>
+
+              <!-- User's Personal Bet Status -->
+              <div class="door-my-bet">
+                <span class="my-bet-label">Đã cược:</span>
+                <span class="my-bet-val" id="my-bet-tai">0 Xu</span>
+              </div>
+            </div>
+
+            <!-- Center Disc: Countdown Timer (e.g. 45) & 3D Red Dice Plate & Bowl -->
+            <div class="tx-center-disc-container">
+
+              <!-- Circular Black Disc Stage with Heavy Metallic Golden Rim -->
+              <div class="dish-plate-container">
+                <!-- Golden Outer Dish -->
+                <div class="dish-plate">
+                  <!-- Inner Deep Black Felt Ring -->
+                  <div class="plate-inner-ring">
+
+                    <!-- Giant Countdown Timer Display (Dominates Center Disc during betting) -->
+                    <div class="tx-giant-countdown" id="disc-score-badge">
+                      <span id="center-timer-text">45</span>
+                    </div>
+
+                    <!-- 3 Authentic Crimson Red Dice with White Dots -->
+                    <div class="dice-trio" id="dice-trio">
+                      <div class="die"></div>
+                      <div class="die"></div>
+                      <div class="die"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metallic Gold Bowl (Bát Úp Nặn 360 Độ) -->
+                <div class="dish-bowl" id="dish-bowl" title="Nhấp giữ và kéo bát để nặn kết quả 🎲">
+                  <div class="bowl-handle"></div>
+                  <div class="bowl-emblem">TÀI XỈU</div>
+                </div>
+              </div>
+
+              <!-- Nặn Bát Hint Badge -->
+              <div class="nan-bat-hint" id="nan-bat-hint" style="display: none;">
+                <span>🖐️ KÉO BÁT ĐỂ NẶN</span>
+              </div>
+
+              <!-- Fast Open Bowl Button -->
+              <button class="btn-open-bowl" id="btn-open-bowl" style="display: none;">
+                MỞ BÁT NGAY 🎲
+              </button>
+
+              <!-- Result Tag under Plate -->
+              <div class="result-display-badge" id="result-badge" style="display: none;">
+                <span>13 Điểm</span> • <strong>TÀI</strong>
+              </div>
+
+            </div>
+
+            <!-- Right Door: XỈU (4-10) -->
+            <div class="tx-door-box xiu" id="box-xiu">
+              <!-- Player Count Header -->
+              <div class="door-header">
+                <span class="door-count-icon">👥</span>
+                <span class="door-count" id="count-xiu">172</span>
+              </div>
+
+              <!-- Big Glowing XỈU Text -->
+              <div class="door-hero-title xiu-text">XỈU</div>
+              <div class="door-range">[ 4 - 10 ]</div>
+
+              <!-- Ruby Pool Ribbon Bar -->
+              <div class="door-ruby-pool">
+                <span class="pool-amount" id="pool-xiu">135,346,462</span>
+              </div>
+
+              <!-- Glossy Golden ĐẶT CƯỢC Button -->
+              <button class="tx-btn-bet-door" id="btn-door-xiu">
+                ĐẶT CƯỢC
+              </button>
+
+              <!-- User's Personal Bet Status -->
+              <div class="door-my-bet">
+                <span class="my-bet-label">Đã cược:</span>
+                <span class="my-bet-val" id="my-bet-xiu">0 Xu</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Table Ribbon: History Note + Pearl Bead Road + Nan Bat Hand -->
+          <div class="tx-bottom-bar">
+            <!-- Left Icon: Personal History Note -->
+            <button class="tx-circle-btn bottom-btn" id="btn-open-history" title="Lịch sử cược cá nhân">
+              📋
+            </button>
+
+            <!-- Middle: Bead History String (Dãy hạt trắng Tài - hạt đen Xỉu) -->
+            <div class="tx-bottom-bead-road" id="bottom-bead-road">
+              <!-- Dynamically populated beads -->
+            </div>
+
+            <!-- Right Icon: Nặn Bát Hand Toggle Button -->
+            <button class="tx-circle-btn bottom-btn active" id="btn-toggle-nan" title="Bật/Tắt chế độ kéo Nặn Bát (Hiện: BẬT)">
+              🖐️
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ==================== CHIP SELECTION & BET CONTROLS ==================== -->
+        <section class="chip-control-panel">
+          <!-- Chips Tray -->
+          <div class="chips-tray">
+            <div class="poker-chip chip-1k" data-value="1000">1K</div>
+            <div class="poker-chip chip-10k" data-value="10000">10K</div>
+            <div class="poker-chip chip-50k" data-value="50000">50K</div>
+            <div class="poker-chip chip-100k selected" data-value="100000">100K</div>
+            <div class="poker-chip chip-500k" data-value="500000">500K</div>
+            <div class="poker-chip chip-1m" data-value="1000000">1M</div>
+            <div class="poker-chip chip-5m" data-value="5000000">5M</div>
+            <div class="poker-chip chip-10m" data-value="10000000">10M</div>
+          </div>
+
+          <!-- Quick Multipliers Tray -->
+          <div class="quick-multipliers-tray">
+            <span style="font-size: 0.78rem; color: #a0aec0; font-weight: 700;">Cộng nhanh:</span>
+            <button class="quick-mult-btn" data-add="100000">+100K</button>
+            <button class="quick-mult-btn" data-add="500000">+500K</button>
+            <button class="quick-mult-btn" data-add="1000000">+1M</button>
+            <button class="quick-mult-btn" data-add="5000000">+5M</button>
+            <button class="quick-mult-btn" data-add="10000000">+10M</button>
+          </div>
+
+          <!-- Quick Bet Action Buttons -->
+          <div class="quick-bet-actions">
+            <div class="selected-door-indicator" id="selected-door-indicator">
+              Cửa chọn: <strong id="selected-door-text" style="color: var(--gold-primary);">Chưa chọn</strong>
+            </div>
+            <button class="btn-chip-action" id="btn-action-clear">❌ Bỏ Chọn</button>
+            <button class="btn-chip-action" id="btn-action-double">✖️2 Cược</button>
+            <button class="btn-chip-action" id="btn-action-allin">🔥 Tất Tay</button>
+            <button class="btn-confirm-bet" id="btn-confirm-bet">👉 XÁC NHẬN CƯỢC</button>
+          </div>
+        </section>
+
+      </div>
+
+
+      <!-- ==================== SUNWIN ATTACHED CHAT WINDOW (Ảnh 2) ==================== -->
+      <aside class="sunwin-chat-card" id="tx-chat-drawer">
+        <!-- Top Chat Header -->
+        <div class="sunwin-chat-header">
+          <div class="chat-header-title">Chat</div>
+          <button class="sunwin-chat-close-btn" id="btn-close-chat" title="Đóng khung chat">✕</button>
+        </div>
+
+        <!-- Chat Messages Window -->
+        <div class="chat-messages-container" id="chat-messages-container">
+          <!-- Populated dynamically with live casino banter -->
+        </div>
+
+        <!-- Quick Chat Chips (Collapsible / optional) -->
+        <div class="chat-quick-pills">
+          <span class="quick-chat-chip" data-msg="Tài 11 nào dm 🔥">🔥 Tài 11</span>
+          <span class="quick-chat-chip" data-msg="Xỉu đẹp quá ae ơi! 🧊">🧊 Bắt Xỉu</span>
+          <span class="quick-chat-chip" data-msg="Đúng tay to bẻ rồi! 🚀">🚀 Bẻ Cầu</span>
+          <span class="quick-chat-chip" data-msg="Húp trọn phiên này 💰">💰 Húp Trọn</span>
+        </div>
+
+        <!-- Chat Input Field -->
+        <form class="sunwin-chat-input-bar" id="chat-form">
+          <input type="text" class="chat-input" id="chat-input" placeholder="Nhập nội dung chat" maxlength="100" autocomplete="off">
+          <button type="submit" class="sunwin-chat-submit-btn">↵</button>
+        </form>
+      </aside>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================== MODAL: BẢNG SOI CẦU 3 XÍ NGẦU ==================== -->
   <div class="modal-overlay" id="modal-soicau">
     <div class="modal-content soicau-modal-box">
-      <!-- Modal Header matching Image 1 -->
       <div class="soicau-header">
         <div class="soicau-title-badge">SOI CẦU TÀI XỈU</div>
         <button class="soicau-close-btn" id="btn-close-soicau">✕</button>
       </div>
 
-      <!-- Tab Switcher -->
       <div class="soicau-tabs">
         <button class="sc-tab-btn active" id="tab-btn-graph">📈 BIỂU ĐỒ TỌA ĐỘ 3 XÍ NGẦU</button>
         <button class="sc-tab-btn" id="tab-btn-matrix">⚪ BẢNG CẦU TRÒN (GIỌT NƯỚC)</button>
       </div>
 
-      <!-- Latest Round Sub-header -->
       <div class="soicau-sub-header">
-        PHIÊN GẦN NHẤT (<span id="sc-latest-round">#322340</span>) • <span id="sc-latest-desc">Tài (6-6-1)</span>
+        PHIÊN GẦN NHẤT (<span id="sc-latest-round">#3286349</span>) • <span id="sc-latest-desc">Tài (6-6-1)</span>
       </div>
 
-      <!-- View 1: Soi Cầu HTML5 Canvas Coordinate Grid Graph -->
       <div class="soicau-chart-container" id="soicau-view-graph">
         <canvas id="soicau-canvas" width="760" height="380"></canvas>
       </div>
 
-      <!-- View 2: Soi Cầu Bead Plate / Drop Matrix -->
-      <div class="soicau-matrix-container" id="soicau-view-matrix" style="display: none;">
-        <!-- Filled with 6x20 matrix beads dynamically -->
-      </div>
+      <div class="soicau-matrix-container" id="soicau-view-matrix" style="display: none;"></div>
 
-      <!-- 3 Dice Filter Buttons matching Image 1 -->
       <div class="soicau-filters" id="soicau-filters-group">
         <button class="btn-sc-filter xn1 active" id="filter-xn1">
           <span class="sc-dot dot-xn1"></span> XÍ NGẦU 1
@@ -376,7 +534,7 @@
     <div class="modal-content rule-modal-box">
       <button class="modal-close" id="btn-close-rules">✕</button>
       <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
-        📜 LUẬT CHƠI TÀI XỈU HOÀNG GIA
+        📜 LUẬT CHƠI TÀI XỈU SUN.WIN
       </h2>
       <div class="rule-body" style="font-size: 0.9rem; line-height: 1.6; color: #e2e8f0;">
         <p>• <strong>Cửa XỈU:</strong> Tổng điểm 3 xúc xắc từ <strong>4 đến 10</strong>.</p>
@@ -385,7 +543,7 @@
         <p>• <strong>Tỷ Lệ Trả Thưởng:</strong> <span style="color: var(--gold-primary); font-weight: 800;">1 Ăn 0.7</span> (Đặt 100,000 Xu thắng nhận về 170,000 Xu gồm gốc 100k + lãi 70k).</p>
         <p>• <strong>Thời gian đặt cược:</strong> 60 giây.</p>
         <p>• <strong>Thời gian lắc xúc xắc:</strong> 5 giây.</p>
-        <p>• <strong>Thời gian nặn / mở bát:</strong> 15 giây (kéo bát tự do để mở kết quả).</p>
+        <p>• <strong>Thời gian nặn / mở bát:</strong> 15 giây (kéo bát tự do 360 độ để mở kết quả).</p>
       </div>
     </div>
   </div>
@@ -400,9 +558,9 @@
       <div class="rule-body" style="font-size: 0.9rem; line-height: 1.6; color: #e2e8f0;">
         <p>1. Chọn phỉnh cược mong muốn từ khay phỉnh bên dưới (1K đến 10M).</p>
         <p>2. Bấm vào nút <strong>ĐẶT CƯỢC</strong> tại cửa <strong>TÀI</strong> hoặc <strong>XỈU</strong>.</p>
-        <p>3. Bấm <strong>XÁC NHẬN ĐẶT CƯỢC</strong> trước khi hết thời gian đếm ngược 60 giây.</p>
+        <p>3. Bấm <strong>XÁC NHẬN CƯỢC</strong> trước khi hết thời gian đếm ngược.</p>
         <p>4. Khi hết giờ, xúc xắc lắc 5 giây. Sau đó bạn có <strong>15 giây kéo bát để NẶN KẾT QUẢ</strong> hoặc bấm <strong>MỞ BÁT NGAY</strong>.</p>
-        <p>5. Bấm nút biểu tượng đồ thị <strong>📈</strong> để xem bảng Soi Cầu 3 Xí Ngầu chuyên sâu!</p>
+        <p>5. Bấm nút biểu tượng đồ thị <strong>📈</strong> để soi cầu 3 xí ngầu chuẩn xác!</p>
       </div>
     </div>
   </div>
@@ -412,7 +570,7 @@
     <div class="modal-content rule-modal-box">
       <button class="modal-close" id="btn-close-leaderboard">✕</button>
       <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #ffe57f; margin-bottom: 12px;">
-        🏆 BẢNG VINH DANH CAO THỦ
+        🏆 BẢNG VINH DANH CAO THỦ SUN.WIN
       </h2>
       <div id="leaderboard-list" style="font-size: 0.9rem; max-height: 300px; overflow-y: auto;">
         <!-- Filled dynamically -->
@@ -442,12 +600,12 @@
     </div>
   </div>
 
-  <!-- Modal: Nạp Tiền Nhanh (Demo Recharge) -->
+  <!-- Modal: Nạp / Rút Tiền Sunwin (Demo Recharge) -->
   <div class="modal-overlay" id="modal-deposit">
     <div class="modal-content">
       <button class="modal-close" id="btn-close-deposit">✕</button>
       <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 8px;">
-        NẠP XU <span class="text-gold">CHƠI THẢ GA</span>
+        NẠP XU <span class="text-gold">SUN.WIN VIP</span>
       </h2>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px;">
         Chọn mệnh giá xu bạn muốn nạp vào ví (Hệ thống demo miễn phí 100%):

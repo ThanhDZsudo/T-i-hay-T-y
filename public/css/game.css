@@ -1,49 +1,295 @@
 /* ==========================================================================
-   TÀI XỈU HOÀNG GIA - AUTHENTIC CASINO MINI-GAME THEME (SUNWIN / GO88 STYLE)
+   SUN.WIN AUTHENTIC CASINO SUITE - GAME & LOBBY STYLING (Ảnh 1, 2, 3)
    ========================================================================== */
 
 :root {
-  --tx-gold-bright: #ffe57f;
-  --tx-gold-main: #f5b721;
-  --tx-gold-deep: #b8860b;
-  --tx-gold-dark: #6e4c02;
-  --tx-border-metal: #dfaa2b;
-  
-  --tx-red-door: #ff2a4b;
-  --tx-red-glow: rgba(255, 42, 75, 0.7);
-  --tx-ruby-bg: linear-gradient(180deg, #5e0717 0%, #2a0208 100%);
-  
-  --tx-white-door: #ffffff;
-  --tx-white-glow: rgba(255, 255, 255, 0.75);
+  --sunwin-gold-light: #fff3b0;
+  --sunwin-gold-bright: #ffe57f;
+  --sunwin-gold-main: #f5b721;
+  --sunwin-gold-deep: #b8860b;
+  --sunwin-gold-dark: #6e4e02;
+  --sunwin-gold-border: #d4af37;
 
-  --tx-table-bg: radial-gradient(ellipse at 50% 30%, #26160a 0%, #160c05 60%, #0a0502 100%);
+  --sunwin-lobby-dark: #0a0402;
+  --sunwin-table-bg: radial-gradient(ellipse at 50% 35%, #2a150c 0%, #150904 65%, #080301 100%);
+  --sunwin-ruby-ribbon: linear-gradient(180deg, #6e0b19 0%, #3d030b 100%);
 }
 
-.casino-theme {
+/* ==================== 1. FULL BODY & LOBBY FOUNDATION (Ảnh 3) ==================== */
+body.sunwin-lobby-body {
   background: 
-    radial-gradient(circle at 50% 10%, rgba(245, 183, 33, 0.15) 0%, transparent 60%),
-    radial-gradient(circle at 15% 85%, rgba(184, 0, 31, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 85% 85%, rgba(0, 119, 145, 0.1) 0%, transparent 50%),
-    linear-gradient(180deg, #090b10 0%, #050608 100%);
+    radial-gradient(ellipse at 50% 15%, #3d1c10 0%, #1c0b05 50%, #060201 100%);
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  user-select: none;
+  position: relative;
+}
+
+#ambient-dust-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sunwin-lobby-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  z-index: 2;
 }
 
-/* ==================== LIVE BET TICKER BAR ==================== */
+/* ==================== 2. TOP HEADER BAR (Ảnh 3) ==================== */
+.sunwin-top-bar {
+  height: 72px;
+  background: linear-gradient(180deg, #3d2315 0%, #24120a 50%, #140905 100%);
+  border-bottom: 2px solid #b8860b;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: relative;
+  z-index: 100;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Sunwin Emblem Logo */
+.sunwin-logo-pill {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sunwin-mini-sun {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle, #ffeed1 0%, #d4af37 55%, #664700 100%);
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  box-shadow: 0 0 12px rgba(245, 183, 33, 0.6);
+  transform: scale(0.95);
+  transition: transform 0.2s;
+}
+
+.sunwin-mini-sun:hover {
+  transform: scale(1.02);
+}
+
+.sun-cards {
+  font-size: 0.65rem;
+  letter-spacing: -2px;
+}
+
+.sun-title {
+  font-family: var(--font-display), 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ff2a4b;
+  text-shadow: 0 1px 0 #fff, 0 0 6px #fff;
+  line-height: 1;
+}
+
+.sun-sub {
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #fff;
+  background: #ff2a4b;
+  border-radius: 4px;
+  padding: 0 4px;
+  margin-top: 1px;
+}
+
+/* Player Profile Pill (Ảnh 3: thanhhihehe with cap guy) */
+.sunwin-player-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-avatar-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #d4af37 60%, #523900 100%);
+  border: 2px solid #ffe57f;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 10px rgba(245, 183, 33, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-cap-guy {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));
+}
+
+.player-name-capsule {
+  background: linear-gradient(180deg, #1f1208 0%, #0d0603 100%);
+  border: 1.5px solid #d4af37;
+  border-radius: 20px;
+  padding: 4px 16px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.player-name-text {
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #ffe57f;
+  letter-spacing: 0.5px;
+}
+
+/* Center: Sunwin Balance Capsule ($ [ 0 ] +) */
+.top-bar-center {
+  display: flex;
+  justify-content: center;
+}
+
+.sunwin-balance-capsule {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #2b170c 0%, #150904 100%);
+  border: 2px solid #d4af37;
+  border-radius: 25px;
+  padding: 3px 6px 3px 12px;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.7),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  gap: 10px;
+}
+
+.gold-dollar-badge {
+  font-family: var(--font-accent);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffe57f;
+  text-shadow: 0 0 8px rgba(245, 183, 33, 0.8);
+}
+
+.balance-screen {
+  background: #000;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 14px;
+  padding: 3px 18px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.balance-digits {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.gold-plus-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #f5b721 55%, #855c10 100%);
+  border: 1.5px solid #fff;
+  color: #1a0f02;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  transition: transform 0.15s, filter 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gold-plus-btn:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Right: Action Buttons (Tin Tức, Cài Đặt, Thoát) */
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sunwin-head-btn {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.sunwin-head-btn:hover {
+  color: #ffe57f;
+  background: rgba(245, 183, 33, 0.1);
+}
+
+.head-btn-icon {
+  font-size: 1.25rem;
+}
+
+.head-btn-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.sunwin-head-btn.logout:hover {
+  color: #ff4d6d;
+}
+
+/* Sub Announcement Marquee (Ảnh 3) */
+.sunwin-marquee-bar {
+  background: linear-gradient(90deg, #1c0b05 0%, #301409 50%, #1c0b05 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 4px 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.84rem;
+  color: #ffe57f;
+  text-align: center;
+}
+
+.sunwin-marquee-bar strong {
+  color: #ff3b5c;
+  font-weight: 900;
+}
+
+/* Live Bet Stream Marquee */
 .live-bet-ticker-bar {
   width: 100%;
-  max-width: 1040px;
+  max-width: 1100px;
   margin: 6px auto 0;
-  padding: 6px 16px;
-  background: linear-gradient(90deg, rgba(16, 22, 36, 0.92) 0%, rgba(26, 34, 54, 0.92) 50%, rgba(16, 22, 36, 0.92) 100%);
-  border: 1px solid rgba(245, 183, 33, 0.3);
+  padding: 5px 16px;
+  background: linear-gradient(90deg, rgba(25, 12, 7, 0.92) 0%, rgba(42, 20, 11, 0.92) 50%, rgba(25, 12, 7, 0.92) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
   border-radius: 30px;
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
 
@@ -53,19 +299,17 @@
   gap: 6px;
   background: linear-gradient(135deg, #ff2a4b, #99001b);
   color: #fff;
-  padding: 3px 10px;
+  padding: 2px 10px;
   border-radius: 20px;
   font-family: var(--font-accent);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 1px;
-  box-shadow: 0 0 10px rgba(255, 42, 75, 0.7);
-  flex-shrink: 0;
 }
 
 .live-indicator-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #fff;
   border-radius: 50%;
   animation: liveDotBlink 1s infinite alternate;
@@ -79,23 +323,42 @@
 .ticker-content {
   flex: 1;
   overflow: hidden;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.ticker-content .ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   white-space: nowrap;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   color: #e2e8f0;
 }
 
-.ticker-content span {
-  display: inline-block;
-  animation: marqueeTicker 20s linear infinite;
-}
-
-.ticker-content strong {
+.ticker-content .live-bet-user {
+  font-weight: 800;
   color: #ffe57f;
 }
 
-@keyframes marqueeTicker {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+.ticker-content .live-bet-action {
+  color: #cbd5e1;
+}
+
+.ticker-content .live-bet-amount {
+  font-weight: 800;
+}
+
+.ticker-content .live-bet-door {
+  font-weight: 900;
+}
+
+.ticker-content .ticker-default-msg {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  color: #a0aec0;
 }
 
 .ticker-online-stat {
@@ -104,131 +367,512 @@
   gap: 6px;
   background: rgba(0, 240, 144, 0.1);
   border: 1px solid rgba(0, 240, 144, 0.3);
-  padding: 3px 12px;
+  padding: 2px 10px;
   border-radius: 20px;
   color: #00f090;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .online-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #00f090;
   border-radius: 50%;
-  box-shadow: 0 0 8px #00f090;
-  animation: liveDotBlink 1.4s infinite alternate;
 }
 
-/* ==================== JACKPOT HŨ VÀNG BANNER ==================== */
-.tx-jackpot-banner {
+/* ==================== 3. CATEGORIES NAVIGATION SLIDER (Ảnh 3) ==================== */
+.sunwin-categories-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.35) 25%, rgba(245, 183, 33, 0.5) 50%, rgba(184, 134, 11, 0.35) 75%, transparent 100%);
-  padding: 4px 30px;
-  border-radius: 30px;
-  margin-top: 4px;
-  margin-bottom: -10px;
-  z-index: 15;
-  filter: drop-shadow(0 2px 8px rgba(245, 183, 33, 0.4));
+  gap: 16px;
+  margin: 12px 0 8px;
 }
 
-.jackpot-label {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 900;
-  letter-spacing: 2px;
+.cat-nav-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #3d2315 0%, #170b05 100%);
+  border: 1.5px solid #d4af37;
   color: #ffe57f;
-  text-shadow: 0 0 8px rgba(245, 183, 33, 0.8);
-}
-
-.jackpot-number {
-  font-family: var(--font-accent);
-  font-size: 1.45rem;
   font-weight: 900;
-  color: #fff9d6;
-  letter-spacing: 1px;
-  background: linear-gradient(180deg, #ffffff 0%, #ffe57f 50%, #f5b721 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(245, 183, 33, 0.8));
-  animation: jackpotShimmer 2s infinite alternate;
-}
-
-@keyframes jackpotShimmer {
-  0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(245, 183, 33, 0.7)); }
-  100% { transform: scale(1.03); filter: drop-shadow(0 0 18px rgba(245, 183, 33, 1)); }
-}
-
-.game-container {
-  max-width: 1040px;
-  margin: 6px auto 20px;
-  padding: 0 16px;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+.cat-nav-arrow:hover {
+  transform: scale(1.1);
+}
+
+.cat-pill-list {
+  display: flex;
   align-items: center;
   gap: 12px;
+  background: rgba(22, 10, 5, 0.7);
+  padding: 4px 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.cat-pill {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cat-pill.active {
+  background: linear-gradient(180deg, #ffeed1 0%, #d4af37 55%, #7a5400 100%);
+  color: #1a0f02;
+  box-shadow: 0 2px 10px rgba(245, 183, 33, 0.6);
+  font-weight: 900;
+}
+
+.cat-pill:hover:not(.active) {
+  color: #ffe57f;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==================== 4. LOBBY GAME CARDS GRID (Ảnh 3) ==================== */
+.sunwin-games-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.sunwin-card {
+  min-width: 175px;
+  max-width: 185px;
+  height: 260px;
+  background: linear-gradient(180deg, #2b140a 0%, #140804 70%, #0a0301 100%);
+  border: 2px solid #b8860b;
+  border-radius: 16px;
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s, border-color 0.25s;
+}
+
+.sunwin-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.95), 0 0 20px rgba(245, 183, 33, 0.5);
+  border-color: #ffe57f;
+}
+
+.sunwin-card.active-game-card {
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(245, 183, 33, 0.7), inset 0 0 15px rgba(245, 183, 33, 0.3);
+}
+
+.card-live-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 42, 75, 0.9);
+  color: #fff;
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 8px;
   z-index: 5;
 }
 
-/* ==================== 1. CASINO STAGE & TABLE CROWN ==================== */
-.tx-casino-stage {
-  width: 100%;
+.card-art-wrap {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
-  margin-top: 4px;
+  padding-top: 20px;
 }
 
-/* 3D Crown atop the table */
+.card-character {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.8));
+  z-index: 2;
+  transition: transform 0.2s;
+}
+
+.sunwin-card:hover .card-character {
+  transform: scale(1.1);
+}
+
+.card-character.taixiu-dealer::before {
+  content: '💃';
+}
+.card-character.tulinh-dealer::before {
+  content: '👸';
+}
+.card-character.xocdia-girl::before {
+  content: '💃';
+}
+
+.card-dice-plate-3d {
+  font-size: 1.2rem;
+  margin-top: -6px;
+  z-index: 3;
+}
+
+/* Card 1: Domain chính thức */
+.card-domain .card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  text-align: center;
+  background: radial-gradient(circle, #3d1c10 0%, #150904 100%);
+}
+
+.domain-headline {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.domain-cards-fan {
+  font-size: 2.2rem;
+  margin: 10px 0;
+}
+
+.domain-url-badge {
+  background: #ff2a4b;
+  color: #fff;
+  font-family: var(--font-accent);
+  font-weight: 900;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 42, 75, 0.6);
+}
+
+/* Card Info Footer */
+.card-info-footer {
+  background: linear-gradient(180deg, #1c0b05 0%, #0a0301 100%);
+  border-top: 1.5px solid rgba(212, 175, 55, 0.4);
+  padding: 8px 10px;
+  text-align: center;
+  z-index: 4;
+}
+
+.card-title {
+  font-family: var(--font-accent);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.card-title.glow-gold {
+  color: #ffe57f;
+  text-shadow: 0 0 10px rgba(245, 183, 33, 0.8);
+}
+
+.card-pool-val {
+  font-family: var(--font-accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffe57f;
+  margin-top: 2px;
+}
+
+.card-click-hint {
+  background: #ff2a4b;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+  padding: 2px 0;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== 5. SUNWIN BOTTOM BAR (Ảnh 3) ==================== */
+.sunwin-bottom-bar {
+  height: 78px;
+  background: linear-gradient(180deg, #2e170e 0%, #180a05 50%, #0a0301 100%);
+  border-top: 2px solid #b8860b;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  margin-top: auto;
+  position: relative;
+  z-index: 100;
+}
+
+.bottom-left-group,
+.bottom-right-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sunwin-jackpot-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(180deg, #1f1008 0%, #0d0603 100%);
+  border: 1.5px solid #d4af37;
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+
+.jackpot-chip-icon {
+  font-size: 1.2rem;
+}
+
+.jackpot-label {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffe57f;
+}
+
+.sunwin-bot-icon-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.sunwin-bot-icon-btn:hover {
+  color: #ffe57f;
+  background: rgba(245, 183, 33, 0.1);
+}
+
+.bot-icon {
+  font-size: 1.3rem;
+}
+
+.bot-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.sunwin-bot-icon-btn.warning-live .bot-live-tag {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  background: #ff2a4b;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 900;
+  padding: 1px 4px;
+  border-radius: 6px;
+}
+
+/* ==================== CENTER 3D EMBOSSED GOLD BUTTON: RÚT TIỀN (Ảnh 3) ==================== */
+.bottom-center-action {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-rut-tien-sunwin {
+  min-width: 220px;
+  height: 52px;
+  background: linear-gradient(180deg, #fff7c2 0%, #f5c842 32%, #ba8a11 68%, #573b00 100%);
+  border: 3px solid #fff;
+  outline: 2px solid #5a3c00;
+  border-radius: 26px;
+  cursor: pointer;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(245, 183, 33, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s;
+}
+
+.btn-rut-tien-sunwin:hover {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(245, 183, 33, 0.85);
+}
+
+.btn-rut-tien-sunwin:active {
+  transform: scale(0.96);
+}
+
+.rut-tien-emboss {
+  font-family: var(--font-accent);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #382400;
+  letter-spacing: 2px;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== FLOATING MINI GAME TOGGLE BUTTON (Ảnh 3 - Góc Phải) ==================== */
+.sunwin-minigame-float-btn {
+  position: fixed;
+  bottom: 88px;
+  right: 20px;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #ff4d6d 40%, #a80020 80%, #52000e 100%);
+  border: 3px solid #ffe57f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 77, 109, 0.6);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sunwin-minigame-float-btn:hover {
+  transform: scale(1.12);
+}
+
+.minigame-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff2a4b;
+  color: #fff;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-family: var(--font-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  animation: miniBadgePulse 1s infinite alternate;
+}
+
+@keyframes miniBadgePulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.18); }
+}
+
+.minigame-icon-disc {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.minigame-label {
+  font-family: var(--font-accent);
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #ffe57f;
+  line-height: 1;
+  text-align: center;
+  margin-top: 1px;
+}
+
+
+/* ==================== 6. ACTIVE TÀI XỈU ARENA & CHAT STAGE (Ảnh 2) ==================== */
+.sunwin-arena-stage {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 4, 2, 0.88);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 10px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sunwin-arena-stage.minimized {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sunwin-arena-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1360px;
+  width: 100%;
+}
+
+.tx-casino-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 860px;
+}
+
+/* 3D Header Crown: Coins & Red Dices & 3D Title */
 .tx-table-crown {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  margin-bottom: -15px;
-  z-index: 20;
-  position: relative;
-}
-
-.crown-title-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.crown-title {
-  font-family: var(--font-display), 'Cinzel', serif;
-  font-size: 2.6rem;
-  font-weight: 900;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #fff9d6;
-  background: linear-gradient(180deg, #ffffff 0%, #ffeaa7 30%, #e6b800 60%, #855e00 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px #4a3400;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(245, 183, 33, 0.8));
-  line-height: 1;
+  gap: 16px;
+  margin-bottom: -18px;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .crown-dice-left {
   display: flex;
-  gap: 6px;
-  transform: rotate(-15deg);
+  gap: 4px;
+  transform: rotate(-12deg);
 }
 
 .crown-die {
-  width: 24px;
-  height: 24px;
-  background: radial-gradient(circle at 35% 35%, #ff3b5c 0%, #cc0025 60%, #730014 100%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle at 35% 35%, #ff2a4b, #99001b);
   border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.7);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
   position: relative;
 }
 
@@ -242,56 +886,71 @@
   height: 7px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.crown-title-wrap {
+  text-align: center;
+}
+
+.crown-title {
+  font-family: var(--font-display), 'Cinzel', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #fff0ad 35%, #f5b721 65%, #a87500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(245, 183, 33, 0.6));
+  line-height: 1;
 }
 
 .crown-coins-right {
   font-size: 1.6rem;
-  transform: rotate(10deg);
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+  transform: rotate(12deg);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
 }
 
-/* ==================== 2. MAIN OBLONG METALLIC STADIUM TABLE ==================== */
+
+/* ==================== 7. OBLONG METALLIC STADIUM TABLE (Ảnh 2) ==================== */
 .tx-stadium-table {
   width: 100%;
-  max-width: 960px;
-  background: var(--tx-table-bg);
-  border-radius: 54px;
-  border: 4px solid #d4af37;
+  background: var(--sunwin-table-bg);
+  border-radius: 48px;
+  border: 4px solid #f5c43d;
   outline: 3px solid #5a3c00;
   box-shadow: 
     0 0 0 7px #d4af37,
-    0 0 0 10px #331e00,
-    0 20px 50px rgba(0, 0, 0, 0.95),
+    0 0 0 10px #2c1602,
+    0 22px 55px rgba(0, 0, 0, 0.95),
     inset 0 0 35px rgba(0, 0, 0, 0.9),
-    inset 0 2px 4px rgba(255, 255, 255, 0.35);
-  padding: 12px 20px 14px;
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  padding: 10px 18px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   position: relative;
   user-select: none;
 }
 
-/* Top Action Bar */
+/* Top Table Control Bar */
 .tx-top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
-  position: relative;
+  padding: 0 8px;
 }
 
 .tx-action-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Circular Metallic Action Buttons */
+/* Circular Metallic Buttons along the rim */
 .tx-circle-btn {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff 0%, #f3c13a 45%, #946800 90%, #523900 100%);
   border: 2px solid #fff2b2;
@@ -302,7 +961,7 @@
   color: #2b1c00;
   font-family: var(--font-accent);
   font-weight: 900;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -321,12 +980,6 @@
 
 .tx-circle-btn.gold-glow {
   box-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 0 15px rgba(245, 183, 33, 0.8);
-  animation: goldBtnPulse 1.5s infinite alternate ease-in-out;
-}
-
-@keyframes goldBtnPulse {
-  0% { box-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 0 10px rgba(245, 183, 33, 0.5); }
-  100% { box-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 0 22px rgba(245, 183, 33, 1); }
 }
 
 .tx-circle-btn.close-btn {
@@ -335,16 +988,16 @@
   color: #fff;
 }
 
-/* Center Round ID & Phase Badge */
+/* Center Round ID Pill (#3286349) */
 .tx-center-badge {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: linear-gradient(180deg, #1f1205 0%, #0f0701 100%);
   border: 1.5px solid #d4af37;
   border-radius: 12px;
-  padding: 4px 22px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6);
+  padding: 3px 22px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .tx-round-tag {
@@ -355,24 +1008,15 @@
   letter-spacing: 1px;
 }
 
-.tx-phase-pill {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--green-success);
-  letter-spacing: 0.5px;
-}
-
-/* ==================== 3. MIDDLE ARENA: TÀI - ĐĨA - XỈU ==================== */
+/* ==================== 8. MIDDLE ARENA: CỬA TÀI - ĐĨA COUNTDOWN - CỬA XỈU ==================== */
 .tx-arena-body {
   display: grid;
-  grid-template-columns: 1fr 260px 1fr;
+  grid-template-columns: 1fr 220px 1fr;
   align-items: center;
-  gap: 14px;
-  padding: 4px 10px;
+  gap: 10px;
+  padding: 2px 4px;
 }
 
-/* Left & Right Betting Doors */
 .tx-door-box {
   display: flex;
   flex-direction: column;
@@ -380,40 +1024,39 @@
   justify-content: center;
   background: radial-gradient(ellipse at 50% 40%, rgba(45, 25, 8, 0.6) 0%, rgba(18, 9, 2, 0.95) 100%);
   border: 2px solid rgba(212, 175, 55, 0.4);
-  border-radius: 32px;
-  padding: 12px 10px 12px;
+  border-radius: 30px;
+  padding: 10px 8px;
   transition: all 0.25s ease;
   position: relative;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 8px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 8px 18px rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
 
 .tx-door-box:hover {
   transform: translateY(-2px);
   border-color: rgba(245, 183, 33, 0.7);
-  box-shadow: inset 0 0 25px rgba(245, 183, 33, 0.2), 0 10px 25px rgba(0, 0, 0, 0.7);
 }
 
 .tx-door-box.active-selection {
-  border-color: var(--gold-primary);
-  box-shadow: inset 0 0 30px rgba(245, 183, 33, 0.4), 0 0 25px rgba(245, 183, 33, 0.75);
+  border-color: var(--sunwin-gold-main);
+  box-shadow: inset 0 0 25px rgba(245, 183, 33, 0.4), 0 0 20px rgba(245, 183, 33, 0.75);
 }
 
 .tx-door-box.winner.tai {
   border-color: #ffe57f;
-  box-shadow: 0 0 45px rgba(255, 229, 127, 0.9), inset 0 0 30px rgba(255, 77, 109, 0.6);
+  box-shadow: 0 0 40px rgba(255, 229, 127, 0.9), inset 0 0 25px rgba(255, 77, 109, 0.6);
   animation: winnerBoxPulse 0.9s infinite alternate ease-in-out;
 }
 
 .tx-door-box.winner.xiu {
   border-color: #80e5ff;
-  box-shadow: 0 0 45px rgba(0, 210, 255, 0.9), inset 0 0 30px rgba(0, 210, 255, 0.6);
+  box-shadow: 0 0 40px rgba(0, 210, 255, 0.9), inset 0 0 25px rgba(0, 210, 255, 0.6);
   animation: winnerBoxPulse 0.9s infinite alternate ease-in-out;
 }
 
 @keyframes winnerBoxPulse {
-  0% { transform: scale(1); filter: brightness(1); }
-  100% { transform: scale(1.025); filter: brightness(1.25); }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.025); filter: brightness(1.2); }
 }
 
 .door-header {
@@ -421,17 +1064,17 @@
   align-items: center;
   gap: 5px;
   font-family: var(--font-accent);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 800;
   color: #ffe57f;
 }
 
 .door-hero-title {
   font-family: var(--font-display), 'Cinzel', serif;
-  font-size: 3.8rem;
+  font-size: 3.6rem;
   font-weight: 900;
   line-height: 1;
-  margin: 2px 0 2px;
+  margin: 2px 0;
   letter-spacing: 2px;
 }
 
@@ -440,7 +1083,7 @@
   background: linear-gradient(180deg, #ffffff 0%, #fff176 35%, #fbc02d 70%, #d48800 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(255, 235, 59, 0.9)) drop-shadow(2px 3px 2px #4a3000);
+  filter: drop-shadow(0 0 16px rgba(255, 235, 59, 0.9)) drop-shadow(2px 3px 2px #4a3000);
 }
 
 .door-hero-title.xiu-text {
@@ -448,32 +1091,32 @@
   background: linear-gradient(180deg, #ffffff 0%, #e0f2fe 40%, #bae6fd 70%, #7dd3fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.95)) drop-shadow(2px 3px 2px #102a45);
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) drop-shadow(2px 3px 2px #102a45);
 }
 
 .door-range {
   font-family: var(--font-accent);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: #ffe57f;
   margin-bottom: 6px;
 }
 
-/* Ruby Red Pool Bar */
+/* Ruby Red Pool Bar (Ảnh 2: 69,134,489) */
 .door-ruby-pool {
-  background: var(--tx-ruby-bg);
-  border: 2px solid #e0a320;
+  background: var(--sunwin-ruby-ribbon);
+  border: 1.5px solid #d4af37;
   border-radius: 20px;
-  padding: 4px 18px;
+  padding: 3px 16px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8), 0 3px 8px rgba(0, 0, 0, 0.6);
-  min-width: 160px;
+  min-width: 150px;
   text-align: center;
   margin-bottom: 8px;
 }
 
 .door-ruby-pool .pool-amount {
   font-family: var(--font-accent);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 900;
   color: #ffe57f;
   letter-spacing: 0.5px;
@@ -483,12 +1126,12 @@
 .tx-btn-bet-door {
   background: linear-gradient(180deg, #fffde6 0%, #f5c43d 30%, #cca014 70%, #6e4e02 100%);
   border: 2px solid #fff;
-  border-radius: 22px;
+  border-radius: 20px;
   color: #2b1d02;
   font-family: var(--font-accent);
   font-weight: 900;
-  font-size: 1rem;
-  padding: 6px 28px;
+  font-size: 0.95rem;
+  padding: 5px 26px;
   box-shadow: 
     0 4px 10px rgba(0, 0, 0, 0.7),
     inset 0 2px 3px rgba(255, 255, 255, 0.9),
@@ -501,79 +1144,34 @@
 .tx-btn-bet-door:hover {
   transform: scale(1.06);
   filter: brightness(1.15);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.8), 0 0 15px rgba(245, 183, 33, 0.7);
-}
-
-.tx-btn-bet-door:active {
-  transform: scale(0.96);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.8), 0 0 15px rgba(245, 183, 33, 0.7);
 }
 
 .door-my-bet {
-  margin-top: 6px;
-  font-size: 0.82rem;
+  margin-top: 5px;
+  font-size: 0.78rem;
   display: flex;
   gap: 6px;
   align-items: center;
 }
 
-.door-my-bet .my-bet-label {
-  color: #a0aec0;
-}
+.door-my-bet .my-bet-label { color: #a0aec0; }
+.door-my-bet .my-bet-val { color: #00f090; font-weight: 800; }
 
-.door-my-bet .my-bet-val {
-  color: #00f090;
-  font-weight: 800;
-}
 
-/* ==================== 4. CENTER DISC & 3D RED DICE ==================== */
+/* ==================== 9. CENTER DISC: GIANT COUNTDOWN (Ảnh 2: 45) & BÁT ÚP ==================== */
 .tx-center-disc-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  min-height: 235px;
 }
 
-/* Center Score / Countdown Badge */
-.tx-disc-score-badge {
-  background: linear-gradient(180deg, #1c1004 0%, #0a0401 100%);
-  border: 2px solid #d4af37;
-  border-radius: 12px;
-  padding: 2px 18px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.5);
-  margin-bottom: 4px;
-  z-index: 5;
-  transition: all 0.3s ease;
-}
-
-.tx-disc-score-badge.urgent {
-  border-color: #ff2a4b;
-  background: linear-gradient(180deg, #5c0813 0%, #290206 100%);
-  box-shadow: 0 0 20px rgba(255, 42, 75, 0.9), inset 0 0 8px rgba(255, 255, 255, 0.5);
-  animation: urgentCountdownPulse 0.5s infinite alternate ease-in-out;
-}
-
-@keyframes urgentCountdownPulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.12); }
-}
-
-.tx-disc-score-badge span {
-  font-family: var(--font-accent);
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: #ffe57f;
-}
-
-.tx-disc-score-badge.urgent span {
-  color: #fff;
-  text-shadow: 0 0 10px #ff2a4b;
-}
-
-/* Dish Plate Stage */
 .dish-plate-container {
-  width: 220px;
-  height: 220px;
+  width: 210px;
+  height: 210px;
   position: relative;
   display: flex;
   align-items: center;
@@ -581,15 +1179,15 @@
 }
 
 .dish-plate {
-  width: 210px;
-  height: 210px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #ffeaa7 0%, #d4af37 40%, #785300 85%, #332100 100%);
   box-shadow: 
     0 10px 25px rgba(0, 0, 0, 0.9),
     inset 0 0 15px rgba(255, 255, 255, 0.6),
     inset 0 0 30px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(212, 175, 55, 0.3);
+    0 0 20px rgba(212, 175, 55, 0.35);
   position: absolute;
   display: flex;
   align-items: center;
@@ -598,10 +1196,10 @@
 }
 
 .plate-inner-ring {
-  width: 165px;
-  height: 165px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, #1a1205 0%, #080501 100%);
+  background: radial-gradient(circle, #180d05 0%, #060201 100%);
   border: 2px dashed rgba(245, 183, 33, 0.4);
   position: relative;
   display: flex;
@@ -609,7 +1207,37 @@
   justify-content: center;
 }
 
-/* 3 Authentic Crimson Red Dice */
+/* Giant Countdown Number (Ảnh 2: 45) */
+.tx-giant-countdown {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.tx-giant-countdown span {
+  font-family: var(--font-accent);
+  font-size: 4.8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 
+    0 0 20px rgba(245, 183, 33, 0.9),
+    0 4px 8px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(255, 229, 127, 0.6);
+  letter-spacing: -2px;
+}
+
+.tx-giant-countdown.urgent span {
+  color: #ff2a4b;
+  text-shadow: 0 0 25px rgba(255, 42, 75, 0.9), 0 0 50px #ff2a4b;
+  animation: urgentCountdownPulse 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes urgentCountdownPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+/* 3 Crimson Red Dice */
 .dice-trio {
   position: absolute;
   display: flex;
@@ -620,10 +1248,10 @@
 }
 
 .die {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   background: radial-gradient(circle at 35% 35%, #ff2a4b 0%, #c90022 55%, #7a0012 100%);
-  border-radius: 9px;
+  border-radius: 8px;
   box-shadow: 
     0 6px 14px rgba(0, 0, 0, 0.8),
     inset 0 1px 3px rgba(255, 255, 255, 0.7),
@@ -631,14 +1259,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  padding: 4px;
+  padding: 3px;
   position: relative;
   border: 1px solid rgba(255, 100, 120, 0.3);
 }
 
 .die .pip {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #ffffff;
   border-radius: 50%;
   align-self: center;
@@ -647,15 +1275,14 @@
 }
 
 .die .pip.large-center {
-  width: 14px;
-  height: 14px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 3px #fff;
+  width: 12px;
+  height: 12px;
 }
 
-/* Metallic Bát Úp */
+/* Metallic Bát Úp (Nặn Bát 360 độ) */
 .dish-bowl {
-  width: 180px;
-  height: 180px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #fff2a3 0%, #d4af37 35%, #8c6800 70%, #3d2b00 100%);
   box-shadow: 
@@ -671,29 +1298,12 @@
   cursor: grab;
   border: 3px solid #ffeaa7;
   user-select: none;
-  -webkit-user-select: none;
   touch-action: none;
 }
 
-.dish-bowl * {
-  pointer-events: none;
-  user-select: none;
-}
-
-.dish-bowl.ready-to-nan {
-  cursor: grab;
-  border-color: #fff;
-  animation: bowlReadyPulse 1.2s infinite alternate ease-in-out;
-}
-
-@keyframes bowlReadyPulse {
-  0% { box-shadow: 0 16px 35px rgba(0,0,0,0.9), 0 0 15px rgba(245, 183, 33, 0.5); }
-  100% { box-shadow: 0 16px 35px rgba(0,0,0,0.9), 0 0 40px rgba(245, 183, 33, 1), 0 0 60px rgba(255, 215, 0, 0.6); }
-}
-
 .dish-bowl .bowl-handle {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #fff 0%, #e6b800 60%, #664d00 100%);
   box-shadow: 0 4px 10px rgba(0,0,0,0.6);
@@ -702,284 +1312,259 @@
 
 .dish-bowl .bowl-emblem {
   font-family: var(--font-display), serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 900;
   color: #3d2b00;
-  margin-top: 6px;
+  margin-top: 4px;
   letter-spacing: 2px;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
-/* Hiệu ứng rung lắc cái bát lên xuống chân thực khi lắc xúc xắc */
+/* Hiệu ứng rung lắc bát lên xuống */
 .dish-bowl.shaking {
   animation: bowlShakeUpDown 0.32s infinite ease-in-out;
   cursor: wait;
 }
 
 @keyframes bowlShakeUpDown {
-  0% {
-    transform: translateY(0px) rotate(0deg) scale(1, 1);
-    box-shadow: 
-      0 16px 35px rgba(0, 0, 0, 0.9),
-      inset 0 0 20px rgba(255, 255, 255, 0.8),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  14% {
-    transform: translateY(-26px) rotate(-2.5deg) scale(0.97, 1.03);
-    box-shadow: 
-      0 38px 52px rgba(0, 0, 0, 0.55),
-      0 0 28px rgba(245, 183, 33, 0.65),
-      inset 0 0 24px rgba(255, 255, 255, 0.95),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  28% {
-    transform: translateY(4px) rotate(1.5deg) scale(1.04, 0.96);
-    box-shadow: 
-      0 8px 18px rgba(0, 0, 0, 0.95),
-      inset 0 0 16px rgba(255, 255, 255, 0.7),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  44% {
-    transform: translateY(-34px) rotate(2.5deg) scale(0.96, 1.04);
-    box-shadow: 
-      0 45px 65px rgba(0, 0, 0, 0.5),
-      0 0 35px rgba(255, 215, 0, 0.75),
-      inset 0 0 28px rgba(255, 255, 255, 0.95),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  60% {
-    transform: translateY(5px) rotate(-2deg) scale(1.05, 0.95);
-    box-shadow: 
-      0 6px 16px rgba(0, 0, 0, 0.95),
-      inset 0 0 14px rgba(255, 255, 255, 0.7),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  76% {
-    transform: translateY(-18px) rotate(-1.5deg) scale(0.98, 1.02);
-    box-shadow: 
-      0 28px 42px rgba(0, 0, 0, 0.65),
-      0 0 20px rgba(245, 183, 33, 0.5),
-      inset 0 0 22px rgba(255, 255, 255, 0.85),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  88% {
-    transform: translateY(3px) rotate(1deg) scale(1.03, 0.97);
-    box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.92),
-      inset 0 0 16px rgba(255, 255, 255, 0.75),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
-  100% {
-    transform: translateY(0px) rotate(0deg) scale(1, 1);
-    box-shadow: 
-      0 16px 35px rgba(0, 0, 0, 0.9),
-      inset 0 0 20px rgba(255, 255, 255, 0.8),
-      inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-  }
+  0% { transform: translateY(0px) rotate(0deg); }
+  14% { transform: translateY(-24px) rotate(-2.5deg); }
+  28% { transform: translateY(4px) rotate(1.5deg); }
+  44% { transform: translateY(-30px) rotate(2.5deg); }
+  60% { transform: translateY(4px) rotate(-2deg); }
+  76% { transform: translateY(-16px) rotate(-1.5deg); }
+  88% { transform: translateY(2px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* Đĩa rung nhẹ theo nhịp dội của bát */
 .dish-plate-container.plate-shaking {
   animation: plateVibration 0.32s infinite ease-in-out;
 }
 
 @keyframes plateVibration {
-  0% { transform: translateY(0px) scale(1); }
-  28% { transform: translateY(2px) scale(1.01); }
-  60% { transform: translateY(3px) scale(1.015); }
-  88% { transform: translateY(1px) scale(1.005); }
-  100% { transform: translateY(0px) scale(1); }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0px); }
 }
 
-/* Xúc xắc xáo trộn lăn lộn bên trong đĩa khi lắc */
 .dice-trio.dice-shaking {
   animation: diceRollUnderBowl 0.16s infinite alternate ease-in-out;
 }
 
 @keyframes diceRollUnderBowl {
-  0% { transform: scale(0.95) rotate(-5deg) translateY(2px); }
-  50% { transform: scale(1.03) rotate(4deg) translateY(-2px); }
-  100% { transform: scale(0.97) rotate(-3deg) translateY(1px); }
+  0% { transform: scale(0.95) rotate(-5deg); }
+  100% { transform: scale(1.03) rotate(4deg); }
 }
 
 .dish-bowl.opened {
-  transform: translateY(-130px) rotate(-15deg) scale(0.85);
-  opacity: 0.15;
-  pointer-events: none;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
 }
 
-/* Fast Open Bowl Button */
+.nan-bat-hint {
+  position: absolute;
+  bottom: 2px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #ffe57f;
+  border-radius: 14px;
+  padding: 3px 14px;
+  color: #ffe57f;
+  font-size: 0.75rem;
+  font-weight: 800;
+  z-index: 25;
+  animation: hintBlink 1s infinite alternate;
+}
+
+@keyframes hintBlink {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
 .btn-open-bowl {
-  margin-top: 6px;
-  background: linear-gradient(180deg, #fffde6 0%, #f5c43d 40%, #cca014 80%, #6e4e02 100%);
-  color: #1a1200;
+  position: absolute;
+  bottom: 0px;
+  background: linear-gradient(180deg, #ffeed1, #f5b721, #b8860b);
+  border: 2px solid #fff;
+  border-radius: 16px;
+  color: #1a0f02;
+  font-family: var(--font-accent);
   font-weight: 900;
-  font-size: 0.88rem;
-  border: 1.5px solid #fff;
-  padding: 6px 18px;
-  border-radius: 20px;
+  font-size: 0.82rem;
+  padding: 4px 14px;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(245, 183, 33, 0.6);
-  animation: pulseGold 1s infinite alternate;
+  z-index: 26;
 }
 
-/* Result Badge under Disc */
 .result-display-badge {
-  margin-top: 8px;
-  padding: 4px 18px;
-  border-radius: 30px;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #241208, #0e0502);
+  border: 2px solid #d4af37;
+  border-radius: 18px;
+  padding: 3px 18px;
+  color: #ffe57f;
   font-family: var(--font-accent);
-  font-size: 1.15rem;
   font-weight: 900;
+  font-size: 0.92rem;
+  z-index: 25;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+}
+
+/* ==================== 10. BOTTOM TABLE BAR: BEAD ROAD & NAN BAT (Ảnh 2) ==================== */
+.tx-bottom-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.result-display-badge.tai {
-  background: rgba(255, 235, 59, 0.2);
-  border-color: #ffe57f;
-  color: #ffe57f;
-  box-shadow: 0 0 20px rgba(255, 235, 59, 0.4);
-}
-
-.result-display-badge.xiu {
-  background: rgba(0, 210, 255, 0.2);
-  border-color: #80e5ff;
-  color: #80e5ff;
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
-}
-
-/* ==================== 5. BOTTOM TABLE RIBBON (BEAD HISTORY) ==================== */
-.tx-bottom-bar {
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
-  align-items: center;
-  gap: 14px;
-  padding: 4px 10px 0;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-top: 14px;
+  position: relative;
+  z-index: 10;
 }
 
 .tx-bottom-bar .bottom-btn {
-  width: 38px;
-  height: 38px;
-  font-size: 1.05rem;
-}
-
-.tx-bottom-bar .bottom-btn.active {
-  box-shadow: 0 0 15px rgba(0, 240, 144, 0.7);
-  border-color: #00f090;
-}
-
-.tx-bottom-bead-road {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: rgba(10, 5, 2, 0.7);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 20px;
-  padding: 5px 12px;
-  overflow-x: auto;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
 }
 
 .bottom-bead {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-accent);
   font-size: 0.65rem;
   font-weight: 900;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s;
 }
 
 .bottom-bead.tai {
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e2e8f0 60%, #94a3b8 100%);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #cbd5e1 60%, #64748b 100%);
   border: 1.5px solid #fff;
-  color: #1e293b;
+  color: #000;
 }
 
 .bottom-bead.xiu {
-  background: radial-gradient(circle at 35% 35%, #475569 0%, #1e293b 60%, #0f172a 100%);
+  background: radial-gradient(circle at 35% 35%, #334155 0%, #0f172a 70%, #020617 100%);
   border: 1.5px solid #64748b;
   color: #fff;
 }
 
 .bottom-bead.latest {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #ffe57f;
-  box-shadow: 0 0 12px rgba(245, 183, 33, 0.9);
-  animation: beadPulse 1.2s infinite alternate;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px #ffe57f;
+  border-color: #ffe57f;
 }
 
-/* ==================== 6. CHIP TRAY & QUICK BET CONTROLS ==================== */
+.tx-bottom-bar .bottom-btn.active {
+  border-color: #00f090;
+  box-shadow: 0 0 12px rgba(0, 240, 144, 0.7);
+}
+
+.tx-bottom-bead-road {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: rgba(10, 4, 2, 0.7);
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin: 0 12px;
+  overflow-x: auto;
+  max-width: 580px;
+}
+
+.bead-item {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s;
+}
+
+.bead-item.tai {
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #cbd5e1 60%, #64748b 100%);
+  border: 1px solid #fff;
+}
+
+.bead-item.xiu {
+  background: radial-gradient(circle at 35% 35%, #334155 0%, #0f172a 70%, #020617 100%);
+  border: 1px solid #475569;
+}
+
+.bead-item.latest {
+  transform: scale(1.3);
+  box-shadow: 0 0 10px #ffe57f;
+}
+
+
+/* ==================== 11. CHIP SELECTION & BET ACTIONS ==================== */
 .chip-control-panel {
   width: 100%;
-  max-width: 960px;
-  background: rgba(14, 18, 30, 0.92);
-  border: 1.5px solid rgba(245, 183, 33, 0.35);
-  border-radius: 20px;
-  padding: 10px 18px 12px;
+  max-width: 860px;
+  background: rgba(18, 9, 4, 0.92);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 24px;
+  padding: 10px 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
+  gap: 8px;
+  margin-top: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
 }
 
 .chips-tray {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .poker-chip {
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-accent);
-  font-size: 0.88rem;
   font-weight: 900;
+  font-size: 0.82rem;
+  color: #fff;
   cursor: pointer;
-  border: 3.5px dashed #ffffff;
-  position: relative;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.poker-chip:hover {
-  transform: translateY(-5px) scale(1.08);
-}
-
+.poker-chip:hover { transform: scale(1.15) translateY(-3px); }
 .poker-chip.selected {
-  transform: translateY(-6px) scale(1.12);
+  transform: scale(1.22) translateY(-4px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 6px 14px rgba(0, 0, 0, 0.8);
   border-color: #fff;
-  border-style: solid;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.8), 0 0 18px rgba(245, 183, 33, 0.85);
 }
 
-.chip-1k { background: radial-gradient(circle, #94a3b8, #475569); color: #fff; }
-.chip-10k { background: radial-gradient(circle, #38bdf8, #0284c7); color: #fff; }
-.chip-50k { background: radial-gradient(circle, #4ade80, #16a34a); color: #fff; }
-.chip-100k { background: radial-gradient(circle, #f87171, #dc2626); color: #fff; }
-.chip-500k { background: radial-gradient(circle, #c084fc, #9333ea); color: #fff; }
-.chip-1m { background: radial-gradient(circle, #fbbf24, #d97706); color: #1e1b4b; }
-.chip-5m { background: radial-gradient(circle, #f43f5e, #be123c); color: #fff; }
-.chip-10m { background: radial-gradient(circle, #2dd4bf, #0f766e); color: #fff; }
+.chip-1k { background: radial-gradient(circle, #64748b, #334155); }
+.chip-10k { background: radial-gradient(circle, #0284c7, #0369a1); }
+.chip-50k { background: radial-gradient(circle, #16a34a, #15803d); }
+.chip-100k { background: radial-gradient(circle, #e11d48, #be123c); }
+.chip-500k { background: radial-gradient(circle, #9333ea, #7e22ce); }
+.chip-1m { background: radial-gradient(circle, #ea580c, #c2410c); }
+.chip-5m { background: radial-gradient(circle, #eab308, #ca8a04); color: #000; }
+.chip-10m { background: radial-gradient(circle, #ffd700, #b8860b); color: #000; border-color: #fff; }
 
-/* Quick Multipliers Tray */
 .quick-multipliers-tray {
   display: flex;
   align-items: center;
@@ -989,22 +1574,22 @@
 }
 
 .quick-mult-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(245, 183, 33, 0.3);
-  color: #ffe57f;
-  padding: 4px 12px;
-  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+  padding: 3px 10px;
+  border-radius: 12px;
   font-family: var(--font-accent);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .quick-mult-btn:hover {
   background: rgba(245, 183, 33, 0.2);
-  border-color: var(--gold-primary);
-  transform: translateY(-2px);
+  color: #ffe57f;
+  border-color: #d4af37;
 }
 
 .quick-bet-actions {
@@ -1017,10 +1602,10 @@
 
 .selected-door-indicator {
   font-family: var(--font-accent);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   background: rgba(255, 255, 255, 0.06);
-  padding: 6px 14px;
-  border-radius: 18px;
+  padding: 4px 12px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -1028,29 +1613,29 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  padding: 6px 14px;
-  border-radius: 18px;
+  padding: 5px 12px;
+  border-radius: 14px;
   font-family: var(--font-accent);
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .btn-chip-action:hover {
   background: rgba(255, 255, 255, 0.18);
-  border-color: var(--gold-primary);
+  border-color: #d4af37;
 }
 
 .btn-confirm-bet {
-  background: var(--gold-gradient);
-  border: none;
-  color: #1a1200;
-  padding: 8px 22px;
-  border-radius: 18px;
+  background: linear-gradient(180deg, #ffeed1, #f5b721, #b8860b);
+  border: 1.5px solid #fff;
+  color: #1a0f02;
+  padding: 6px 18px;
+  border-radius: 16px;
   font-family: var(--font-accent);
   font-weight: 900;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(245, 183, 33, 0.5);
   transition: transform 0.2s;
@@ -1058,174 +1643,137 @@
 
 .btn-confirm-bet:hover {
   transform: scale(1.05);
-  filter: brightness(1.1);
 }
 
-/* ==================== INTERACTIVE LIVE CHAT DRAWER ==================== */
-.tx-chat-drawer {
-  position: fixed;
-  top: 75px;
-  right: -360px;
-  width: 340px;
-  height: calc(100vh - 90px);
-  max-height: 640px;
-  background: rgba(14, 18, 30, 0.95);
-  backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(245, 183, 33, 0.4);
-  border-right: none;
-  border-radius: 20px 0 0 20px;
-  box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 183, 33, 0.2);
-  z-index: 1000;
+
+/* ==================== 12. SUNWIN ATTACHED CHAT WINDOW (Ảnh 2) ==================== */
+.sunwin-chat-card {
+  width: 330px;
+  height: 520px;
+  background: rgba(18, 10, 8, 0.96);
+  border: 3px solid #b8860b;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 20px rgba(184, 134, 11, 0.3);
   display: flex;
   flex-direction: column;
-  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.tx-chat-drawer.open {
-  right: 0;
+.sunwin-chat-card.hidden {
+  display: none;
 }
 
-.chat-drawer-header {
+.sunwin-chat-header {
+  height: 44px;
+  background: linear-gradient(180deg, #422110 0%, #241006 100%);
+  border-bottom: 2px solid #b8860b;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 20px 0 0 0;
+  padding: 0 16px;
 }
 
-.chat-drawer-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.chat-header-title {
   font-family: var(--font-accent);
-  font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
+  font-weight: 900;
   color: #ffe57f;
+  letter-spacing: 1px;
 }
 
-.chat-close-btn {
+.sunwin-chat-close-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: #ffe57f;
   font-size: 1.2rem;
+  font-weight: 900;
   cursor: pointer;
-  padding: 4px;
-  line-height: 1;
+  transition: transform 0.15s;
 }
 
-.chat-close-btn:hover {
-  color: #fff;
+.sunwin-chat-close-btn:hover {
+  transform: scale(1.2);
+  color: #ff4d6d;
 }
 
 .chat-messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 12px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   scroll-behavior: smooth;
+  background: rgba(12, 6, 4, 0.9);
 }
 
+/* Chat Item matching Image 2: yellow username, white text */
 .chat-msg-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  font-size: 0.82rem;
-  border-left: 3px solid transparent;
-}
-
-.chat-msg-item.tai-fan { border-left-color: #ff3358; }
-.chat-msg-item.xiu-fan { border-left-color: #00d2ff; }
-.chat-msg-item.system { border-left-color: #ffe57f; background: rgba(245, 183, 33, 0.1); }
-.chat-msg-item.me { border-left-color: #00f090; background: rgba(0, 240, 144, 0.08); }
-
-.chat-msg-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.72rem;
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .chat-author {
+  font-family: var(--font-accent);
   font-weight: 800;
-  color: #ffe57f;
+  color: #f5b721;
+  margin-right: 4px;
 }
 
 .chat-author.me {
   color: #00f090;
 }
 
-.chat-time {
-  color: #718096;
-}
-
 .chat-text {
-  color: #e2e8f0;
-  word-break: break-word;
-  line-height: 1.35;
+  display: inline;
+  color: #f1f5f9;
 }
 
 .chat-vip-tag {
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 900;
-  padding: 1px 5px;
+  padding: 1px 4px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.12);
   color: #cbd5e1;
   margin-right: 4px;
-  vertical-align: middle;
 }
 
 .chat-vip-tag.vip-gold {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  background: #f5b721;
   color: #000;
 }
 
 .chat-vip-tag.vip-sys {
-  background: linear-gradient(135deg, #00d2ff, #006699);
-  color: #fff;
+  background: #00d2ff;
+  color: #000;
 }
 
-.chat-unread-dot {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #ff3358;
-  box-shadow: 0 0 8px #ff3358;
-  animation: pulseUnread 1s infinite alternate;
+.chat-time {
+  display: none;
 }
 
-@keyframes pulseUnread {
-  0% { transform: scale(0.85); opacity: 0.8; }
-  100% { transform: scale(1.25); opacity: 1; }
-}
-
-/* Chat Quick Pills */
 .chat-quick-pills {
   display: flex;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 10px;
+  background: rgba(18, 9, 5, 0.95);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
   overflow-x: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .quick-chat-chip {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   color: #cbd5e1;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.72rem;
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s;
@@ -1234,145 +1782,50 @@
 .quick-chat-chip:hover {
   background: rgba(245, 183, 33, 0.2);
   color: #ffe57f;
-  border-color: var(--gold-primary);
 }
 
-/* Chat Emoji Bar */
-.chat-emoji-bar {
+/* Chat Input Bar (Ảnh 2: Nhập nội dung chat) */
+.sunwin-chat-input-bar {
   display: flex;
-  justify-content: space-around;
-  padding: 4px 10px;
-  background: rgba(0, 0, 0, 0.2);
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #241006 0%, #150803 100%);
+  border-top: 1.5px solid #b8860b;
 }
 
-.chat-emoji-btn {
-  background: none;
-  border: none;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: transform 0.15s;
-}
-
-.chat-emoji-btn:hover {
-  transform: scale(1.3);
-}
-
-.chat-input-row {
-  display: flex;
-  gap: 6px;
-  padding: 10px 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 0 0 0 20px;
-}
-
-.chat-input {
+.sunwin-chat-input-bar .chat-input {
   flex: 1;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 16px;
+  padding: 6px 14px;
   color: #fff;
   font-size: 0.85rem;
   outline: none;
 }
 
-.chat-input:focus {
-  border-color: var(--gold-primary);
+.sunwin-chat-input-bar .chat-input:focus {
+  border-color: #f5b721;
 }
 
-.chat-send-btn {
-  background: var(--gold-gradient);
-  border: none;
-  color: #000;
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-weight: 800;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.chat-send-btn:hover {
-  transform: scale(1.05);
-}
-
-/* ==================== SOI CẦU TABS ==================== */
-.soicau-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.sc-tab-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  color: #a0aec0;
-  padding: 6px 16px;
-  border-radius: 16px;
-  font-family: var(--font-accent);
-  font-weight: 800;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.sc-tab-btn.active {
-  background: var(--gold-gradient);
-  color: #000;
-  border-color: #fff;
-  box-shadow: 0 0 15px rgba(245, 183, 33, 0.6);
-}
-
-/* Bead Matrix for Tab 2 */
-.soicau-matrix-container {
-  width: 100%;
-  background: rgba(12, 6, 2, 0.9);
-  border: 1.5px solid rgba(212, 175, 55, 0.4);
-  border-radius: 16px;
-  padding: 12px;
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: 6px;
-  justify-items: center;
-  align-items: center;
-  min-height: 220px;
-}
-
-.matrix-bead {
-  width: 22px;
-  height: 22px;
+.sunwin-chat-submit-btn {
+  background: linear-gradient(180deg, #ffeed1, #f5b721, #b8860b);
+  border: 1px solid #fff;
   border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-accent);
-  font-size: 0.65rem;
-  font-weight: 900;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.matrix-bead.tai {
-  background: radial-gradient(circle, #ff4d6d, #b80020);
-  border: 1.5px solid #ffccd5;
-  color: #fff;
-}
-
-.matrix-bead.xiu {
-  background: radial-gradient(circle, #00d2ff, #006699);
-  border: 1.5px solid #bae6fd;
-  color: #fff;
-}
-
-.matrix-bead.bao {
-  background: radial-gradient(circle, #ffe57f, #d97706);
-  border: 1.5px solid #fff;
-  color: #000;
 }
 
 
-/* ==================== 7. MODAL: SOI CẦU 3 XÍ NGẦU (Ảnh 1) ==================== */
+/* ==================== 13. SOI CẦU MODAL (Ảnh 1) & SYSTEM DIALOGS ==================== */
 .soicau-modal-box {
   background: radial-gradient(ellipse at 50% 20%, #301708 0%, #170b03 60%, #080301 100%);
   border: 4px solid #b8860b;
@@ -1429,12 +1882,38 @@
   justify-content: center;
 }
 
+.soicau-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sc-tab-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #a0aec0;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sc-tab-btn.active {
+  background: linear-gradient(180deg, #ffeed1, #f5b721, #b8860b);
+  color: #000;
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(245, 183, 33, 0.6);
+}
+
 .soicau-sub-header {
   font-family: var(--font-accent);
   font-size: 0.95rem;
   font-weight: 700;
   color: #e0b042;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .soicau-chart-container {
@@ -1452,42 +1931,78 @@
   display: block;
 }
 
-/* 3 Dice Filter Buttons matching Image 1 */
+.soicau-matrix-container {
+  width: 100%;
+  background: rgba(12, 6, 2, 0.9);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  border-radius: 16px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 6px;
+  justify-items: center;
+  align-items: center;
+  min-height: 220px;
+}
+
+.matrix-bead {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-accent);
+  font-size: 0.65rem;
+  font-weight: 900;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.matrix-bead.tai {
+  background: radial-gradient(circle, #ff4d6d, #b80020);
+  border: 1.5px solid #ffccd5;
+  color: #fff;
+}
+
+.matrix-bead.xiu {
+  background: radial-gradient(circle, #00d2ff, #006699);
+  border: 1.5px solid #bae6fd;
+  color: #fff;
+}
+
+.matrix-bead.bao {
+  background: radial-gradient(circle, #ffe57f, #d97706);
+  border: 1.5px solid #fff;
+  color: #000;
+}
+
 .soicau-filters {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-top: 14px;
+  gap: 16px;
+  margin-top: 12px;
 }
 
 .btn-sc-filter {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 24px;
-  border-radius: 25px;
+  padding: 6px 20px;
+  border-radius: 20px;
   font-family: var(--font-accent);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: #fff;
   transition: all 0.2s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.btn-sc-filter.xn1 {
-  background: linear-gradient(180deg, #9e2a2b 0%, #540b0e 100%);
-}
-
-.btn-sc-filter.xn2 {
-  background: linear-gradient(180deg, #007791 0%, #003049 100%);
-}
-
-.btn-sc-filter.xn3 {
-  background: linear-gradient(180deg, #b5179e 0%, #560bad 100%);
-}
+.btn-sc-filter.xn1 { background: linear-gradient(180deg, #9e2a2b, #540b0e); }
+.btn-sc-filter.xn2 { background: linear-gradient(180deg, #007791, #003049); }
+.btn-sc-filter.xn3 { background: linear-gradient(180deg, #b5179e, #560bad); }
 
 .btn-sc-filter.active {
   border-color: #ffe57f;
@@ -1501,8 +2016,8 @@
 }
 
 .sc-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   border: 1px solid #fff;
 }
@@ -1536,13 +2051,11 @@
   transition: opacity 0.3s ease;
 }
 
-.win-fanfare-overlay.active {
-  opacity: 1;
-}
+.win-fanfare-overlay.active { opacity: 1; }
 
 .win-banner {
   background: linear-gradient(135deg, rgba(20, 15, 0, 0.95), rgba(40, 30, 0, 0.95));
-  border: 3px solid var(--gold-primary);
+  border: 3px solid var(--sunwin-gold-main);
   border-radius: 28px;
   padding: 30px 60px;
   text-align: center;
@@ -1551,9 +2064,7 @@
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.win-fanfare-overlay.active .win-banner {
-  transform: scale(1);
-}
+.win-fanfare-overlay.active .win-banner { transform: scale(1); }
 
 .win-banner h2 {
   font-family: var(--font-display);
@@ -1566,62 +2077,66 @@
   font-family: var(--font-accent);
   font-size: 3.2rem;
   font-weight: 900;
-  color: var(--green-success);
+  color: #00f090;
 }
 
-/* ==================== 8. RESPONSIVE QUERIES ==================== */
+
+/* ==================== 14. RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+  .sunwin-arena-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sunwin-chat-card {
+    width: 100%;
+    max-width: 860px;
+    height: 280px;
+  }
+}
+
 @media (max-width: 860px) {
   .tx-stadium-table {
-    border-radius: 44px;
-    padding: 12px 14px;
+    border-radius: 38px;
+    padding: 10px 12px;
   }
   .tx-arena-body {
-    grid-template-columns: 1fr 220px 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr 200px 1fr;
+    gap: 8px;
   }
   .door-hero-title {
-    font-size: 3.6rem;
+    font-size: 3rem;
+  }
+  .tx-giant-countdown span {
+    font-size: 3.8rem;
   }
   .dish-plate-container {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
   .dish-plate {
-    width: 195px;
-    height: 195px;
+    width: 175px;
+    height: 175px;
   }
   .plate-inner-ring {
-    width: 150px;
-    height: 150px;
+    width: 135px;
+    height: 135px;
   }
   .dish-bowl {
-    width: 165px;
-    height: 165px;
-  }
-  .die {
-    width: 38px;
-    height: 38px;
-  }
-  .door-ruby-pool {
-    min-width: 130px;
-    padding: 4px 12px;
-  }
-  .door-ruby-pool .pool-amount {
-    font-size: 1.1rem;
-  }
-  .tx-btn-bet-door {
-    padding: 6px 20px;
-    font-size: 0.95rem;
+    width: 150px;
+    height: 150px;
   }
 }
 
 @media (max-width: 650px) {
+  .sunwin-top-bar {
+    padding: 0 12px;
+  }
+  .player-name-capsule {
+    display: none;
+  }
   .tx-arena-body {
     grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .tx-stadium-table {
-    border-radius: 30px;
+    gap: 14px;
   }
   .crown-title {
     font-size: 2.2rem;

@@ -175,8 +175,13 @@ class DicePlateController {
     this.closeBowl();
     this.isReadyToOpen = false;
 
+    const discScore = document.getElementById('disc-score-badge');
+    if (discScore) discScore.style.display = 'none';
+
     if (this.bowlEl) {
-      this.bowlEl.style.transform = '';
+      this.bowlEl.style.display = 'flex';
+      this.bowlEl.style.opacity = '1';
+      this.bowlEl.style.transform = 'translate(0px, 0px)';
       this.bowlEl.style.transition = 'none';
       this.bowlEl.classList.add('shaking');
     }
@@ -184,6 +189,7 @@ class DicePlateController {
       this.plateEl.classList.add('plate-shaking');
     }
     if (this.diceContainerEl) {
+      this.diceContainerEl.style.display = 'flex';
       this.diceContainerEl.classList.add('dice-shaking');
     }
     if (this.resultBadgeEl) {
@@ -220,18 +226,23 @@ class DicePlateController {
     this.currentX = 0;
     this.currentY = 0;
 
+    const discScore = document.getElementById('disc-score-badge');
+    if (discScore) discScore.style.display = 'flex';
+
     if (this.plateEl) {
       this.plateEl.classList.remove('plate-shaking');
     }
     if (this.diceContainerEl) {
+      this.diceContainerEl.style.display = 'none';
       this.diceContainerEl.classList.remove('dice-shaking');
     }
 
     if (this.bowlEl) {
       this.bowlEl.classList.remove('opened', 'ready-to-nan', 'shaking', 'nudge-locked');
-      this.bowlEl.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      this.bowlEl.style.transition = 'none';
       this.bowlEl.style.transform = 'translate(0px, 0px)';
       this.bowlEl.style.opacity = '1';
+      this.bowlEl.style.display = 'none'; // Hidden during countdown
       this.bowlEl.style.pointerEvents = 'auto';
       this.bowlEl.style.cursor = 'default';
     }
@@ -259,8 +270,14 @@ class DicePlateController {
     this.currentTotal = total;
     this.currentResult = result;
 
+    const discScore = document.getElementById('disc-score-badge');
+    if (discScore) discScore.style.display = 'none';
+
     // Render the 3 dice values underneath the bowl
-    this.renderDice(dice);
+    if (this.diceContainerEl) {
+      this.diceContainerEl.style.display = 'flex';
+      this.renderDice(dice);
+    }
 
     // Keep result badge HIDDEN until bowl is opened!
     if (this.resultBadgeEl) {
@@ -269,6 +286,7 @@ class DicePlateController {
     }
 
     if (this.bowlEl) {
+      this.bowlEl.style.display = 'flex';
       this.bowlEl.classList.remove('opened', 'shaking');
       this.bowlEl.classList.add('ready-to-nan');
       this.bowlEl.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
@@ -298,13 +316,26 @@ class DicePlateController {
     this.isReadyToOpen = false;
     this.isDragging = false;
 
+    const discScore = document.getElementById('disc-score-badge');
+    if (discScore) discScore.style.display = 'none';
+
+    if (this.diceContainerEl) {
+      this.diceContainerEl.style.display = 'flex';
+    }
+
+    // Bowl cleanly disappears (never hovers over #round-id)
     if (this.bowlEl) {
       this.bowlEl.classList.remove('ready-to-nan');
       this.bowlEl.classList.add('opened');
-      this.bowlEl.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease';
-      this.bowlEl.style.transform = 'translateY(-140px) rotate(-15deg) scale(0.9)';
-      this.bowlEl.style.opacity = '0.15';
+      this.bowlEl.style.transition = 'transform 0.35s ease, opacity 0.25s ease';
+      this.bowlEl.style.transform = 'scale(0.85) translateY(-20px)';
+      this.bowlEl.style.opacity = '0';
       this.bowlEl.style.pointerEvents = 'none';
+      setTimeout(() => {
+        if (this.isBowlOpened && this.bowlEl) {
+          this.bowlEl.style.display = 'none';
+        }
+      }, 300);
     }
 
     if (this.openBowlBtn) {

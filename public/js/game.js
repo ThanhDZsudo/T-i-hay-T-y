@@ -322,9 +322,28 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleTimerTick(data) {
     updateRoundInfo(data.roundId, data.phase, data.timeLeft);
 
-    // Update center timer text
-    if (centerTimerText) {
-      centerTimerText.textContent = data.timeLeft;
+    // Update center timer text ONLY during betting phase
+    if (data.phase === 'betting') {
+      if (discScoreBadge) discScoreBadge.style.display = 'flex';
+      if (centerTimerText) centerTimerText.textContent = data.timeLeft;
+      const diceTrio = document.getElementById('dice-trio');
+      if (diceTrio) diceTrio.style.display = 'none';
+      const dishBowl = document.getElementById('dish-bowl');
+      if (dishBowl && !dicePlate.isBowlOpened) dishBowl.style.display = 'none';
+    } else {
+      // During shaking or revealing, keep giant timer hidden so it doesn't show behind dice
+      if (discScoreBadge) discScoreBadge.style.display = 'none';
+    }
+
+    // Sync floating mini-game timer badge
+    const minigameFloatTimer = document.getElementById('minigame-float-timer');
+    if (minigameFloatTimer) {
+      minigameFloatTimer.textContent = data.timeLeft;
+    }
+
+    // Urgent countdown visual styling
+    if (discScoreBadge) {
+      discScoreBadge.classList.toggle('urgent', data.phase === 'betting' && data.timeLeft <= 5);
     }
 
     // Update pool amounts
@@ -361,9 +380,9 @@ document.addEventListener('DOMContentLoaded', () => {
         boxXiu.classList.add('winner');
       }
 
-      // 2. Update center score badge to show total points (e.g. 13)
-      if (centerTimerText) {
-        centerTimerText.textContent = data.total;
+      // 2. Hide center giant timer text so it doesn't show behind dice
+      if (discScoreBadge) {
+        discScoreBadge.style.display = 'none';
       }
 
       // 3. Add latest to roadmap and re-render
@@ -414,7 +433,14 @@ document.addEventListener('DOMContentLoaded', () => {
     resetRoundUI();
     dicePlate.closeBowl();
 
+    if (discScoreBadge) discScoreBadge.style.display = 'flex';
     if (centerTimerText) centerTimerText.textContent = data.timeLeft || 60;
+    const diceTrio = document.getElementById('dice-trio');
+    if (diceTrio) diceTrio.style.display = 'none';
+    const dishBowl = document.getElementById('dish-bowl');
+    if (dishBowl) dishBowl.style.display = 'none';
+    const resultBadge = document.getElementById('result-badge');
+    if (resultBadge) resultBadge.style.display = 'none';
 
     if (liveTickerContent) {
       liveTickerContent.innerHTML = '<span class="ticker-default-msg">🎲 Bắt đầu phiên mới! Đang mở cược sôi động khắp bàn...</span>';
@@ -431,8 +457,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Socket: Shaking Phase (5s)
   socket.on('round_shaking', (data) => {
     updateRoundInfo(data.roundId, 'shaking', data.timeLeft);
+    if (discScoreBadge) discScoreBadge.style.display = 'none';
+    const diceTrio = document.getElementById('dice-trio');
+    if (diceTrio) diceTrio.style.display = 'flex';
+
     dicePlate.startShaking();
-    if (centerTimerText) centerTimerText.textContent = data.timeLeft;
     if (liveTickerContent) {
       liveTickerContent.innerHTML = '<span class="ticker-default-msg">⏳ Đã chốt cược! Đang lắc xúc xắc...</span>';
     }
@@ -443,6 +472,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Socket: Round Result (Revealing Phase & Nặn Bát - 15s)
   socket.on('round_result', (data) => {
     updateRoundInfo(data.roundId, 'revealing', data.timeLeft);
+    if (discScoreBadge) discScoreBadge.style.display = 'none';
+    const diceTrio = document.getElementById('dice-trio');
+    if (diceTrio) diceTrio.style.display = 'flex';
+
     pendingRoundResult = data;
     dicePlate.showReadyToOpen(data.dice, data.total, data.result);
 
@@ -487,11 +520,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePools(bet.totalTai, bet.totalXiu, bet.countTai, bet.countXiu);
     if (liveTickerContent) {
       const doorName = bet.betType === 'tai' ? 'TÀI' : 'XỈU';
-      const doorColor = bet.betType === 'tai' ? '#ffe57f' : '#80e5ff';
+      const doorColor = bet.betType === 'tai' ? '#ffe57f' : '#67e8f9';
       liveTickerContent.innerHTML = `
-        <span class="live-bet-user">${bet.username}</span> vừa cược 
-        <strong style="color: ${doorColor}">+${bet.amount.toLocaleString('vi-VN')} Xu</strong> vào cửa 
-        <strong style="color: ${doorColor}">${doorName}</strong>
+        <div class="ticker-item">
+          <span class="live-bet-user">${escapeHtml(bet.username)}</span>
+          <span class="live-bet-action">vừa cược</span>
+          <span class="live-bet-amount" style="color: ${doorColor}">+${bet.amount.toLocaleString('vi-VN')} Xu</span>
+          <span class="live-bet-action">vào cửa</span>
+          <span class="live-bet-door" style="color: ${doorColor}">${doorName}</span>
+        </div>
       `;
     }
   });
@@ -795,19 +832,56 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModal('btn-open-leaderboard', 'modal-leaderboard', 'btn-close-leaderboard', loadLeaderboard);
   setupModal('btn-open-history', 'modal-history', 'btn-close-history', loadUserBetHistory);
 
-  // Close table exit
+  // ==================== SUNWIN LOBBY & ARENA STAGE CONTROLS ====================
+  const arenaStage = document.getElementById('sunwin-arena-stage');
   const btnTableClose = document.getElementById('btn-table-close');
-  if (btnTableClose) {
+  const btnLobbyOpenTaiXiu = document.getElementById('btn-lobby-open-taixiu');
+  const minigameFloatBtn = document.getElementById('minigame-float-btn');
+  const btnRutTien = document.getElementById('btn-rut-tien');
+  const btnGuideInner = document.getElementById('btn-open-guide-inner');
+  const btnRulesInner = document.getElementById('btn-open-rules-inner');
+
+  if (btnTableClose && arenaStage) {
     btnTableClose.addEventListener('click', () => {
-      if (confirm('Bạn có muốn đăng xuất và quay lại trang đăng nhập?')) {
-        localStorage.removeItem('taixiu_token');
-        localStorage.removeItem('taixiu_user');
-        window.location.href = '/index.html';
-      }
+      arenaStage.classList.add('minimized');
+      showToast('Đã thu nhỏ bàn cược Tài Xỉu về Lobby!', 'info');
     });
   }
 
-  // ==================== INTERACTIVE LIVE CHAT SYSTEM ====================
+  if (btnLobbyOpenTaiXiu && arenaStage) {
+    btnLobbyOpenTaiXiu.addEventListener('click', () => {
+      arenaStage.classList.remove('minimized');
+    });
+  }
+
+  if (minigameFloatBtn && arenaStage) {
+    minigameFloatBtn.addEventListener('click', () => {
+      arenaStage.classList.toggle('minimized');
+    });
+  }
+
+  if (btnRutTien) {
+    btnRutTien.addEventListener('click', () => {
+      const depositModal = document.getElementById('modal-deposit');
+      if (depositModal) depositModal.classList.add('active');
+    });
+  }
+
+  if (btnGuideInner) {
+    btnGuideInner.addEventListener('click', () => {
+      const m = document.getElementById('modal-guide');
+      if (m) m.classList.add('active');
+    });
+  }
+
+  if (btnRulesInner) {
+    btnRulesInner.addEventListener('click', () => {
+      const m = document.getElementById('modal-rules');
+      if (m) m.classList.add('active');
+    });
+  }
+
+  // ==================== SUNWIN ATTACHED CHAT WINDOW (Ảnh 2) ====================
   const chatDrawer = document.getElementById('tx-chat-drawer');
   const btnToggleChat = document.getElementById('btn-toggle-chat');
   const btnCloseChat = document.getElementById('btn-close-chat');
@@ -818,8 +892,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnToggleChat && chatDrawer) {
     btnToggleChat.addEventListener('click', () => {
-      chatDrawer.classList.toggle('open');
-      if (chatDrawer.classList.contains('open')) {
+      chatDrawer.classList.toggle('hidden');
+      if (!chatDrawer.classList.contains('hidden')) {
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
         if (chatUnreadDot) chatUnreadDot.style.display = 'none';
       }
@@ -828,7 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnCloseChat && chatDrawer) {
     btnCloseChat.addEventListener('click', () => {
-      chatDrawer.classList.remove('open');
+      chatDrawer.classList.add('hidden');
     });
   }
 
@@ -837,36 +911,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = document.createElement('div');
     item.className = `chat-msg-item ${type} ${isMe ? 'me' : ''}`;
 
-    const now = new Date();
-    const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
     let vipBadge = '';
     if (isMe) {
-      vipBadge = '<span class="chat-vip-tag vip-gold">⭐ VIP</span>';
-    } else if (type === 'system') {
-      vipBadge = '<span class="chat-vip-tag vip-sys">👑 ĐẠI GIA</span>';
-    } else {
-      const vLvl = Math.floor(Math.random() * 6) + 3;
-      vipBadge = `<span class="chat-vip-tag">V${vLvl}</span>`;
+      vipBadge = '<span class="chat-vip-tag vip-gold">⭐</span>';
     }
 
     item.innerHTML = `
-      <div class="chat-msg-header">
-        <span class="chat-author ${isMe ? 'me' : ''}">${vipBadge} ${isMe ? 'BẠN' : author}</span>
-        <span class="chat-time">${timeStr}</span>
-      </div>
-      <div class="chat-text">${escapeHtml(text)}</div>
+      <span class="chat-author ${isMe ? 'me' : ''}">${vipBadge}${escapeHtml(author)}:</span>
+      <span class="chat-text">${escapeHtml(text)}</span>
     `;
 
     chatMessagesContainer.appendChild(item);
 
-    // Show unread dot if drawer is closed and message is not from me
-    if (chatDrawer && !chatDrawer.classList.contains('open') && !isMe) {
+    // Show unread dot if chat is hidden and message is not from me
+    if (chatDrawer && chatDrawer.classList.contains('hidden') && !isMe) {
       if (chatUnreadDot) chatUnreadDot.style.display = 'block';
     }
 
     // Auto scroll down if near bottom or if me
-    const isScrolledNearBottom = chatMessagesContainer.scrollHeight - chatMessagesContainer.clientHeight <= chatMessagesContainer.scrollTop + 100;
+    const isScrolledNearBottom = chatMessagesContainer.scrollHeight - chatMessagesContainer.clientHeight <= chatMessagesContainer.scrollTop + 120;
     if (isScrolledNearBottom || isMe) {
       chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
     }
@@ -881,15 +944,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  // Prepopulate initial active chat messages
+  // Prepopulate authentic active chat messages matching Screenshot 2
   const initialChatMessages = [
-    { author: 'than_bai_888', text: 'Chào cả bàn! Hôm nay cầu Tài đang chạy mượt lắm!', type: 'tai-fan' },
-    { author: 'dai_gia_sai_thanh', text: 'Tay vừa rồi húp trọn 35 củ thơm phức 🔥', type: 'system' },
-    { author: 'trum_soi_cau_99', text: 'Nhìn cầu tọa độ xí ngầu 2 đang dốc lên, phiên này bắt Tài chắc ăn', type: 'tai-fan' },
-    { author: 'tieu_long_nu', text: 'Bẻ sang Xỉu đi anh em ơi, bệt 4 cây rồi!', type: 'xiu-fan' },
-    { author: 'son_tinh_vip', text: 'Lụm lúa 20M, ấm bụng rồi! 💰', type: 'system' }
+    { author: 'lentop1lan', text: 'Dvmm' },
+    { author: 'cuterad', text: 'Dcmmm soi bố à' },
+    { author: '_donaldtrump', text: 'dcmm gane' },
+    { author: 'tatsay16', text: 'game lol bịp' },
+    { author: 'khuio890', text: 'đúng tay to bẻ địt mẹ nó' },
+    { author: 'mut_cacc', text: 'đit lon cụ cm' },
+    { author: 'hehdihdgvduty', text: 'loz' },
+    { author: 'hng_lee6789', text: 'Dkm luôn' },
+    { author: 'dragon204', text: 'dcmmm' },
+    { author: 'vp__5m', text: '+ 19m' },
+    { author: 'xinad100mthuong', text: 'Tài 11 nào dm' }
   ];
-  initialChatMessages.forEach(m => addChatMessage(m.author, m.text, m.type));
+  initialChatMessages.forEach(m => addChatMessage(m.author, m.text));
 
   // User chat form submit
   if (chatForm) {
