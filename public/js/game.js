@@ -95,6 +95,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==================== FLYING CHIP ANIMATION & HELPERS ====================
+  function formatChipShort(val) {
+    if (val >= 1000000000) return (val / 1000000000) + 'B';
+    if (val >= 1000000) return (val / 1000000) + 'M';
+    if (val >= 1000) return (val / 1000) + 'K';
+    return val.toString();
+  }
+
+  function triggerFlyingChip(targetDoor, amount) {
+    const targetEl = targetDoor === 'tai' ? boxTai : boxXiu;
+    if (!targetEl) return;
+
+    const activeChip = document.querySelector('.poker-chip.selected') || document.querySelector('.poker-chip');
+    const startRect = activeChip ? activeChip.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight - 80, width: 40, height: 40 };
+    const endRect = targetEl.getBoundingClientRect();
+
+    const chipClone = document.createElement('div');
+    chipClone.className = 'flying-chip';
+    chipClone.textContent = formatChipShort(amount);
+    chipClone.style.left = `${startRect.left + (startRect.width / 2) - 22}px`;
+    chipClone.style.top = `${startRect.top + (startRect.height / 2) - 22}px`;
+    document.body.appendChild(chipClone);
+
+    requestAnimationFrame(() => {
+      chipClone.style.left = `${endRect.left + endRect.width / 2 - 22}px`;
+      chipClone.style.top = `${endRect.top + endRect.height / 2 - 22}px`;
+      chipClone.style.transform = 'scale(1.15) rotate(360deg)';
+    });
+
+    setTimeout(() => {
+      if (chipClone.parentElement) chipClone.remove();
+
+      // Floating Bet Amount Badge
+      const badge = document.createElement('div');
+      badge.className = 'floating-bet-badge';
+      badge.textContent = `+${amount.toLocaleString('vi-VN')} Xu`;
+      badge.style.left = `${endRect.left + endRect.width / 2}px`;
+      badge.style.top = `${endRect.top + endRect.height / 2 - 15}px`;
+      document.body.appendChild(badge);
+      setTimeout(() => {
+        if (badge.parentElement) badge.remove();
+      }, 1200);
+    }, 650);
+  }
+
   // ==================== DOOR SELECTION & BETTING ====================
   function selectDoor(door) {
     selectedDoor = door;
@@ -126,6 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Trigger visual flying chip into door
+    triggerFlyingChip(door, selectedChip);
+
     socket.emit('place_bet', {
       betType: door,
       type: door,
@@ -133,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Click on "ĐẶT CƯỢC" button on either door: selects door AND places bet immediately!
+  // Click on "ĐẶT CƯỢC" button on either door
   if (btnDoorTai) {
     btnDoorTai.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -150,17 +198,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Clicking the box itself selects the door
-  if (boxTai) boxTai.addEventListener('click', () => selectDoor('tai'));
-  if (boxXiu) boxXiu.addEventListener('click', () => selectDoor('xiu'));
+  // Direct clicking anywhere on the door card selects & bets!
+  if (boxTai) {
+    boxTai.addEventListener('click', (e) => {
+      if (e.target.closest('.tx-btn-bet-door')) return;
+      selectDoor('tai');
+      executePlaceBet('tai');
+    });
+  }
 
-  // ==================== CHIP SELECTION ====================
+  if (boxXiu) {
+    boxXiu.addEventListener('click', (e) => {
+      if (e.target.closest('.tx-btn-bet-door')) return;
+      selectDoor('xiu');
+      executePlaceBet('xiu');
+    });
+  }
+
+  // ==================== CHIP SELECTION & QUICK MULTIPLIERS ====================
   const chipEls = document.querySelectorAll('.poker-chip');
   chipEls.forEach(chip => {
     chip.addEventListener('click', () => {
       chipEls.forEach(c => c.classList.remove('selected'));
       chip.classList.add('selected');
       selectedChip = parseInt(chip.getAttribute('data-value'), 10);
+      if (window.soundEngine) window.soundEngine.playChipSound();
+    });
+  });
+
+  // Quick Multipliers (+100K, +500K, +1M, +5M, +10M)
+  const quickMultBtns = document.querySelectorAll('.quick-mult-btn');
+  quickMultBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const addVal = parseInt(btn.getAttribute('data-add'), 10);
+      selectedChip = Math.min(currentUser.balance || 100000000, selectedChip + addVal);
+      showToast(`Đã tăng cược: ${selectedChip.toLocaleString('vi-VN')} Xu`, 'info');
       if (window.soundEngine) window.soundEngine.playChipSound();
     });
   });
@@ -424,7 +496,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  let currentRoundPhase = 'betting';
+
   function updateRoundInfo(roundId, phase, timeLeft) {
+    currentRoundPhase = phase || 'betting';
     if (roundIdDisplay) roundIdDisplay.textContent = `#${roundId}`;
     if (phaseStatusBadge) {
       phaseStatusBadge.className = `tx-phase-pill ${phase}`;
@@ -732,13 +807,444 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Chat button
+  // ==================== INTERACTIVE LIVE CHAT SYSTEM ====================
+  const chatDrawer = document.getElementById('tx-chat-drawer');
   const btnToggleChat = document.getElementById('btn-toggle-chat');
-  if (btnToggleChat) {
+  const btnCloseChat = document.getElementById('btn-close-chat');
+  const chatMessagesContainer = document.getElementById('chat-messages-container');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatUnreadDot = document.getElementById('chat-unread-dot');
+
+  if (btnToggleChat && chatDrawer) {
     btnToggleChat.addEventListener('click', () => {
-      showToast('💬 Kênh chat sòng bài trực tuyến đang kết nối hơn 3,000 người chơi!', 'info');
+      chatDrawer.classList.toggle('open');
+      if (chatDrawer.classList.contains('open')) {
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        if (chatUnreadDot) chatUnreadDot.style.display = 'none';
+      }
     });
   }
+
+  if (btnCloseChat && chatDrawer) {
+    btnCloseChat.addEventListener('click', () => {
+      chatDrawer.classList.remove('open');
+    });
+  }
+
+  function addChatMessage(author, text, type = 'normal', isMe = false) {
+    if (!chatMessagesContainer) return;
+    const item = document.createElement('div');
+    item.className = `chat-msg-item ${type} ${isMe ? 'me' : ''}`;
+
+    const now = new Date();
+    const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+    let vipBadge = '';
+    if (isMe) {
+      vipBadge = '<span class="chat-vip-tag vip-gold">⭐ VIP</span>';
+    } else if (type === 'system') {
+      vipBadge = '<span class="chat-vip-tag vip-sys">👑 ĐẠI GIA</span>';
+    } else {
+      const vLvl = Math.floor(Math.random() * 6) + 3;
+      vipBadge = `<span class="chat-vip-tag">V${vLvl}</span>`;
+    }
+
+    item.innerHTML = `
+      <div class="chat-msg-header">
+        <span class="chat-author ${isMe ? 'me' : ''}">${vipBadge} ${isMe ? 'BẠN' : author}</span>
+        <span class="chat-time">${timeStr}</span>
+      </div>
+      <div class="chat-text">${escapeHtml(text)}</div>
+    `;
+
+    chatMessagesContainer.appendChild(item);
+
+    // Show unread dot if drawer is closed and message is not from me
+    if (chatDrawer && !chatDrawer.classList.contains('open') && !isMe) {
+      if (chatUnreadDot) chatUnreadDot.style.display = 'block';
+    }
+
+    // Auto scroll down if near bottom or if me
+    const isScrolledNearBottom = chatMessagesContainer.scrollHeight - chatMessagesContainer.clientHeight <= chatMessagesContainer.scrollTop + 100;
+    if (isScrolledNearBottom || isMe) {
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
+
+    // Keep max 100 messages in DOM
+    if (chatMessagesContainer.children.length > 100) {
+      chatMessagesContainer.removeChild(chatMessagesContainer.firstChild);
+    }
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Prepopulate initial active chat messages
+  const initialChatMessages = [
+    { author: 'than_bai_888', text: 'Chào cả bàn! Hôm nay cầu Tài đang chạy mượt lắm!', type: 'tai-fan' },
+    { author: 'dai_gia_sai_thanh', text: 'Tay vừa rồi húp trọn 35 củ thơm phức 🔥', type: 'system' },
+    { author: 'trum_soi_cau_99', text: 'Nhìn cầu tọa độ xí ngầu 2 đang dốc lên, phiên này bắt Tài chắc ăn', type: 'tai-fan' },
+    { author: 'tieu_long_nu', text: 'Bẻ sang Xỉu đi anh em ơi, bệt 4 cây rồi!', type: 'xiu-fan' },
+    { author: 'son_tinh_vip', text: 'Lụm lúa 20M, ấm bụng rồi! 💰', type: 'system' }
+  ];
+  initialChatMessages.forEach(m => addChatMessage(m.author, m.text, m.type));
+
+  // User chat form submit
+  if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = chatInput.value.trim();
+      if (!val) return;
+      addChatMessage(currentUser.username, val, 'me', true);
+      socket.emit('send_chat_message', { text: val });
+      chatInput.value = '';
+    });
+  }
+
+  // Quick chat chips
+  const quickChatChips = document.querySelectorAll('.quick-chat-chip');
+  quickChatChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const msg = chip.getAttribute('data-msg');
+      if (msg) {
+        addChatMessage(currentUser.username, msg, 'me', true);
+        socket.emit('send_chat_message', { text: msg });
+      }
+    });
+  });
+
+  // Floating Emoji Burst Reaction
+  function shootFloatingEmoji(emoji) {
+    for (let i = 0; i < 7; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'floating-emoji';
+        el.textContent = emoji;
+        el.style.left = `${Math.random() * 50 + 25}vw`;
+        el.style.bottom = `${Math.random() * 70 + 40}px`;
+        document.body.appendChild(el);
+        setTimeout(() => {
+          if (el.parentElement) el.remove();
+        }, 2200);
+      }, i * 110);
+    }
+  }
+
+  const emojiButtons = document.querySelectorAll('.chat-emoji-btn');
+  emojiButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const em = btn.getAttribute('data-emoji');
+      if (em) {
+        shootFloatingEmoji(em);
+        addChatMessage(currentUser.username, `${em} ${em} ${em}`, 'me', true);
+        socket.emit('send_chat_message', { text: `${em} ${em} ${em}` });
+      }
+    });
+  });
+
+  // Realtime Socket Broadcast from other real players
+  socket.on('broadcast_chat_message', (data) => {
+    if (data.username !== currentUser.username) {
+      addChatMessage(data.username, data.text, data.type || 'normal', false);
+    }
+  });
+
+  // ==================== DYNAMIC HIGH-FREQUENCY COMMUNITY CHATTER ====================
+  const botChatAuthors = [
+    'thanh_long_99', 'bac_thay_soi_cau', 'trum_tai_xiu_hn', 'dai_gia_phu_quoc', 'cong_tu_bac_lieu',
+    'tien_ve_nhu_lu', 'thao_vip_pro', 'viet_jackpot_88', 'hoang_kim_68', 'bach_phat_bach_trung',
+    'ong_hoang_tai_xiu', 'than_bai_cho_lon', 'sat_thu_dong_tien', 'tay_choi_sai_gon', 'hacker_xoc_dia',
+    'nam_son_la_88', 'tuan_hung_yen', 'hieu_hai_phong', 'duc_nam_dinh', 'quang_ninh_vip',
+    'anh_ba_sa_dec', 'bong_dem_9x', 'hoa_vo_khuyet', 'kiem_tien_cuoi_vo', 'so_tai_tai_den',
+    'danh_la_thang', 'chua_he_thua', 'than_dieu_dai_hiep', 'nu_hoang_do_den', 'tieu_long_nu_88',
+    'trai_tim_vang', 'chi_hai_ban_ron', 'cau_hai_gia_dinh', 'hotgirl_tai_xiu', 'baby_shark_vip',
+    'chuot_tui_88', 'ca_kiem_vang', 'phuong_hoang_lua', 'rong_vang_99', 'thien_long_bat_bo',
+    've_bo_thoi_ae', 'tat_tay_ho_nay', 'het_tien_roi_ba_con', 'xin_via_thang_lon', 'cay_cau_bet',
+    'nuoi_xiu_3_ngay', 'so_tai_den_sang', 'di_chua_cau_may', 'than_tai_go_cua', 'cay_tien_mua_mec',
+    'hom_nay_phai_an', 'tay_trang_lam_lai', 'song_chet_voi_nha_cai', 'nha_cai_chay_dau', 'vay_tien_di_choi',
+    'vo_keu_ve_nau_com', 'cay_cu_that_su', 'dap_hop_iphone_16', 'hung_king_88', 'minh_beo_vip',
+    'ngoc_trinh_vip', 'son_tung_68', 'jack_97_vip', 'do_mixi_vip', 'thay_giao_ba',
+    'huyen_baby_tx', 'quang_hai_19', 'tien_linh_vip', 'hoang_duc_28', 'dang_van_lam',
+    'van_toan_vip', 'duy_manh_hn', 'quang_huy_vip', 'phuoc_loc_tho', 'phat_tai_phat_loc',
+    'dai_gia_dat_cang', 'trum_soi_cau_99', 'thanh_nien_chuan', 'chuyen_gia_bat_tai', 'ong_trum_xiu'
+  ];
+
+  function getRandomBotAuthor() {
+    const base = botChatAuthors[Math.floor(Math.random() * botChatAuthors.length)];
+    if (Math.random() < 0.45 && !base.match(/_\d+$/)) {
+      const suffixes = ['88', '99', '68', '79', 'vip', 'pro', 'hn', 'sg'];
+      return `${base}_${suffixes[Math.floor(Math.random() * suffixes.length)]}`;
+    }
+    return base;
+  }
+
+  const taiMsgs = [
+    'Tài 100% rồi anh em ơi, cầu 1-1 đẹp như tranh! 🔥',
+    'Bơm căng cửa Tài phiên này đi, tôi vừa vào 10 củ!',
+    'Theo Tài là về bờ, cãi nhà cái làm gì!',
+    'Tài đi anh em, tiếng kết tiếng kết!',
+    'Cầu bệt Tài 4 tay rồi, cứ bệt mà bám thôi!',
+    'Ai theo Tài giơ tay nào ✋',
+    'Tài nổ hũ nào các bác ơi!',
+    'Tay này kết Tài quá, không đánh thì tiếc cả đời!',
+    'Tài chắc luôn, nhìn xí ngầu đi đẹp vãi',
+    'Chốt 5M cửa Tài, anh em theo nào!',
+    'Phiên này Tài không ra thì tôi nghỉ game luôn!',
+    'Cả làng vào Tài đi, cầu đang thơm phức!',
+    'Tài nổ to nào, tiếng này tiền về!',
+    'Lót nhẹ thêm 2 củ Tài cho chắc cú',
+    'Bàn này đang thiên Tài, anh em đừng bẻ vội',
+    'Theo Tài từ đầu phiên đến giờ chưa gãy tay nào 🚀',
+    'Vào Tài nhanh tay kẻo hết giờ anh em ơi!',
+    'Tài 14 điểm chuẩn chỉ!'
+  ];
+
+  const xiuMsgs = [
+    'Bẻ Xỉu thôi anh em, bệt sâu quá rồi gãy chắc! 🧊',
+    'Xỉu êm đẹp, theo tôi làm giàu nào!',
+    'Xỉu 10 điểm nhẹ nhàng lấy tiền nhà cái!',
+    'Tất tay cửa Xỉu, không nói nhiều 🚀',
+    'Bắt Xỉu tay này là chuẩn bài soi cầu luôn!',
+    'Cầu chuyền sang Xỉu rồi, anh em tỉnh táo lên',
+    'Xỉu đi, linh tính mách bảo Xỉu rực rỡ!',
+    'Xỉu uy tín không lằng nhằng!',
+    'Ai ôm Xỉu như tôi không, chung mâm phát nào!',
+    'Bẻ Xỉu thôi ae, không bẻ giờ là tiếc đấy 🧊',
+    'Tay này Xỉu chạy không trượt phát nào',
+    'Vào Xỉu là ấm no, tin tôi một lần đi',
+    'Xỉu 6 điểm đập vào mặt nhà cái nào!',
+    'Xỉu êm ru, lượm lúa nhẹ nhàng',
+    'Đang thông 3 tay Xỉu, đánh tiếp thôi!',
+    'Cửa Xỉu nay vào tiền ác thế, theo số đông thôi anh em',
+    'Xỉu 8 điểm lộc phát, tiếng này ăn chặt!',
+    'Bên Xỉu tiền đang tăng chóng mặt kìa'
+  ];
+
+  const winCelebrationMsgs = [
+    'Húp trọn 15 củ, ấm quá các bác ơi! 💰🎉',
+    'Lụm lúa! 3 tay thông rồi phê chữ ê kéo dài!',
+    'Tiền về tài khoản ting ting, sướng rơn người!',
+    'Ăn đậm rồi, hôm nay mời cả làng bia hơi 🍻',
+    'Bú ngập mồm! Cảm ơn anh em đã kéo!',
+    'Húp! Đánh đúng theo cầu là có cơm ăn áo mặc ngay',
+    'Tuyệt vời, làm nhẹ 20M nghỉ ăn trưa!',
+    'Ngon chim! Cầu đang son đánh đâu trúng đó',
+    'Lụm lúa 20M, ấm bụng rồi! 💰',
+    'Tay vừa rồi húp trọn 35 củ thơm phức 🔥',
+    'Haha vừa gỡ lại vốn còn dôi ra 8 củ, quá đã!',
+    'Cảm ơn bác nào vừa hô nhé, ăn theo ngon ơ!',
+    'Ting ting 50M về tài khoản, thơm như múi mít!',
+    'Lại xanh chín rồi, nay lộc lá quá anh em ơi!',
+    'Ăn thông 4 tay rồi, nay trời độ tôi rồi các bác!',
+    'Vừa nãy run tay tí nữa thì bỏ, may quá vẫn theo!'
+  ];
+
+  const loseOrTrollMsgs = [
+    'Ối dồi ôi, lệch có 1 nút đau đớn quá trời!',
+    'Bẻ cầu hụt rồi, cay mắt thật chứ 😭',
+    'Vừa buông tay thì nó lại về, cay thế không biết!',
+    'Má ơi, nặn ra 2 con lục mà con cuối ra nhất!',
+    'Không sao, còn thở là còn gỡ, tay sau làm lại!',
+    'Tiếc đứt ruột, định lót thêm mà hết giờ bấm cược',
+    'Đánh Xỉu nó ra 11 Tài, đúng cay đắng cuộc đời',
+    'Bị nhà cái vặt mất 5 củ rồi, tay sau tất tay phục thù!',
+    'Đắng lòng thanh niên bẻ cầu đúng lúc nó bệt tiếp',
+    'Ai cứu tôi với, bay mất con Wave rồi 🥲',
+    'Nặn thót cả tim, con cuối xịt đau ghê',
+    'Tay sau tăng tiền gấp đôi, không tin không gỡ được!'
+  ];
+
+  const actionMsgs = [
+    'Lắc đều tay lên nào dealer ơi! 🎲',
+    'Nặn đê nặn đê anh em ơi, nặn từ từ thôi!',
+    'Hóng bão 3 con 6 nổ hũ to đùng! 🔥',
+    'Bát này nặn chắc tay vào nha anh em, hồi hộp quá!',
+    'Nặn ra 2 con ngũ rồi, con cuối ra ngũ nữa nổ hũ đi!!',
+    'Hồi hộp vãi chưởng, tim đập thình thịch!',
+    'Mở bát đi chờ lâu sốt ruột quá bác ơi!',
+    'Tay run không dám nặn luôn nè anh em',
+    'Cầu xin thần linh cho ra Tài tay này 🙏',
+    '3 con xí ngầu lắc nghe giòn tai thế nhỉ!',
+    'Nặn mở mép ra xem chấm nào anh em!',
+    'Ối giời ơi nặn hồi hộp muốn rớt tim ngoài lồng ngực'
+  ];
+
+  const generalChatMsgs = [
+    'Vợ đang đứng sau lưng canh mà vẫn phải lén làm tay Tài 😅',
+    'Hôm nay ai đỏ kéo em với, xa bờ 5 chục rồi 🥹',
+    'Có bác nào ở Hà Nội không, tối làm bữa nhậu ăn mừng nào',
+    'Cầu đẹp thế này không vào tiền có lỗi với bản thân',
+    'Xin vía bác top 1 với, tay nào cũng thấy xanh lét',
+    'Nặn từ từ thôi bác ơi, đau tim quá haha 🤣',
+    'Anh em nào vừa ăn to giơ tay phát lấy may',
+    'Cầu bàn này mượt hơn bên các cổng khác nhiều',
+    'Đang rình tay bão kiếm quả jackpot trăm củ',
+    'Anh em hôm nay lời lãi thế nào rồi, điểm danh cái',
+    'Cao thủ soi cầu đâu hết rồi, cho xin nhận định phiên này với',
+    'Chơi vui vẻ giữ cái đầu lạnh nha các bác!',
+    'Vừa nạp thêm 20 củ chiến khô máu phiên này!',
+    'Bàn này xôm tụ vui vẻ quá, vào đánh giải trí phê luôn'
+  ];
+
+  // Fast & lively automated chatter loop
+  function sendAutomatedChatter() {
+    let pool;
+    let type = 'normal';
+
+    if (currentRoundPhase === 'shaking' || currentRoundPhase === 'revealing') {
+      const r = Math.random();
+      if (r < 0.4) {
+        pool = actionMsgs;
+        type = 'system';
+      } else if (r < 0.7) {
+        pool = winCelebrationMsgs;
+        type = 'system';
+      } else {
+        pool = loseOrTrollMsgs;
+        type = 'normal';
+      }
+    } else {
+      // Betting phase
+      const r = Math.random();
+      if (r < 0.38) {
+        pool = taiMsgs;
+        type = 'tai-fan';
+      } else if (r < 0.76) {
+        pool = xiuMsgs;
+        type = 'xiu-fan';
+      } else {
+        pool = generalChatMsgs;
+        type = 'normal';
+      }
+    }
+
+    const text = pool[Math.floor(Math.random() * pool.length)];
+    const author = getRandomBotAuthor();
+    addChatMessage(author, text, type, false);
+
+    // Fast pace: 900ms - 2200ms (average ~1.3s), with 25% chance of rapid burst (300ms - 550ms)
+    const isBurst = Math.random() < 0.25;
+    const nextInterval = isBurst 
+      ? Math.floor(Math.random() * 250) + 300 
+      : Math.floor(Math.random() * 1300) + 900;
+
+    setTimeout(sendAutomatedChatter, nextInterval);
+  }
+
+  // Kick off after 600ms
+  setTimeout(sendAutomatedChatter, 600);
+
+  // ==================== MEGA JACKPOT COUNTER TICKER ====================
+  let currentJackpotVal = 2854912400;
+  const jackpotCounterEl = document.getElementById('jackpot-counter');
+  setInterval(() => {
+    currentJackpotVal += Math.floor(Math.random() * 40000) + 12000;
+    if (jackpotCounterEl) {
+      jackpotCounterEl.textContent = `${currentJackpotVal.toLocaleString('vi-VN')} Xu`;
+    }
+  }, 1600);
+
+  // ==================== SOI CẦU TABS & BEAD MATRIX ====================
+  const tabBtnGraph = document.getElementById('tab-btn-graph');
+  const tabBtnMatrix = document.getElementById('tab-btn-matrix');
+  const viewGraph = document.getElementById('soicau-view-graph');
+  const viewMatrix = document.getElementById('soicau-view-matrix');
+  const filterGroup = document.getElementById('soicau-filters-group');
+
+  function switchSoiCauTab(tab) {
+    if (tab === 'graph') {
+      if (tabBtnGraph) tabBtnGraph.classList.add('active');
+      if (tabBtnMatrix) tabBtnMatrix.classList.remove('active');
+      if (viewGraph) viewGraph.style.display = 'block';
+      if (viewMatrix) viewMatrix.style.display = 'none';
+      if (filterGroup) filterGroup.style.display = 'flex';
+      renderSoiCauCanvas();
+    } else {
+      if (tabBtnMatrix) tabBtnMatrix.classList.add('active');
+      if (tabBtnGraph) tabBtnGraph.classList.remove('active');
+      if (viewGraph) viewGraph.style.display = 'none';
+      if (viewMatrix) viewMatrix.style.display = 'grid';
+      if (filterGroup) filterGroup.style.display = 'none';
+      renderSoiCauMatrix();
+    }
+  }
+
+  if (tabBtnGraph) tabBtnGraph.addEventListener('click', () => switchSoiCauTab('graph'));
+  if (tabBtnMatrix) tabBtnMatrix.addEventListener('click', () => switchSoiCauTab('matrix'));
+
+  function renderSoiCauMatrix() {
+    if (!viewMatrix) return;
+    viewMatrix.innerHTML = '';
+
+    // Take up to 120 past rounds to fill 6 rows x 20 columns
+    const rounds = cachedHistory.slice(-120);
+    const totalSlots = 120;
+
+    for (let i = 0; i < totalSlots; i++) {
+      const beadEl = document.createElement('div');
+      if (i < rounds.length) {
+        const r = rounds[i];
+        beadEl.className = `matrix-bead ${r.result}`;
+        beadEl.textContent = r.total;
+        beadEl.title = `Phiên #${r.roundId}: ${r.dice.join('-')} = ${r.total} (${r.result.toUpperCase()})`;
+      } else {
+        beadEl.style.width = '20px';
+        beadEl.style.height = '20px';
+        beadEl.style.borderRadius = '50%';
+        beadEl.style.background = 'rgba(255, 255, 255, 0.03)';
+        beadEl.style.border = '1px dashed rgba(255, 255, 255, 0.08)';
+      }
+      viewMatrix.appendChild(beadEl);
+    }
+  }
+
+  // ==================== AMBIENT GOLD DUST CANVAS PARTICLES ====================
+  function initAmbientDust() {
+    const canvas = document.getElementById('ambient-dust-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2 + 0.8,
+      alpha: Math.random() * 0.5 + 0.2,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: -Math.random() * 0.45 - 0.15
+    }));
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < 0) p.y = height;
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 183, 33, ${p.alpha})`;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = '#f5b721';
+        ctx.fill();
+      });
+      requestAnimationFrame(renderParticles);
+    }
+    renderParticles();
+  }
+  initAmbientDust();
 
   // Load Leaderboard
   async function loadLeaderboard() {

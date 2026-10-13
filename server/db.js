@@ -210,5 +210,17 @@ module.exports = {
 
   getUserBets(userId, limit = 20) {
     return db.bets.filter(b => b.userId === userId).slice(-limit);
+  },
+
+  getSetting(key, defaultVal) {
+    if (!db.settings) db.settings = {};
+    return db.settings[key] !== undefined ? db.settings[key] : defaultVal;
+  },
+
+  setSetting(key, val) {
+    if (!db.settings) db.settings = {};
+    db.settings[key] = val;
+    saveDb();
+    return val;
   }
 };

@@ -25,6 +25,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// Serve VIP favicon for standard /favicon.ico requests
+app.get('/favicon.ico', (req, res) => {
+  res.type('image/svg+xml');
+  res.sendFile(path.join(__dirname, '..', 'public', 'favicon.svg'));
+});
+
 // Initialize Game Engine
 const gameEngine = new GameEngine(io);
 gameEngine.start();
@@ -296,7 +302,9 @@ app.get('/api/admin/stats', authenticateToken, requireAdmin, (req, res) => {
       totalUsers,
       totalBalance,
       recentRounds: history.length,
-      currentRound: gameEngine.roundId
+      currentRound: gameEngine.roundId,
+      playerWinRate: gameEngine.playerWinRate,
+      botEnabled: gameEngine.botEngine ? gameEngine.botEngine.enabled : false
     }
   });
 });
@@ -368,6 +376,19 @@ io.on('connection', (socket) => {
     }
     const val = data.outcome === 'auto' ? null : data.outcome;
     gameEngine.setAdminOutcome(val);
+  });
+
+  // Realtime Live Chat Broadcast
+  socket.on('send_chat_message', (data) => {
+    if (!authenticatedUser || !data || !data.text) return;
+    const cleanText = String(data.text).trim().substring(0, 160);
+    if (!cleanText) return;
+    socket.broadcast.emit('broadcast_chat_message', {
+      username: authenticatedUser.username,
+      text: cleanText,
+      type: authenticatedUser.role === 'admin' ? 'system' : 'normal',
+      timestamp: Date.now()
+    });
   });
 
   socket.on('disconnect', () => {

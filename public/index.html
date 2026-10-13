@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TÀI XỈU VIP 3D - Cổng Game Giải Trí Thượng Lưu</title>
-  <meta name="description" content="Trang web game Tài Xỉu giải trí trực tuyến thời gian thực với đồ họa Casino 3D sang trọng, soi cầu chi tiết và hệ thống nạp tiền chơi thả ga.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .hero-section {
@@ -113,9 +115,36 @@
       background: rgba(255, 51, 88, 0.2);
       border-color: var(--red-tai);
     }
+
+    .features-badge-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feat-badge {
+      background: rgba(245, 183, 33, 0.08);
+      border: 1px solid rgba(245, 183, 33, 0.25);
+      color: #ffe57f;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
   </style>
 </head>
 <body>
+
+  <!-- Ambient Gold Dust Canvas -->
+  <canvas id="ambient-dust-canvas"></canvas>
 
   <!-- Navigation Bar -->
   <nav class="navbar">
@@ -132,6 +161,14 @@
   <section class="hero-section">
     <h1 class="hero-title">TÀI XỈU <span class="text-gold">HOÀNG GIA</span></h1>
     <p class="hero-subtitle">Sòng bài đẳng cấp thế giới với công nghệ lắc xúc xắc 3D chân thực, soi cầu chuẩn xác và tỷ lệ trả thưởng 1 ăn 0.7 siêu tốc.</p>
+
+    <!-- Features Badge Ribbon -->
+    <div class="features-badge-row">
+      <div class="feat-badge">🎲 LẮC 3D 60FPS</div>
+      <div class="feat-badge">⚡ RÚT NẠP 1 GIÂY</div>
+      <div class="feat-badge">📈 SOI CẦU CHUẨN XÁC</div>
+      <div class="feat-badge">👑 MINH BẠCH 100%</div>
+    </div>
 
     <!-- Auth Card -->
     <div class="auth-card">
@@ -292,6 +329,46 @@
         } catch (e) {}
       }
     });
+
+    // Ambient Dust Particles
+    (function() {
+      const canvas = document.getElementById('ambient-dust-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+      const particles = Array.from({ length: 40 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2 + 0.8,
+        alpha: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: -Math.random() * 0.45 - 0.15
+      }));
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.y < 0) p.y = height;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(245, 183, 33, ${p.alpha})`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = '#f5b721';
+          ctx.fill();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
   </script>
 </body>
 </html>

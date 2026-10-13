@@ -36,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Users Table Body
   const usersTbody = document.getElementById('users-tbody');
 
+  // Win Rate Control Elements
+  const displayActiveWinRate = document.getElementById('display-active-winrate');
+  const sliderWinRate = document.getElementById('slider-winrate');
+  const sliderNumVal = document.getElementById('slider-num-val');
+  const lblHouseRate = document.getElementById('lbl-house-rate');
+  const lblPlayerRate = document.getElementById('lbl-player-rate');
+  const winrateBarFill = document.getElementById('winrate-bar-fill');
+  const btnSaveWinrate = document.getElementById('btn-save-winrate');
+
   // Socket Connection
   const socket = io();
 
@@ -62,6 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statTotalTai) statTotalTai.textContent = (data.totalTai || 0).toLocaleString('vi-VN') + ' Xu';
     if (statTotalXiu) statTotalXiu.textContent = (data.totalXiu || 0).toLocaleString('vi-VN') + ' Xu';
     if (statOnlinePlayers) statOnlinePlayers.textContent = `${data.connectedPlayersCount || 1} thiết bị`;
+
+    // Round Progress Bar Fill
+    const progressFill = document.getElementById('admin-round-progress-fill');
+    if (progressFill) {
+      let maxTime = 60;
+      if (data.phase === 'shaking') maxTime = 5;
+      else if (data.phase === 'revealing') maxTime = 15;
+      const pct = Math.max(0, Math.min(100, (data.timeLeft / maxTime) * 100));
+      progressFill.style.width = `${pct}%`;
+      progressFill.style.background = data.phase === 'betting' 
+        ? 'linear-gradient(90deg, #00d2ff, #f5b721)' 
+        : (data.phase === 'shaking' ? 'linear-gradient(90deg, #f5b721, #ff3358)' : 'linear-gradient(90deg, #00f090, #ffe57f)');
+    }
 
     // House balance estimation: if Tai wins vs if Xiu wins
     const diff = Math.abs(data.totalTai - data.totalXiu);
@@ -103,6 +125,88 @@ document.addEventListener('DOMContentLoaded', () => {
         botBadge.textContent = data.botEnabled ? '🤖 BOT: ĐANG BẬT' : '🚫 BOT: ĐÃ TẮT';
       }
     }
+  }
+
+  // Win Rate Visual Helper
+  function updateWinRateVisual(rate) {
+    const val = parseInt(rate, 10);
+    const r = isNaN(val) ? 50 : Math.max(0, Math.min(100, val));
+    if (sliderNumVal) sliderNumVal.textContent = `${r}%`;
+    if (lblPlayerRate) lblPlayerRate.textContent = `${r}%`;
+    if (lblHouseRate) lblHouseRate.textContent = `${100 - r}%`;
+    if (winrateBarFill) winrateBarFill.style.width = `${r}%`;
+
+    // Highlight matching preset button
+    const presetBtns = document.querySelectorAll('.presets-buttons .btn-preset');
+    presetBtns.forEach(btn => {
+      const onclickAttr = btn.getAttribute('onclick') || '';
+      if (onclickAttr.includes(`(${r})`)) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  // Save Player Win Rate to Server
+  async function saveWinRate(rate) {
+    const parsedRate = parseInt(rate, 10);
+    if (isNaN(parsedRate) || parsedRate < 0 || parsedRate > 100) {
+      showToast('Tỉ lệ thắng không hợp lệ (0% - 100%)!', 'error');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/admin/set-win-rate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ winRate: parsedRate })
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToast(data.message, 'success');
+        if (displayActiveWinRate) {
+          displayActiveWinRate.textContent = `${data.winRate}% THẮNG`;
+        }
+        if (sliderWinRate) {
+          sliderWinRate.value = data.winRate;
+        }
+        updateWinRateVisual(data.winRate);
+      } else {
+        showToast(data.message || 'Lỗi khi lưu tỉ lệ thắng', 'error');
+      }
+    } catch (err) {
+      showToast('Lỗi kết nối khi lưu tỉ lệ thắng', 'error');
+    }
+  }
+
+  // Preset button handler exposed to window for inline onclick attributes
+  window.setWinRatePreset = function(presetRate) {
+    const val = parseInt(presetRate, 10);
+    if (sliderWinRate) {
+      sliderWinRate.value = val;
+    }
+    updateWinRateVisual(val);
+    saveWinRate(val);
+  };
+
+  // Slider change event
+  if (sliderWinRate) {
+    sliderWinRate.addEventListener('input', (e) => {
+      updateWinRateVisual(e.target.value);
+    });
+  }
+
+  // Save Win Rate Button event
+  if (btnSaveWinrate) {
+    btnSaveWinrate.addEventListener('click', () => {
+      if (sliderWinRate) {
+        saveWinRate(sliderWinRate.value);
+      }
+    });
   }
 
   // Bot Management Controls
@@ -371,8 +475,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Load Initial Admin Stats & Win Rate
+  async function loadInitialStats() {
+    try {
+      const res = await fetch('/api/admin/stats', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (data.success && data.stats) {
+        if (data.stats.playerWinRate !== undefined) {
+          if (displayActiveWinRate) {
+            displayActiveWinRate.textContent = `${data.stats.playerWinRate}% THẮNG`;
+          }
+          if (sliderWinRate) {
+            sliderWinRate.value = data.stats.playerWinRate;
+          }
+          updateWinRateVisual(data.stats.playerWinRate);
+        }
+      }
+    } catch (e) {
+      console.error('Error fetching admin stats:', e);
+    }
+  }
+
   // Initial load
   loadUsersList();
+  loadInitialStats();
 
   // Logout
   const logoutBtn = document.getElementById('btn-admin-logout');

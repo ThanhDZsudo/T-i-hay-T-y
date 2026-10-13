@@ -5,7 +5,7 @@
       "username": "admin",
       "passwordHash": "$2a$10$DYBHqwuX6UUh/4hfq/V1xuJ.03cwVPQq/XA.ncfduZDDkgIreJmii",
       "role": "admin",
-      "balance": 95400000,
+      "balance": 0,
       "createdAt": "2026-09-16T02:54:30.040Z"
     },
     {
@@ -13,7 +13,7 @@
       "username": "player1",
       "passwordHash": "$2a$10$DYBHqwuX6UUh/4hfq/V1xum6acMdke1Ruhmo1wv9kbZ6RoK44ksOu",
       "role": "user",
-      "balance": 70000000,
+      "balance": 168500000,
       "createdAt": "2026-09-16T02:54:30.104Z"
     },
     {
@@ -21,7 +21,7 @@
       "username": "player2",
       "passwordHash": "$2a$10$DYBHqwuX6UUh/4hfq/V1xum6acMdke1Ruhmo1wv9kbZ6RoK44ksOu",
       "role": "user",
-      "balance": 20000000,
+      "balance": 120000000,
       "createdAt": "2026-09-16T02:54:30.163Z"
     },
     {
@@ -29,7 +29,7 @@
       "username": "player3",
       "passwordHash": "$2a$10$tJaLWoWSqfg8Pl58dk/oC.E39Kfj6s8CKKVmvC2oGMeMkYTAkVmxy",
       "role": "user",
-      "balance": 25000000,
+      "balance": 65000000,
       "createdAt": "2026-09-16T03:16:50.931Z"
     },
     {
@@ -37,7 +37,7 @@
       "username": "player4",
       "passwordHash": "$2a$10$MdRIh4POc2G7q2FmlewNBe/g6AfDUTy7DjCsviuD0Dp4rDSdO/F7G",
       "role": "user",
-      "balance": 510000000,
+      "balance": 540000000,
       "createdAt": "2026-09-16T03:16:51.004Z"
     },
     {
@@ -45,7 +45,7 @@
       "username": "player5",
       "passwordHash": "$2a$10$gZ7A9.DQsnwLfQMA1hfH.uYVm6YiykwOt0le8JpqvMkdXQs4tc4gi",
       "role": "user",
-      "balance": 25000000,
+      "balance": 95000000,
       "createdAt": "2026-09-16T03:16:51.079Z"
     },
     {
@@ -58,1196 +58,6 @@
     }
   ],
   "history": [
-    {
-      "roundId": 1095,
-      "dice": [
-        6,
-        3,
-        4
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 54150000,
-      "totalXiu": 62750000,
-      "totalPayout": 108300000,
-      "timestamp": "2026-09-16T03:40:17.224Z"
-    },
-    {
-      "roundId": 1096,
-      "dice": [
-        2,
-        5,
-        5
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 68800000,
-      "totalXiu": 83150000,
-      "totalPayout": 137600000,
-      "timestamp": "2026-09-16T03:40:59.621Z"
-    },
-    {
-      "roundId": 1097,
-      "dice": [
-        2,
-        4,
-        1
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 76500000,
-      "totalXiu": 56000000,
-      "totalPayout": 112000000,
-      "timestamp": "2026-09-16T03:41:41.839Z"
-    },
-    {
-      "roundId": 1098,
-      "dice": [
-        5,
-        2,
-        6
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 31250000,
-      "totalXiu": 45200000,
-      "totalPayout": 62500000,
-      "timestamp": "2026-09-16T03:42:24.095Z"
-    },
-    {
-      "roundId": 1099,
-      "dice": [
-        2,
-        6,
-        4
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 59350000,
-      "totalXiu": 44400000,
-      "totalPayout": 118700000,
-      "timestamp": "2026-09-16T03:43:06.319Z"
-    },
-    {
-      "roundId": 1100,
-      "dice": [
-        4,
-        2,
-        3
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 127800000,
-      "totalXiu": 88450000,
-      "totalPayout": 176900000,
-      "timestamp": "2026-09-16T03:43:48.439Z"
-    },
-    {
-      "roundId": 1101,
-      "dice": [
-        5,
-        2,
-        5
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 52600000,
-      "totalXiu": 49050000,
-      "totalPayout": 105200000,
-      "timestamp": "2026-09-16T03:44:30.628Z"
-    },
-    {
-      "roundId": 1102,
-      "dice": [
-        6,
-        5,
-        1
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 63850000,
-      "totalXiu": 85000000,
-      "totalPayout": 127700000,
-      "timestamp": "2026-09-16T03:45:12.884Z"
-    },
-    {
-      "roundId": 1103,
-      "dice": [
-        5,
-        2,
-        6
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 85150000,
-      "totalXiu": 49150000,
-      "totalPayout": 170300000,
-      "timestamp": "2026-09-16T03:45:55.214Z"
-    },
-    {
-      "roundId": 1104,
-      "dice": [
-        4,
-        5,
-        5
-      ],
-      "total": 14,
-      "result": "tai",
-      "totalTai": 45150000,
-      "totalXiu": 55850000,
-      "totalPayout": 90300000,
-      "timestamp": "2026-09-16T03:46:37.542Z"
-    },
-    {
-      "roundId": 1105,
-      "dice": [
-        3,
-        2,
-        3
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 71600000,
-      "totalXiu": 111200000,
-      "totalPayout": 222400000,
-      "timestamp": "2026-09-16T03:47:19.881Z"
-    },
-    {
-      "roundId": 1106,
-      "dice": [
-        1,
-        3,
-        3
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 66350000,
-      "totalXiu": 118700000,
-      "totalPayout": 237400000,
-      "timestamp": "2026-09-16T03:48:02.266Z"
-    },
-    {
-      "roundId": 1107,
-      "dice": [
-        1,
-        1,
-        4
-      ],
-      "total": 6,
-      "result": "xiu",
-      "totalTai": 52100000,
-      "totalXiu": 43150000,
-      "totalPayout": 86300000,
-      "timestamp": "2026-09-16T03:48:44.592Z"
-    },
-    {
-      "roundId": 1108,
-      "dice": [
-        5,
-        5,
-        5
-      ],
-      "total": 15,
-      "result": "bao",
-      "totalTai": 40900000,
-      "totalXiu": 58600000,
-      "totalPayout": 0,
-      "timestamp": "2026-09-16T03:49:26.990Z"
-    },
-    {
-      "roundId": 1109,
-      "dice": [
-        1,
-        1,
-        4
-      ],
-      "total": 6,
-      "result": "xiu",
-      "totalTai": 76000000,
-      "totalXiu": 75150000,
-      "totalPayout": 150300000,
-      "timestamp": "2026-09-16T03:50:09.289Z"
-    },
-    {
-      "roundId": 1110,
-      "dice": [
-        1,
-        6,
-        5
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 34000000,
-      "totalXiu": 87050000,
-      "totalPayout": 68000000,
-      "timestamp": "2026-09-16T03:50:51.712Z"
-    },
-    {
-      "roundId": 1111,
-      "dice": [
-        5,
-        4,
-        1
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 67750000,
-      "totalXiu": 113000000,
-      "totalPayout": 226000000,
-      "timestamp": "2026-09-16T03:51:34.120Z"
-    },
-    {
-      "roundId": 1112,
-      "dice": [
-        2,
-        5,
-        3
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 38300000,
-      "totalXiu": 87350000,
-      "totalPayout": 174700000,
-      "timestamp": "2026-09-16T03:52:16.441Z"
-    },
-    {
-      "roundId": 1113,
-      "dice": [
-        2,
-        1,
-        3
-      ],
-      "total": 6,
-      "result": "xiu",
-      "totalTai": 57950000,
-      "totalXiu": 44800000,
-      "totalPayout": 89600000,
-      "timestamp": "2026-09-16T03:52:58.786Z"
-    },
-    {
-      "roundId": 1114,
-      "dice": [
-        5,
-        3,
-        3
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 74950000,
-      "totalXiu": 62450000,
-      "totalPayout": 149900000,
-      "timestamp": "2026-09-16T03:53:40.974Z"
-    },
-    {
-      "roundId": 1115,
-      "dice": [
-        5,
-        2,
-        3
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 44700000,
-      "totalXiu": 85200000,
-      "totalPayout": 170400000,
-      "timestamp": "2026-09-16T03:54:23.072Z"
-    },
-    {
-      "roundId": 1116,
-      "dice": [
-        3,
-        5,
-        4
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 64250000,
-      "totalXiu": 110750000,
-      "totalPayout": 128500000,
-      "timestamp": "2026-09-16T03:55:05.461Z"
-    },
-    {
-      "roundId": 1117,
-      "dice": [
-        3,
-        3,
-        3
-      ],
-      "total": 9,
-      "result": "bao",
-      "totalTai": 101150000,
-      "totalXiu": 101000000,
-      "totalPayout": 0,
-      "timestamp": "2026-09-16T03:55:47.868Z"
-    },
-    {
-      "roundId": 1118,
-      "dice": [
-        5,
-        3,
-        6
-      ],
-      "total": 14,
-      "result": "tai",
-      "totalTai": 97100000,
-      "totalXiu": 70850000,
-      "totalPayout": 194200000,
-      "timestamp": "2026-09-16T03:56:30.285Z"
-    },
-    {
-      "roundId": 1119,
-      "dice": [
-        6,
-        2,
-        2
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 49650000,
-      "totalXiu": 59600000,
-      "totalPayout": 119200000,
-      "timestamp": "2026-09-16T03:57:12.690Z"
-    },
-    {
-      "roundId": 1120,
-      "dice": [
-        3,
-        4,
-        1
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 79350000,
-      "totalXiu": 106500000,
-      "totalPayout": 213000000,
-      "timestamp": "2026-09-16T03:57:55.076Z"
-    },
-    {
-      "roundId": 1121,
-      "dice": [
-        4,
-        6,
-        5
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 79700000,
-      "totalXiu": 142700000,
-      "totalPayout": 159400000,
-      "timestamp": "2026-09-16T03:58:37.360Z"
-    },
-    {
-      "roundId": 1122,
-      "dice": [
-        4,
-        3,
-        4
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 57450000,
-      "totalXiu": 84800000,
-      "totalPayout": 114900000,
-      "timestamp": "2026-09-16T03:59:19.592Z"
-    },
-    {
-      "roundId": 1123,
-      "dice": [
-        1,
-        1,
-        6
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 67600000,
-      "totalXiu": 64750000,
-      "totalPayout": 129500000,
-      "timestamp": "2026-09-16T04:00:01.900Z"
-    },
-    {
-      "roundId": 1124,
-      "dice": [
-        3,
-        1,
-        2
-      ],
-      "total": 6,
-      "result": "xiu",
-      "totalTai": 69950000,
-      "totalXiu": 124100000,
-      "totalPayout": 248200000,
-      "timestamp": "2026-09-16T04:00:44.195Z"
-    },
-    {
-      "roundId": 1125,
-      "dice": [
-        6,
-        6,
-        1
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 87250000,
-      "totalXiu": 27550000,
-      "totalPayout": 174500000,
-      "timestamp": "2026-09-16T04:01:26.542Z"
-    },
-    {
-      "roundId": 1126,
-      "dice": [
-        3,
-        6,
-        5
-      ],
-      "total": 14,
-      "result": "tai",
-      "totalTai": 62800000,
-      "totalXiu": 21100000,
-      "totalPayout": 125600000,
-      "timestamp": "2026-09-16T04:02:08.796Z"
-    },
-    {
-      "roundId": 1127,
-      "dice": [
-        1,
-        3,
-        4
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 36500000,
-      "totalXiu": 45150000,
-      "totalPayout": 90300000,
-      "timestamp": "2026-09-16T04:02:51.013Z"
-    },
-    {
-      "roundId": 1128,
-      "dice": [
-        1,
-        4,
-        3
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 75150000,
-      "totalXiu": 61900000,
-      "totalPayout": 123800000,
-      "timestamp": "2026-09-16T04:03:33.215Z"
-    },
-    {
-      "roundId": 1129,
-      "dice": [
-        4,
-        5,
-        6
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 42150000,
-      "totalXiu": 91450000,
-      "totalPayout": 84300000,
-      "timestamp": "2026-09-16T04:04:15.623Z"
-    },
-    {
-      "roundId": 1130,
-      "dice": [
-        1,
-        4,
-        6
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 92600000,
-      "totalXiu": 118200000,
-      "totalPayout": 185200000,
-      "timestamp": "2026-09-16T04:04:58.030Z"
-    },
-    {
-      "roundId": 1131,
-      "dice": [
-        1,
-        3,
-        1
-      ],
-      "total": 5,
-      "result": "xiu",
-      "totalTai": 66800000,
-      "totalXiu": 44200000,
-      "totalPayout": 88400000,
-      "timestamp": "2026-09-16T04:05:40.441Z"
-    },
-    {
-      "roundId": 1132,
-      "dice": [
-        6,
-        3,
-        4
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 106950000,
-      "totalXiu": 92300000,
-      "totalPayout": 213900000,
-      "timestamp": "2026-09-16T04:06:22.897Z"
-    },
-    {
-      "roundId": 1133,
-      "dice": [
-        3,
-        2,
-        1
-      ],
-      "total": 6,
-      "result": "xiu",
-      "totalTai": 108850000,
-      "totalXiu": 88500000,
-      "totalPayout": 177000000,
-      "timestamp": "2026-09-16T04:07:05.318Z"
-    },
-    {
-      "roundId": 1134,
-      "dice": [
-        5,
-        4,
-        2
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 61050000,
-      "totalXiu": 107500000,
-      "totalPayout": 122100000,
-      "timestamp": "2026-09-16T04:07:47.584Z"
-    },
-    {
-      "roundId": 1135,
-      "dice": [
-        4,
-        3,
-        5
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 37400000,
-      "totalXiu": 57500000,
-      "totalPayout": 74800000,
-      "timestamp": "2026-09-16T04:08:29.780Z"
-    },
-    {
-      "roundId": 1136,
-      "dice": [
-        6,
-        4,
-        3
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 60700000,
-      "totalXiu": 44700000,
-      "totalPayout": 121400000,
-      "timestamp": "2026-09-16T04:09:12.065Z"
-    },
-    {
-      "roundId": 1137,
-      "dice": [
-        6,
-        2,
-        4
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 44750000,
-      "totalXiu": 74850000,
-      "totalPayout": 89500000,
-      "timestamp": "2026-09-16T04:10:22.071Z"
-    },
-    {
-      "roundId": 1138,
-      "dice": [
-        4,
-        6,
-        5
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 80600000,
-      "totalXiu": 80000000,
-      "totalPayout": 161200000,
-      "timestamp": "2026-09-16T04:36:07.962Z"
-    },
-    {
-      "roundId": 1139,
-      "dice": [
-        6,
-        1,
-        6
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 104450000,
-      "totalXiu": 108950000,
-      "totalPayout": 208900000,
-      "timestamp": "2026-09-16T04:36:50.269Z"
-    },
-    {
-      "roundId": 1140,
-      "dice": [
-        5,
-        2,
-        1
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 82200000,
-      "totalXiu": 34950000,
-      "totalPayout": 69900000,
-      "timestamp": "2026-09-16T04:37:32.568Z"
-    },
-    {
-      "roundId": 1141,
-      "dice": [
-        1,
-        4,
-        4
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 50250000,
-      "totalXiu": 82400000,
-      "totalPayout": 164800000,
-      "timestamp": "2026-09-16T04:38:14.870Z"
-    },
-    {
-      "roundId": 1142,
-      "dice": [
-        3,
-        2,
-        5
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 76000000,
-      "totalXiu": 43750000,
-      "totalPayout": 87500000,
-      "timestamp": "2026-09-16T04:38:57.188Z"
-    },
-    {
-      "roundId": 1143,
-      "dice": [
-        2,
-        4,
-        1
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 27350000,
-      "totalXiu": 25250000,
-      "totalPayout": 50500000,
-      "timestamp": "2026-09-16T04:39:39.485Z"
-    },
-    {
-      "roundId": 1144,
-      "dice": [
-        4,
-        5,
-        5
-      ],
-      "total": 14,
-      "result": "tai",
-      "totalTai": 89650000,
-      "totalXiu": 61350000,
-      "totalPayout": 179300000,
-      "timestamp": "2026-09-16T04:40:21.756Z"
-    },
-    {
-      "roundId": 1145,
-      "dice": [
-        6,
-        6,
-        5
-      ],
-      "total": 17,
-      "result": "tai",
-      "totalTai": 52450000,
-      "totalXiu": 113200000,
-      "totalPayout": 104900000,
-      "timestamp": "2026-09-16T04:41:04.044Z"
-    },
-    {
-      "roundId": 1146,
-      "dice": [
-        3,
-        5,
-        1
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 81900000,
-      "totalXiu": 81850000,
-      "totalPayout": 163700000,
-      "timestamp": "2026-09-16T04:41:46.345Z"
-    },
-    {
-      "roundId": 1147,
-      "dice": [
-        3,
-        4,
-        2
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 123650000,
-      "totalXiu": 106700000,
-      "totalPayout": 213400000,
-      "timestamp": "2026-09-16T04:42:28.604Z"
-    },
-    {
-      "roundId": 1148,
-      "dice": [
-        4,
-        1,
-        2
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 55250000,
-      "totalXiu": 79900000,
-      "totalPayout": 159800000,
-      "timestamp": "2026-09-16T04:43:10.858Z"
-    },
-    {
-      "roundId": 1149,
-      "dice": [
-        3,
-        2,
-        6
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 74900000,
-      "totalXiu": 103500000,
-      "totalPayout": 149800000,
-      "timestamp": "2026-09-16T04:43:53.106Z"
-    },
-    {
-      "roundId": 1150,
-      "dice": [
-        1,
-        6,
-        1
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 43400000,
-      "totalXiu": 45500000,
-      "totalPayout": 91000000,
-      "timestamp": "2026-09-16T04:44:35.341Z"
-    },
-    {
-      "roundId": 1151,
-      "dice": [
-        6,
-        5,
-        2
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 40150000,
-      "totalXiu": 27950000,
-      "totalPayout": 80300000,
-      "timestamp": "2026-09-16T04:45:17.610Z"
-    },
-    {
-      "roundId": 1152,
-      "dice": [
-        1,
-        4,
-        6
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 49850000,
-      "totalXiu": 103200000,
-      "totalPayout": 99700000,
-      "timestamp": "2026-09-16T04:45:59.881Z"
-    },
-    {
-      "roundId": 1153,
-      "dice": [
-        1,
-        1,
-        5
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 23600000,
-      "totalXiu": 61500000,
-      "totalPayout": 123000000,
-      "timestamp": "2026-09-16T04:46:42.089Z"
-    },
-    {
-      "roundId": 1154,
-      "dice": [
-        6,
-        5,
-        5
-      ],
-      "total": 16,
-      "result": "tai",
-      "totalTai": 59400000,
-      "totalXiu": 59300000,
-      "totalPayout": 118800000,
-      "timestamp": "2026-09-16T04:47:24.394Z"
-    },
-    {
-      "roundId": 1155,
-      "dice": [
-        5,
-        4,
-        6
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 80200000,
-      "totalXiu": 54400000,
-      "totalPayout": 160400000,
-      "timestamp": "2026-09-16T04:48:06.716Z"
-    },
-    {
-      "roundId": 1156,
-      "dice": [
-        3,
-        1,
-        4
-      ],
-      "total": 8,
-      "result": "xiu",
-      "totalTai": 126400000,
-      "totalXiu": 121500000,
-      "totalPayout": 243000000,
-      "timestamp": "2026-09-16T04:48:49.017Z"
-    },
-    {
-      "roundId": 1157,
-      "dice": [
-        2,
-        5,
-        5
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 107550000,
-      "totalXiu": 64700000,
-      "totalPayout": 215100000,
-      "timestamp": "2026-09-16T04:49:31.296Z"
-    },
-    {
-      "roundId": 1158,
-      "dice": [
-        5,
-        1,
-        1
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 115100000,
-      "totalXiu": 90150000,
-      "totalPayout": 180300000,
-      "timestamp": "2026-09-16T04:50:13.566Z"
-    },
-    {
-      "roundId": 1159,
-      "dice": [
-        6,
-        3,
-        4
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 66350000,
-      "totalXiu": 92050000,
-      "totalPayout": 132700000,
-      "timestamp": "2026-09-16T04:50:55.813Z"
-    },
-    {
-      "roundId": 1160,
-      "dice": [
-        5,
-        6,
-        5
-      ],
-      "total": 16,
-      "result": "tai",
-      "totalTai": 91750000,
-      "totalXiu": 74600000,
-      "totalPayout": 183500000,
-      "timestamp": "2026-09-16T04:51:38.108Z"
-    },
-    {
-      "roundId": 1161,
-      "dice": [
-        5,
-        2,
-        2
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 25900000,
-      "totalXiu": 85500000,
-      "totalPayout": 171000000,
-      "timestamp": "2026-09-16T04:52:20.426Z"
-    },
-    {
-      "roundId": 1162,
-      "dice": [
-        1,
-        1,
-        3
-      ],
-      "total": 5,
-      "result": "xiu",
-      "totalTai": 42050000,
-      "totalXiu": 44650000,
-      "totalPayout": 89300000,
-      "timestamp": "2026-09-16T04:53:02.710Z"
-    },
-    {
-      "roundId": 1163,
-      "dice": [
-        6,
-        6,
-        3
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 49150000,
-      "totalXiu": 86650000,
-      "totalPayout": 98300000,
-      "timestamp": "2026-09-16T04:53:44.963Z"
-    },
-    {
-      "roundId": 1164,
-      "dice": [
-        6,
-        5,
-        3
-      ],
-      "total": 14,
-      "result": "tai",
-      "totalTai": 62300000,
-      "totalXiu": 47200000,
-      "totalPayout": 124600000,
-      "timestamp": "2026-09-16T04:54:27.270Z"
-    },
-    {
-      "roundId": 1165,
-      "dice": [
-        5,
-        3,
-        4
-      ],
-      "total": 12,
-      "result": "tai",
-      "totalTai": 71250000,
-      "totalXiu": 36700000,
-      "totalPayout": 142500000,
-      "timestamp": "2026-09-16T04:55:09.537Z"
-    },
-    {
-      "roundId": 1166,
-      "dice": [
-        6,
-        3,
-        2
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 72450000,
-      "totalXiu": 55450000,
-      "totalPayout": 144900000,
-      "timestamp": "2026-09-16T04:55:51.876Z"
-    },
-    {
-      "roundId": 1167,
-      "dice": [
-        6,
-        6,
-        3
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 84150000,
-      "totalXiu": 28250000,
-      "totalPayout": 168300000,
-      "timestamp": "2026-09-16T04:56:34.185Z"
-    },
-    {
-      "roundId": 1168,
-      "dice": [
-        2,
-        6,
-        3
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 83400000,
-      "totalXiu": 103600000,
-      "totalPayout": 166800000,
-      "timestamp": "2026-09-16T04:57:16.509Z"
-    },
-    {
-      "roundId": 1169,
-      "dice": [
-        6,
-        1,
-        6
-      ],
-      "total": 13,
-      "result": "tai",
-      "totalTai": 50100000,
-      "totalXiu": 41950000,
-      "totalPayout": 100200000,
-      "timestamp": "2026-09-16T04:57:58.766Z"
-    },
-    {
-      "roundId": 1170,
-      "dice": [
-        3,
-        2,
-        5
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 78300000,
-      "totalXiu": 36950000,
-      "totalPayout": 73900000,
-      "timestamp": "2026-09-16T04:58:41.053Z"
-    },
-    {
-      "roundId": 1171,
-      "dice": [
-        5,
-        4,
-        6
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 48800000,
-      "totalXiu": 75200000,
-      "totalPayout": 97600000,
-      "timestamp": "2026-09-16T04:59:23.396Z"
-    },
-    {
-      "roundId": 1172,
-      "dice": [
-        6,
-        5,
-        4
-      ],
-      "total": 15,
-      "result": "tai",
-      "totalTai": 92250000,
-      "totalXiu": 89500000,
-      "totalPayout": 184500000,
-      "timestamp": "2026-09-16T05:00:05.701Z"
-    },
-    {
-      "roundId": 1173,
-      "dice": [
-        5,
-        1,
-        1
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 33500000,
-      "totalXiu": 48650000,
-      "totalPayout": 97300000,
-      "timestamp": "2026-09-16T05:00:48.018Z"
-    },
-    {
-      "roundId": 1174,
-      "dice": [
-        3,
-        4,
-        3
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 32700000,
-      "totalXiu": 21250000,
-      "totalPayout": 42500000,
-      "timestamp": "2026-09-16T05:01:30.307Z"
-    },
-    {
-      "roundId": 1175,
-      "dice": [
-        4,
-        4,
-        1
-      ],
-      "total": 9,
-      "result": "xiu",
-      "totalTai": 34200000,
-      "totalXiu": 47750000,
-      "totalPayout": 95500000,
-      "timestamp": "2026-09-16T05:02:12.599Z"
-    },
-    {
-      "roundId": 1176,
-      "dice": [
-        6,
-        1,
-        3
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 50950000,
-      "totalXiu": 108650000,
-      "totalPayout": 217300000,
-      "timestamp": "2026-09-16T05:02:54.821Z"
-    },
-    {
-      "roundId": 1177,
-      "dice": [
-        3,
-        1,
-        3
-      ],
-      "total": 7,
-      "result": "xiu",
-      "totalTai": 94200000,
-      "totalXiu": 107650000,
-      "totalPayout": 215300000,
-      "timestamp": "2026-09-16T05:03:37.122Z"
-    },
-    {
-      "roundId": 1178,
-      "dice": [
-        4,
-        3,
-        4
-      ],
-      "total": 11,
-      "result": "tai",
-      "totalTai": 50900000,
-      "totalXiu": 64300000,
-      "totalPayout": 101800000,
-      "timestamp": "2026-09-16T05:04:19.409Z"
-    },
-    {
-      "roundId": 1179,
-      "dice": [
-        4,
-        2,
-        4
-      ],
-      "total": 10,
-      "result": "xiu",
-      "totalTai": 73050000,
-      "totalXiu": 50050000,
-      "totalPayout": 100100000,
-      "timestamp": "2026-09-16T05:05:01.688Z"
-    },
     {
       "roundId": 1180,
       "dice": [
@@ -2857,6 +1667,1196 @@
       "totalXiu": 169600000,
       "totalPayout": 0,
       "timestamp": "2026-09-21T02:17:04.624Z"
+    },
+    {
+      "roundId": 1295,
+      "dice": [
+        6,
+        3,
+        3
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 95000000,
+      "totalXiu": 213400000,
+      "totalPayout": 161500000,
+      "timestamp": "2026-09-25T13:37:03.002Z"
+    },
+    {
+      "roundId": 1296,
+      "dice": [
+        5,
+        1,
+        5
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 303950000,
+      "totalXiu": 243450000,
+      "totalPayout": 516715000,
+      "timestamp": "2026-09-25T13:38:23.468Z"
+    },
+    {
+      "roundId": 1297,
+      "dice": [
+        1,
+        3,
+        6
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 192150000,
+      "totalXiu": 219400000,
+      "totalPayout": 372980000,
+      "timestamp": "2026-10-05T07:21:38.166Z"
+    },
+    {
+      "roundId": 1298,
+      "dice": [
+        5,
+        5,
+        5
+      ],
+      "total": 15,
+      "result": "bao",
+      "totalTai": 173200000,
+      "totalXiu": 428780000,
+      "totalPayout": 0,
+      "timestamp": "2026-10-05T07:22:58.933Z"
+    },
+    {
+      "roundId": 1299,
+      "dice": [
+        4,
+        5,
+        3
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 134700000,
+      "totalXiu": 176900000,
+      "totalPayout": 228990000,
+      "timestamp": "2026-10-05T07:24:19.681Z"
+    },
+    {
+      "roundId": 1300,
+      "dice": [
+        3,
+        1,
+        6
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 176800000,
+      "totalXiu": 141950000,
+      "totalPayout": 241315000,
+      "timestamp": "2026-10-05T07:25:40.413Z"
+    },
+    {
+      "roundId": 1301,
+      "dice": [
+        4,
+        1,
+        1
+      ],
+      "total": 6,
+      "result": "xiu",
+      "totalTai": 88100000,
+      "totalXiu": 95250000,
+      "totalPayout": 161925000,
+      "timestamp": "2026-10-05T07:27:01.188Z"
+    },
+    {
+      "roundId": 1302,
+      "dice": [
+        6,
+        5,
+        5
+      ],
+      "total": 16,
+      "result": "tai",
+      "totalTai": 203350000,
+      "totalXiu": 190300000,
+      "totalPayout": 345695000,
+      "timestamp": "2026-10-05T07:28:21.942Z"
+    },
+    {
+      "roundId": 1303,
+      "dice": [
+        6,
+        6,
+        6
+      ],
+      "total": 18,
+      "result": "bao",
+      "totalTai": 208550000,
+      "totalXiu": 171250000,
+      "totalPayout": 0,
+      "timestamp": "2026-10-05T07:29:42.654Z"
+    },
+    {
+      "roundId": 1304,
+      "dice": [
+        4,
+        2,
+        3
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 151400000,
+      "totalXiu": 111400000,
+      "totalPayout": 189380000,
+      "timestamp": "2026-10-05T07:31:03.419Z"
+    },
+    {
+      "roundId": 1305,
+      "dice": [
+        1,
+        1,
+        6
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 147200000,
+      "totalXiu": 213250000,
+      "totalPayout": 362525000,
+      "timestamp": "2026-10-05T07:32:24.115Z"
+    },
+    {
+      "roundId": 1306,
+      "dice": [
+        3,
+        2,
+        5
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 205750000,
+      "totalXiu": 216400000,
+      "totalPayout": 367880000,
+      "timestamp": "2026-10-05T07:33:44.829Z"
+    },
+    {
+      "roundId": 1307,
+      "dice": [
+        1,
+        1,
+        6
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 228050000,
+      "totalXiu": 220800000,
+      "totalPayout": 375360000,
+      "timestamp": "2026-10-05T07:35:05.538Z"
+    },
+    {
+      "roundId": 1308,
+      "dice": [
+        3,
+        6,
+        5
+      ],
+      "total": 14,
+      "result": "tai",
+      "totalTai": 165400000,
+      "totalXiu": 173450000,
+      "totalPayout": 281180000,
+      "timestamp": "2026-10-05T07:36:26.272Z"
+    },
+    {
+      "roundId": 1309,
+      "dice": [
+        5,
+        5,
+        2
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 165500000,
+      "totalXiu": 146900000,
+      "totalPayout": 281350000,
+      "timestamp": "2026-10-05T07:37:47.007Z"
+    },
+    {
+      "roundId": 1310,
+      "dice": [
+        2,
+        1,
+        4
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 160950000,
+      "totalXiu": 158550000,
+      "totalPayout": 269535000,
+      "timestamp": "2026-10-13T00:23:20.028Z"
+    },
+    {
+      "roundId": 1311,
+      "dice": [
+        4,
+        1,
+        2
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 141200000,
+      "totalXiu": 190750000,
+      "totalPayout": 324275000,
+      "timestamp": "2026-10-13T00:24:40.505Z"
+    },
+    {
+      "roundId": 1312,
+      "dice": [
+        1,
+        3,
+        2
+      ],
+      "total": 6,
+      "result": "xiu",
+      "totalTai": 154050000,
+      "totalXiu": 126700000,
+      "totalPayout": 215390000,
+      "timestamp": "2026-10-13T00:26:00.969Z"
+    },
+    {
+      "roundId": 1313,
+      "dice": [
+        2,
+        2,
+        1
+      ],
+      "total": 5,
+      "result": "xiu",
+      "totalTai": 145200000,
+      "totalXiu": 163900000,
+      "totalPayout": 278630000,
+      "timestamp": "2026-10-13T00:27:21.513Z"
+    },
+    {
+      "roundId": 1314,
+      "dice": [
+        1,
+        3,
+        4
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 197750000,
+      "totalXiu": 125050000,
+      "totalPayout": 212585000,
+      "timestamp": "2026-10-13T00:28:41.993Z"
+    },
+    {
+      "roundId": 1315,
+      "dice": [
+        5,
+        6,
+        6
+      ],
+      "total": 17,
+      "result": "tai",
+      "totalTai": 318350000,
+      "totalXiu": 253850000,
+      "totalPayout": 541195000,
+      "timestamp": "2026-10-13T00:30:02.344Z"
+    },
+    {
+      "roundId": 1316,
+      "dice": [
+        1,
+        4,
+        2
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 165300000,
+      "totalXiu": 204700000,
+      "totalPayout": 347990000,
+      "timestamp": "2026-10-13T00:31:22.692Z"
+    },
+    {
+      "roundId": 1317,
+      "dice": [
+        1,
+        2,
+        3
+      ],
+      "total": 6,
+      "result": "xiu",
+      "totalTai": 161200000,
+      "totalXiu": 150200000,
+      "totalPayout": 255340000,
+      "timestamp": "2026-10-13T00:32:43.300Z"
+    },
+    {
+      "roundId": 1318,
+      "dice": [
+        5,
+        4,
+        2
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 205200000,
+      "totalXiu": 154400000,
+      "totalPayout": 348840000,
+      "timestamp": "2026-10-13T00:34:03.920Z"
+    },
+    {
+      "roundId": 1319,
+      "dice": [
+        4,
+        3,
+        3
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 174650000,
+      "totalXiu": 184950000,
+      "totalPayout": 314415000,
+      "timestamp": "2026-10-13T00:35:24.818Z"
+    },
+    {
+      "roundId": 1320,
+      "dice": [
+        6,
+        4,
+        6
+      ],
+      "total": 16,
+      "result": "tai",
+      "totalTai": 116800000,
+      "totalXiu": 144200000,
+      "totalPayout": 198560000,
+      "timestamp": "2026-10-13T00:36:45.426Z"
+    },
+    {
+      "roundId": 1321,
+      "dice": [
+        3,
+        3,
+        1
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 85900000,
+      "totalXiu": 120750000,
+      "totalPayout": 205275000,
+      "timestamp": "2026-10-13T00:38:05.880Z"
+    },
+    {
+      "roundId": 1322,
+      "dice": [
+        5,
+        2,
+        2
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 170800000,
+      "totalXiu": 235400000,
+      "totalPayout": 400180000,
+      "timestamp": "2026-10-13T00:39:26.196Z"
+    },
+    {
+      "roundId": 1323,
+      "dice": [
+        5,
+        1,
+        4
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 147350000,
+      "totalXiu": 151400000,
+      "totalPayout": 257380000,
+      "timestamp": "2026-10-13T00:40:46.828Z"
+    },
+    {
+      "roundId": 1324,
+      "dice": [
+        3,
+        3,
+        1
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 146050000,
+      "totalXiu": 193600000,
+      "totalPayout": 329120000,
+      "timestamp": "2026-10-13T00:42:07.326Z"
+    },
+    {
+      "roundId": 1325,
+      "dice": [
+        5,
+        6,
+        6
+      ],
+      "total": 17,
+      "result": "tai",
+      "totalTai": 106300000,
+      "totalXiu": 86850000,
+      "totalPayout": 180710000,
+      "timestamp": "2026-10-13T00:43:25.902Z"
+    },
+    {
+      "roundId": 1326,
+      "dice": [
+        1,
+        3,
+        6
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 101050000,
+      "totalXiu": 147550000,
+      "totalPayout": 250835000,
+      "timestamp": "2026-10-13T00:44:46.467Z"
+    },
+    {
+      "roundId": 1327,
+      "dice": [
+        3,
+        1,
+        1
+      ],
+      "total": 5,
+      "result": "xiu",
+      "totalTai": 110850000,
+      "totalXiu": 154550000,
+      "totalPayout": 262735000,
+      "timestamp": "2026-10-13T00:46:07.048Z"
+    },
+    {
+      "roundId": 1328,
+      "dice": [
+        4,
+        5,
+        6
+      ],
+      "total": 15,
+      "result": "tai",
+      "totalTai": 191300000,
+      "totalXiu": 149850000,
+      "totalPayout": 325210000,
+      "timestamp": "2026-10-13T00:47:27.618Z"
+    },
+    {
+      "roundId": 1329,
+      "dice": [
+        1,
+        2,
+        1
+      ],
+      "total": 4,
+      "result": "xiu",
+      "totalTai": 190650000,
+      "totalXiu": 151550000,
+      "totalPayout": 257635000,
+      "timestamp": "2026-10-13T00:48:48.100Z"
+    },
+    {
+      "roundId": 1330,
+      "dice": [
+        3,
+        4,
+        3
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 242850000,
+      "totalXiu": 163750000,
+      "totalPayout": 278375000,
+      "timestamp": "2026-10-13T00:50:08.721Z"
+    },
+    {
+      "roundId": 1331,
+      "dice": [
+        3,
+        3,
+        2
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 148750000,
+      "totalXiu": 129050000,
+      "totalPayout": 219385000,
+      "timestamp": "2026-10-13T00:51:29.345Z"
+    },
+    {
+      "roundId": 1332,
+      "dice": [
+        3,
+        3,
+        4
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 161100000,
+      "totalXiu": 198400000,
+      "totalPayout": 337280000,
+      "timestamp": "2026-10-13T00:52:49.989Z"
+    },
+    {
+      "roundId": 1333,
+      "dice": [
+        2,
+        4,
+        4
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 116500000,
+      "totalXiu": 168200000,
+      "totalPayout": 285940000,
+      "timestamp": "2026-10-13T00:54:10.613Z"
+    },
+    {
+      "roundId": 1334,
+      "dice": [
+        1,
+        6,
+        2
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 254400000,
+      "totalXiu": 175450000,
+      "totalPayout": 298265000,
+      "timestamp": "2026-10-13T00:55:31.288Z"
+    },
+    {
+      "roundId": 1335,
+      "dice": [
+        6,
+        2,
+        4
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 104200000,
+      "totalXiu": 152750000,
+      "totalPayout": 177140000,
+      "timestamp": "2026-10-13T00:56:51.796Z"
+    },
+    {
+      "roundId": 1336,
+      "dice": [
+        6,
+        4,
+        2
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 104050000,
+      "totalXiu": 145800000,
+      "totalPayout": 176885000,
+      "timestamp": "2026-10-13T00:58:12.390Z"
+    },
+    {
+      "roundId": 1337,
+      "dice": [
+        4,
+        2,
+        1
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 234950000,
+      "totalXiu": 128550000,
+      "totalPayout": 218535000,
+      "timestamp": "2026-10-13T00:59:33.061Z"
+    },
+    {
+      "roundId": 1338,
+      "dice": [
+        5,
+        5,
+        1
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 174550000,
+      "totalXiu": 183150000,
+      "totalPayout": 296735000,
+      "timestamp": "2026-10-13T01:00:53.629Z"
+    },
+    {
+      "roundId": 1339,
+      "dice": [
+        4,
+        5,
+        2
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 138350000,
+      "totalXiu": 98650000,
+      "totalPayout": 235195000,
+      "timestamp": "2026-10-13T01:02:14.130Z"
+    },
+    {
+      "roundId": 1340,
+      "dice": [
+        6,
+        4,
+        2
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 131750000,
+      "totalXiu": 171650000,
+      "totalPayout": 223975000,
+      "timestamp": "2026-10-13T01:03:34.761Z"
+    },
+    {
+      "roundId": 1341,
+      "dice": [
+        2,
+        6,
+        2
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 121350000,
+      "totalXiu": 210850000,
+      "totalPayout": 358445000,
+      "timestamp": "2026-10-13T01:04:55.423Z"
+    },
+    {
+      "roundId": 1342,
+      "dice": [
+        4,
+        6,
+        5
+      ],
+      "total": 15,
+      "result": "tai",
+      "totalTai": 152300000,
+      "totalXiu": 129050000,
+      "totalPayout": 258910000,
+      "timestamp": "2026-10-13T01:06:16.249Z"
+    },
+    {
+      "roundId": 1343,
+      "dice": [
+        1,
+        4,
+        2
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 204600000,
+      "totalXiu": 226000000,
+      "totalPayout": 384200000,
+      "timestamp": "2026-10-13T01:07:37.015Z"
+    },
+    {
+      "roundId": 1344,
+      "dice": [
+        2,
+        6,
+        2
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 217650000,
+      "totalXiu": 216900000,
+      "totalPayout": 368730000,
+      "timestamp": "2026-10-13T01:08:57.769Z"
+    },
+    {
+      "roundId": 1345,
+      "dice": [
+        3,
+        5,
+        4
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 213250000,
+      "totalXiu": 141650000,
+      "totalPayout": 362525000,
+      "timestamp": "2026-10-13T01:10:18.519Z"
+    },
+    {
+      "roundId": 1346,
+      "dice": [
+        5,
+        2,
+        2
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 206500000,
+      "totalXiu": 140150000,
+      "totalPayout": 238255000,
+      "timestamp": "2026-10-13T01:11:39.247Z"
+    },
+    {
+      "roundId": 1347,
+      "dice": [
+        1,
+        2,
+        2
+      ],
+      "total": 5,
+      "result": "xiu",
+      "totalTai": 89800000,
+      "totalXiu": 108450000,
+      "totalPayout": 184365000,
+      "timestamp": "2026-10-13T01:13:00.017Z"
+    },
+    {
+      "roundId": 1348,
+      "dice": [
+        3,
+        2,
+        6
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 69200000,
+      "totalXiu": 101450000,
+      "totalPayout": 117640000,
+      "timestamp": "2026-10-13T01:14:20.513Z"
+    },
+    {
+      "roundId": 1349,
+      "dice": [
+        3,
+        4,
+        3
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 114950000,
+      "totalXiu": 104700000,
+      "totalPayout": 177990000,
+      "timestamp": "2026-10-13T01:15:40.971Z"
+    },
+    {
+      "roundId": 1350,
+      "dice": [
+        6,
+        4,
+        5
+      ],
+      "total": 15,
+      "result": "tai",
+      "totalTai": 193200000,
+      "totalXiu": 237250000,
+      "totalPayout": 328440000,
+      "timestamp": "2026-10-13T01:17:01.494Z"
+    },
+    {
+      "roundId": 1351,
+      "dice": [
+        6,
+        5,
+        4
+      ],
+      "total": 15,
+      "result": "tai",
+      "totalTai": 155700000,
+      "totalXiu": 207150000,
+      "totalPayout": 264690000,
+      "timestamp": "2026-10-13T01:18:22.055Z"
+    },
+    {
+      "roundId": 1352,
+      "dice": [
+        1,
+        4,
+        3
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 167500000,
+      "totalXiu": 181750000,
+      "totalPayout": 308975000,
+      "timestamp": "2026-10-13T01:19:42.673Z"
+    },
+    {
+      "roundId": 1353,
+      "dice": [
+        3,
+        5,
+        5
+      ],
+      "total": 13,
+      "result": "tai",
+      "totalTai": 197800000,
+      "totalXiu": 163550000,
+      "totalPayout": 336260000,
+      "timestamp": "2026-10-13T01:21:03.216Z"
+    },
+    {
+      "roundId": 1354,
+      "dice": [
+        1,
+        4,
+        2
+      ],
+      "total": 7,
+      "result": "xiu",
+      "totalTai": 108300000,
+      "totalXiu": 131200000,
+      "totalPayout": 223040000,
+      "timestamp": "2026-10-13T01:22:23.778Z"
+    },
+    {
+      "roundId": 1355,
+      "dice": [
+        4,
+        1,
+        5
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 143850000,
+      "totalXiu": 148200000,
+      "totalPayout": 251940000,
+      "timestamp": "2026-10-13T01:23:44.243Z"
+    },
+    {
+      "roundId": 1356,
+      "dice": [
+        4,
+        3,
+        1
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 112400000,
+      "totalXiu": 179500000,
+      "totalPayout": 305150000,
+      "timestamp": "2026-10-13T01:25:04.800Z"
+    },
+    {
+      "roundId": 1357,
+      "dice": [
+        4,
+        4,
+        6
+      ],
+      "total": 14,
+      "result": "tai",
+      "totalTai": 162800000,
+      "totalXiu": 137250000,
+      "totalPayout": 276760000,
+      "timestamp": "2026-10-13T01:26:25.291Z"
+    },
+    {
+      "roundId": 1358,
+      "dice": [
+        4,
+        3,
+        6
+      ],
+      "total": 13,
+      "result": "tai",
+      "totalTai": 298300000,
+      "totalXiu": 230350000,
+      "totalPayout": 507110000,
+      "timestamp": "2026-10-13T01:27:45.697Z"
+    },
+    {
+      "roundId": 1359,
+      "dice": [
+        1,
+        3,
+        2
+      ],
+      "total": 6,
+      "result": "xiu",
+      "totalTai": 119050000,
+      "totalXiu": 142950000,
+      "totalPayout": 243015000,
+      "timestamp": "2026-10-13T01:29:06.319Z"
+    },
+    {
+      "roundId": 1360,
+      "dice": [
+        6,
+        1,
+        2
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 182450000,
+      "totalXiu": 129100000,
+      "totalPayout": 219470000,
+      "timestamp": "2026-10-13T01:30:26.743Z"
+    },
+    {
+      "roundId": 1361,
+      "dice": [
+        1,
+        4,
+        5
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 252450000,
+      "totalXiu": 200600000,
+      "totalPayout": 341020000,
+      "timestamp": "2026-10-13T01:31:47.401Z"
+    },
+    {
+      "roundId": 1362,
+      "dice": [
+        6,
+        5,
+        5
+      ],
+      "total": 16,
+      "result": "tai",
+      "totalTai": 178350000,
+      "totalXiu": 177200000,
+      "totalPayout": 303195000,
+      "timestamp": "2026-10-13T01:33:08.232Z"
+    },
+    {
+      "roundId": 1363,
+      "dice": [
+        3,
+        4,
+        6
+      ],
+      "total": 13,
+      "result": "tai",
+      "totalTai": 119300000,
+      "totalXiu": 131500000,
+      "totalPayout": 202810000,
+      "timestamp": "2026-10-13T01:34:28.744Z"
+    },
+    {
+      "roundId": 1364,
+      "dice": [
+        3,
+        4,
+        1
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 156550000,
+      "totalXiu": 168300000,
+      "totalPayout": 286110000,
+      "timestamp": "2026-10-13T01:35:49.135Z"
+    },
+    {
+      "roundId": 1365,
+      "dice": [
+        2,
+        3,
+        5
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 134400000,
+      "totalXiu": 235450000,
+      "totalPayout": 400265000,
+      "timestamp": "2026-10-13T01:37:09.618Z"
+    },
+    {
+      "roundId": 1366,
+      "dice": [
+        1,
+        1,
+        1
+      ],
+      "total": 3,
+      "result": "bao",
+      "totalTai": 123350000,
+      "totalXiu": 141300000,
+      "totalPayout": 0,
+      "timestamp": "2026-10-13T01:38:30.095Z"
+    },
+    {
+      "roundId": 1367,
+      "dice": [
+        2,
+        4,
+        5
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 142200000,
+      "totalXiu": 181300000,
+      "totalPayout": 241740000,
+      "timestamp": "2026-10-13T01:39:50.686Z"
+    },
+    {
+      "roundId": 1368,
+      "dice": [
+        3,
+        4,
+        1
+      ],
+      "total": 8,
+      "result": "xiu",
+      "totalTai": 207050000,
+      "totalXiu": 112850000,
+      "totalPayout": 191845000,
+      "timestamp": "2026-10-13T01:41:11.159Z"
+    },
+    {
+      "roundId": 1369,
+      "dice": [
+        3,
+        2,
+        5
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 170800000,
+      "totalXiu": 151650000,
+      "totalPayout": 257805000,
+      "timestamp": "2026-10-13T01:42:31.575Z"
+    },
+    {
+      "roundId": 1370,
+      "dice": [
+        5,
+        1,
+        6
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 193150000,
+      "totalXiu": 119000000,
+      "totalPayout": 328355000,
+      "timestamp": "2026-10-13T01:43:52.005Z"
+    },
+    {
+      "roundId": 1371,
+      "dice": [
+        4,
+        5,
+        3
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 201550000,
+      "totalXiu": 134850000,
+      "totalPayout": 342635000,
+      "timestamp": "2026-10-13T01:45:12.651Z"
+    },
+    {
+      "roundId": 1372,
+      "dice": [
+        3,
+        5,
+        1
+      ],
+      "total": 9,
+      "result": "xiu",
+      "totalTai": 154450000,
+      "totalXiu": 166600000,
+      "totalPayout": 283220000,
+      "timestamp": "2026-10-13T01:46:33.195Z"
+    },
+    {
+      "roundId": 1373,
+      "dice": [
+        3,
+        6,
+        5
+      ],
+      "total": 14,
+      "result": "tai",
+      "totalTai": 136400000,
+      "totalXiu": 140800000,
+      "totalPayout": 231880000,
+      "timestamp": "2026-10-13T01:47:53.548Z"
+    },
+    {
+      "roundId": 1374,
+      "dice": [
+        2,
+        4,
+        6
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 198750000,
+      "totalXiu": 161850000,
+      "totalPayout": 337875000,
+      "timestamp": "2026-10-13T01:49:14.102Z"
+    },
+    {
+      "roundId": 1375,
+      "dice": [
+        1,
+        5,
+        6
+      ],
+      "total": 12,
+      "result": "tai",
+      "totalTai": 253700000,
+      "totalXiu": 205950000,
+      "totalPayout": 431290000,
+      "timestamp": "2026-10-13T01:50:34.826Z"
+    },
+    {
+      "roundId": 1376,
+      "dice": [
+        6,
+        6,
+        2
+      ],
+      "total": 14,
+      "result": "tai",
+      "totalTai": 144750000,
+      "totalXiu": 271450000,
+      "totalPayout": 246075000,
+      "timestamp": "2026-10-13T01:51:55.615Z"
+    },
+    {
+      "roundId": 1377,
+      "dice": [
+        5,
+        4,
+        1
+      ],
+      "total": 10,
+      "result": "xiu",
+      "totalTai": 191900000,
+      "totalXiu": 159350000,
+      "totalPayout": 270895000,
+      "timestamp": "2026-10-13T01:53:16.140Z"
+    },
+    {
+      "roundId": 1378,
+      "dice": [
+        4,
+        4,
+        3
+      ],
+      "total": 11,
+      "result": "tai",
+      "totalTai": 85200000,
+      "totalXiu": 111050000,
+      "totalPayout": 144840000,
+      "timestamp": "2026-10-13T01:54:36.504Z"
+    },
+    {
+      "roundId": 1379,
+      "dice": [
+        2,
+        1,
+        1
+      ],
+      "total": 4,
+      "result": "xiu",
+      "totalTai": 187200000,
+      "totalXiu": 172350000,
+      "totalPayout": 292995000,
+      "timestamp": "2026-10-13T01:55:56.926Z"
     }
   ],
   "bets": [
@@ -3099,6 +3099,166 @@
       "winAmount": 0,
       "result": "bao",
       "createdAt": "2026-09-21T02:17:04.624Z"
+    },
+    {
+      "roundId": 1295,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 80000000,
+      "winAmount": 0,
+      "result": "tai",
+      "createdAt": "2026-09-25T13:37:03.001Z"
+    },
+    {
+      "roundId": 1296,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "tai",
+      "amount": 165400000,
+      "winAmount": 281180000,
+      "result": "tai",
+      "createdAt": "2026-09-25T13:38:23.467Z"
+    },
+    {
+      "roundId": 1298,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 331180000,
+      "winAmount": 0,
+      "result": "bao",
+      "createdAt": "2026-10-05T07:22:58.932Z"
+    },
+    {
+      "roundId": 1311,
+      "userId": "player-01",
+      "username": "player1",
+      "type": "xiu",
+      "amount": 50000000,
+      "winAmount": 85000000,
+      "result": "xiu",
+      "createdAt": "2026-10-13T00:24:40.505Z"
+    },
+    {
+      "roundId": 1313,
+      "userId": "player-01",
+      "username": "player1",
+      "type": "xiu",
+      "amount": 105000000,
+      "winAmount": 178500000,
+      "result": "xiu",
+      "createdAt": "2026-10-13T00:27:21.512Z"
+    },
+    {
+      "roundId": 1367,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 60000000,
+      "winAmount": 0,
+      "result": "tai",
+      "createdAt": "2026-10-13T01:39:50.685Z"
+    },
+    {
+      "roundId": 1368,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "tai",
+      "amount": 120000000,
+      "winAmount": 0,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:41:11.140Z"
+    },
+    {
+      "roundId": 1368,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 20000000,
+      "winAmount": 34000000,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:41:11.140Z"
+    },
+    {
+      "roundId": 1369,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "tai",
+      "amount": 1000000,
+      "winAmount": 0,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:42:31.574Z"
+    },
+    {
+      "roundId": 1369,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 33000000,
+      "winAmount": 56100000,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:42:31.574Z"
+    },
+    {
+      "roundId": 1373,
+      "userId": "player-01",
+      "username": "player1",
+      "type": "xiu",
+      "amount": 20000000,
+      "winAmount": 0,
+      "result": "tai",
+      "createdAt": "2026-10-13T01:47:53.547Z"
+    },
+    {
+      "roundId": 1375,
+      "userId": "player-01",
+      "username": "player1",
+      "type": "tai",
+      "amount": 100000000,
+      "winAmount": 170000000,
+      "result": "tai",
+      "createdAt": "2026-10-13T01:50:34.825Z"
+    },
+    {
+      "roundId": 1376,
+      "userId": "player-01",
+      "username": "player1",
+      "type": "xiu",
+      "amount": 100000000,
+      "winAmount": 0,
+      "result": "tai",
+      "createdAt": "2026-10-13T01:51:55.615Z"
+    },
+    {
+      "roundId": 1377,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "tai",
+      "amount": 500000,
+      "winAmount": 0,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:53:16.139Z"
+    },
+    {
+      "roundId": 1378,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "xiu",
+      "amount": 35100000,
+      "winAmount": 0,
+      "result": "tai",
+      "createdAt": "2026-10-13T01:54:36.503Z"
+    },
+    {
+      "roundId": 1379,
+      "userId": "admin-01",
+      "username": "admin",
+      "type": "tai",
+      "amount": 20500000,
+      "winAmount": 0,
+      "result": "xiu",
+      "createdAt": "2026-10-13T01:55:56.925Z"
     }
   ]
 }

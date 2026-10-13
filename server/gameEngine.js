@@ -31,7 +31,7 @@ class GameEngine {
 
     // Admin Win Rate configuration (0 - 100%)
     // 50 = 50/50 fair RNG, < 50 = House edge (player wins less), > 50 = Player advantage
-    this.playerWinRate = 50;
+    this.playerWinRate = db.getSetting('playerWinRate', 50);
 
     // Initialize Bot Engine
     this.botEngine = new BotEngine(this);
@@ -205,6 +205,7 @@ class GameEngine {
 
   setPlayerWinRate(rate) {
     this.playerWinRate = Math.max(0, Math.min(100, parseInt(rate, 10)));
+    db.setSetting('playerWinRate', this.playerWinRate);
     console.log(`[GameEngine] Player win rate updated: ${this.playerWinRate}%`);
     this.broadcastAdminUpdate();
     return this.playerWinRate;

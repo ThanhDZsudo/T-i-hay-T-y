@@ -411,4 +411,84 @@ body {
 
 .audio-btn:hover {
   background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.05);
 }
+
+/* ==================== FLYING CHIP ANIMATION ==================== */
+.flying-chip {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px dashed #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-accent);
+  font-weight: 900;
+  font-size: 0.8rem;
+  color: #fff;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(245, 183, 33, 0.8);
+  transition: all 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Floating Bet Amount Badge (+100.000 Xu) */
+.floating-bet-badge {
+  position: absolute;
+  font-family: var(--font-accent);
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: #ffe57f;
+  text-shadow: 0 0 10px rgba(245, 183, 33, 0.8), 0 2px 4px #000;
+  pointer-events: none;
+  z-index: 50;
+  animation: floatUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes floatUpFade {
+  0% { transform: translate(-50%, 0) scale(0.7); opacity: 0; }
+  25% { transform: translate(-50%, -15px) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -45px) scale(1); opacity: 0; }
+}
+
+/* ==================== FLOATING EMOJI BURST ==================== */
+.floating-emoji {
+  position: fixed;
+  font-size: 2.2rem;
+  pointer-events: none;
+  z-index: 10000;
+  animation: floatEmoji 2.2s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes floatEmoji {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.2) rotate(10deg);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-260px) scale(0.8) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+/* ==================== AMBIENT GOLD DUST CANVAS ==================== */
+#ambient-dust-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+

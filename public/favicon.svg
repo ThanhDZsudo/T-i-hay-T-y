@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Background gold glow -->
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe57f" stop-opacity="0.9"/>
+      <stop offset="65%" stop-color="#f5b721" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Gold Rim Gradient -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#ffe57f"/>
+      <stop offset="70%" stop-color="#f5b721"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+
+    <!-- Dice Crimson Body Gradient -->
+    <radialGradient id="diceBody" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ff3b5c"/>
+      <stop offset="50%" stop-color="#d90429"/>
+      <stop offset="100%" stop-color="#600010"/>
+    </radialGradient>
+
+    <!-- Pip Inner Glow -->
+    <radialGradient id="pipGlow" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#fff5cc"/>
+      <stop offset="100%" stop-color="#ecd06f"/>
+    </radialGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="3" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#goldGlow)"/>
+
+  <!-- Dice Base with Gold Border -->
+  <rect x="7" y="7" width="50" height="50" rx="14" fill="url(#diceBody)" stroke="url(#goldRim)" stroke-width="3" filter="url(#shadow)"/>
+
+  <!-- Specular Gloss Arc -->
+  <path d="M 11 22 Q 22 10 38 10 Q 25 24 11 28 Z" fill="#ffffff" opacity="0.35"/>
+
+  <!-- Pips (Face 5: 4 corner pearls + center golden star pip) -->
+  <!-- Top Left Pip -->
+  <circle cx="21" cy="21" r="5" fill="url(#pipGlow)" stroke="#ffffff" stroke-width="0.8"/>
+  <circle cx="19.5" cy="19.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Top Right Pip -->
+  <circle cx="43" cy="21" r="5" fill="url(#pipGlow)" stroke="#ffffff" stroke-width="0.8"/>
+  <circle cx="41.5" cy="19.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Center Golden Royal Crown Pip -->
+  <circle cx="32" cy="32" r="7" fill="url(#goldRim)" stroke="#ffffff" stroke-width="1"/>
+  <circle cx="32" cy="32" r="5.2" fill="#d90429"/>
+  <!-- Mini Crown icon in center -->
+  <path d="M 29 34.5 L 29.5 30 L 31 32 L 32 29 L 33 32 L 34.5 30 L 35 34.5 Z" fill="#ffe57f"/>
+
+  <!-- Bottom Left Pip -->
+  <circle cx="21" cy="43" r="5" fill="url(#pipGlow)" stroke="#ffffff" stroke-width="0.8"/>
+  <circle cx="19.5" cy="41.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Bottom Right Pip -->
+  <circle cx="43" cy="43" r="5" fill="url(#pipGlow)" stroke="#ffffff" stroke-width="0.8"/>
+  <circle cx="41.5" cy="41.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Sparkling Golden Star at Top Right -->
+  <polygon points="54,6 55.5,10.5 60,12 55.5,13.5 54,18 52.5,13.5 48,12 52.5,10.5" fill="#ffe57f" filter="url(#shadow)"/>
+</svg>

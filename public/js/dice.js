@@ -176,7 +176,15 @@ class DicePlateController {
     this.isReadyToOpen = false;
 
     if (this.bowlEl) {
+      this.bowlEl.style.transform = '';
+      this.bowlEl.style.transition = 'none';
       this.bowlEl.classList.add('shaking');
+    }
+    if (this.plateEl) {
+      this.plateEl.classList.add('plate-shaking');
+    }
+    if (this.diceContainerEl) {
+      this.diceContainerEl.classList.add('dice-shaking');
     }
     if (this.resultBadgeEl) {
       this.resultBadgeEl.style.display = 'none';
@@ -193,6 +201,14 @@ class DicePlateController {
   stopShaking() {
     if (this.bowlEl) {
       this.bowlEl.classList.remove('shaking');
+      this.bowlEl.style.transition = 'transform 0.3s ease';
+      this.bowlEl.style.transform = 'translate(0px, 0px)';
+    }
+    if (this.plateEl) {
+      this.plateEl.classList.remove('plate-shaking');
+    }
+    if (this.diceContainerEl) {
+      this.diceContainerEl.classList.remove('dice-shaking');
     }
   }
 
@@ -203,6 +219,13 @@ class DicePlateController {
     this.isDragging = false;
     this.currentX = 0;
     this.currentY = 0;
+
+    if (this.plateEl) {
+      this.plateEl.classList.remove('plate-shaking');
+    }
+    if (this.diceContainerEl) {
+      this.diceContainerEl.classList.remove('dice-shaking');
+    }
 
     if (this.bowlEl) {
       this.bowlEl.classList.remove('opened', 'ready-to-nan', 'shaking', 'nudge-locked');

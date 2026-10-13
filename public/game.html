@@ -4,11 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TÀI XỈU HOÀNG GIA - Cổng Game Đẳng Cấp</title>
-  <meta name="description" content="Trải nghiệm bàn cược Tài Xỉu 3D trực tuyến đẳng cấp VIP, lắc xí ngầu chân thực, nặn bát 360 độ và bảng soi cầu 3 xí ngầu chuẩn xác.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/game.css">
 </head>
 <body class="casino-theme">
+
+  <!-- Ambient Gold Dust Canvas -->
+  <canvas id="ambient-dust-canvas"></canvas>
 
   <!-- Top Casino Header Navigation -->
   <nav class="navbar">
@@ -61,6 +66,13 @@
     </div>
   </div>
 
+  <!-- Mega Jackpot Hũ Vàng Thần Tài Banner -->
+  <div class="tx-jackpot-banner">
+    <span class="jackpot-label">👑 HŨ VÀNG TÀI XỈU:</span>
+    <span class="jackpot-number" id="jackpot-counter">2,854,912,400 Xu</span>
+    <span>✨</span>
+  </div>
+
   <!-- Main Game Stage -->
   <main class="game-container">
 
@@ -103,7 +115,10 @@
           <!-- Right Action Icons -->
           <div class="tx-action-group right">
             <button class="tx-circle-btn" id="btn-open-leaderboard" title="Bảng Vinh Danh Top Thắng">🏆</button>
-            <button class="tx-circle-btn" id="btn-toggle-chat" title="Trò chuyện bàn cược">💬</button>
+            <button class="tx-circle-btn" id="btn-toggle-chat" title="Trò chuyện bàn cược" style="position: relative;">
+              💬
+              <span class="chat-unread-dot" id="chat-unread-dot" style="display: none;"></span>
+            </button>
             <button class="tx-circle-btn close-btn" id="btn-table-close" title="Rời bàn cược">✕</button>
           </div>
         </div>
@@ -254,6 +269,16 @@
         <div class="poker-chip chip-10m" data-value="10000000">10M</div>
       </div>
 
+      <!-- Quick Multipliers Tray -->
+      <div class="quick-multipliers-tray">
+        <span style="font-size: 0.78rem; color: #a0aec0; font-weight: 700;">Cộng nhanh:</span>
+        <button class="quick-mult-btn" data-add="100000">+100K</button>
+        <button class="quick-mult-btn" data-add="500000">+500K</button>
+        <button class="quick-mult-btn" data-add="1000000">+1M</button>
+        <button class="quick-mult-btn" data-add="5000000">+5M</button>
+        <button class="quick-mult-btn" data-add="10000000">+10M</button>
+      </div>
+
       <!-- Quick Bet Action Buttons -->
       <div class="quick-bet-actions">
         <div class="selected-door-indicator" id="selected-door-indicator">
@@ -268,6 +293,39 @@
 
   </main>
 
+  <!-- ==================== INTERACTIVE LIVE CHAT DRAWER ==================== -->
+  <aside class="tx-chat-drawer" id="tx-chat-drawer">
+    <div class="chat-drawer-header">
+      <div class="chat-drawer-title">
+        <span>💬</span>
+        <span>KÊNH CHAT TRỰC TIẾP (VIP)</span>
+      </div>
+      <button class="chat-close-btn" id="btn-close-chat" title="Đóng chat">✕</button>
+    </div>
+    <div class="chat-messages-container" id="chat-messages-container">
+      <!-- Populated dynamically with live messages -->
+    </div>
+    <div class="chat-quick-pills">
+      <span class="quick-chat-chip" data-msg="Tài chắc rồi ae ơi! 🔥">🔥 Bắt Tài</span>
+      <span class="quick-chat-chip" data-msg="Cầu đẹp quá, Xỉu thôi! 🧊">🧊 Bắt Xỉu</span>
+      <span class="quick-chat-chip" data-msg="All in phiên này lấy hên 🚀">🚀 Tất Tay</span>
+      <span class="quick-chat-chip" data-msg="Lụm lúa ae ơi! 💰">💰 Húp Lúa</span>
+      <span class="quick-chat-chip" data-msg="Bẻ cầu đi không hối hận 🎲">🎲 Bẻ Cầu</span>
+    </div>
+    <div class="chat-emoji-bar">
+      <button class="chat-emoji-btn" data-emoji="🔥" title="Bắn lửa">🔥</button>
+      <button class="chat-emoji-btn" data-emoji="💰" title="Bắn tiền">💰</button>
+      <button class="chat-emoji-btn" data-emoji="💎" title="Bắn kim cương">💎</button>
+      <button class="chat-emoji-btn" data-emoji="🎲" title="Bắn xúc xắc">🎲</button>
+      <button class="chat-emoji-btn" data-emoji="👑" title="Vương miện">👑</button>
+      <button class="chat-emoji-btn" data-emoji="🎉" title="Ăn mừng">🎉</button>
+    </div>
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Gõ tin nhắn trò chuyện..." maxlength="100" autocomplete="off">
+      <button type="submit" class="chat-send-btn">Gửi</button>
+    </form>
+  </aside>
+
   <!-- ==================== MODAL: BẢNG SOI CẦU 3 XÍ NGẦU (Ảnh 1) ==================== -->
   <div class="modal-overlay" id="modal-soicau">
     <div class="modal-content soicau-modal-box">
@@ -277,18 +335,29 @@
         <button class="soicau-close-btn" id="btn-close-soicau">✕</button>
       </div>
 
+      <!-- Tab Switcher -->
+      <div class="soicau-tabs">
+        <button class="sc-tab-btn active" id="tab-btn-graph">📈 BIỂU ĐỒ TỌA ĐỘ 3 XÍ NGẦU</button>
+        <button class="sc-tab-btn" id="tab-btn-matrix">⚪ BẢNG CẦU TRÒN (GIỌT NƯỚC)</button>
+      </div>
+
       <!-- Latest Round Sub-header -->
       <div class="soicau-sub-header">
         PHIÊN GẦN NHẤT (<span id="sc-latest-round">#322340</span>) • <span id="sc-latest-desc">Tài (6-6-1)</span>
       </div>
 
-      <!-- Soi Cầu HTML5 Canvas Coordinate Grid Graph -->
-      <div class="soicau-chart-container">
+      <!-- View 1: Soi Cầu HTML5 Canvas Coordinate Grid Graph -->
+      <div class="soicau-chart-container" id="soicau-view-graph">
         <canvas id="soicau-canvas" width="760" height="380"></canvas>
       </div>
 
+      <!-- View 2: Soi Cầu Bead Plate / Drop Matrix -->
+      <div class="soicau-matrix-container" id="soicau-view-matrix" style="display: none;">
+        <!-- Filled with 6x20 matrix beads dynamically -->
+      </div>
+
       <!-- 3 Dice Filter Buttons matching Image 1 -->
-      <div class="soicau-filters">
+      <div class="soicau-filters" id="soicau-filters-group">
         <button class="btn-sc-filter xn1 active" id="filter-xn1">
           <span class="sc-dot dot-xn1"></span> XÍ NGẦU 1
         </button>

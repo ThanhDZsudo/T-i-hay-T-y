@@ -563,6 +563,14 @@
 .btn-preset.preset-gift:hover { border-color: var(--green-success); color: var(--green-success); }
 .btn-preset.preset-win:hover { border-color: #67e8f9; color: #67e8f9; }
 
+.btn-preset.active {
+  background: var(--gold-gradient);
+  color: #000 !important;
+  border-color: #fff !important;
+  box-shadow: 0 0 14px rgba(245, 183, 33, 0.7);
+  font-weight: 800;
+}
+
 .btn-save-winrate {
   padding: 12px 24px;
   font-size: 0.95rem;
